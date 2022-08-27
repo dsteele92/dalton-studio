@@ -1,0 +1,72 @@
+@import 'sass';
+
+@include appear;
+
+.Top {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	background-color: black;
+
+	.BackgroundPic {
+		position: absolute;
+		height: 100%;
+		top: 0;
+		right: -300px;
+	}
+	.Underlay {
+		position: absolute;
+		height: 100%;
+		width: 50%;
+		top: 0;
+		// background: rgba($color: #000000, $alpha: 0.5);
+		background: rgba($color: #899296, $alpha: 0.6);
+		.Content {
+			position: relative;
+			left: 15%;
+			height: 70%;
+			width: fit-content;
+			display: flex;
+			justify-content: flex-end;
+			flex-direction: column;
+			align-items: flex-start;
+			animation: appear 1s;
+			animation-fill-mode: forwards;
+			white-space: nowrap;
+			letter-spacing: 1pt;
+
+			.Hi {
+				font-size: 20px;
+				color: white;
+				margin-bottom: 10px;
+			}
+
+			h1 {
+				color: rgb(255, 255, 255);
+				font-size: 40px;
+				text-transform: uppercase;
+				letter-spacing: 5px;
+				@media screen and (max-width: $breakpoint-mobile) {
+					font-size: 20px;
+				}
+				margin-bottom: 10px;
+				// text-shadow: 1px 1px 1px rgb(164, 164, 164);
+			}
+			.Titles {
+				color: rgb(0, 0, 0);
+				margin-top: 5px;
+				list-style: none;
+				display: flex;
+				li {
+					margin-right: 10px;
+				}
+				// text-shadow: 1px 1px 1px rgb(89, 89, 89);
+			}
+			.Location {
+				margin-top: 50px;
+				color: beige;
+				// font-weight: 500;
+			}
+		}
+	}
+}

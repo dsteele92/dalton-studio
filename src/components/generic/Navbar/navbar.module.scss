@@ -1,0 +1,84 @@
+@import 'sass';
+
+@include disappear;
+@include appear;
+
+@keyframes slideDown {
+	from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+@keyframes slideUp {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-100%);
+	}
+}
+
+@mixin listItems {
+	li {
+		list-style: none;
+		margin: 40px;
+		text-align: center;
+		cursor: pointer;
+		color: rgb(255, 255, 255);
+		font-size: 25px;
+		opacity: 0.8;
+		letter-spacing: 1px;
+
+		a {
+			color: white;
+			text-decoration: none;
+		}
+	}
+}
+
+.Nav {
+	animation: appear 1s;
+	animation-fill-mode: forwards;
+	height: 100%;
+	width: 100px;
+	position: absolute;
+	right: 0;
+	z-index: 1;
+	@include flex-center();
+
+	@media screen and (max-width: $breakpoint-mobile) {
+	}
+
+	.Inner {
+		width: 1800px;
+		height: 100%;
+		padding: 20px;
+		margin: auto;
+		@include flex-center;
+
+		ul {
+			@include flex-center;
+			flex-direction: column;
+			width: 100%;
+
+			.Bars {
+				display: none;
+				color: white;
+			}
+
+			.Logo {
+				// margin-right: auto;
+			}
+
+			.Links {
+				@media screen and (max-width: $breakpoint-mobile) {
+					display: none;
+				}
+			}
+
+			@include listItems();
+		}
+	}
+}
