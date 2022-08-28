@@ -20,30 +20,12 @@
 	}
 }
 
-@mixin listItems {
-	li {
-		list-style: none;
-		margin: 40px;
-		text-align: center;
-		cursor: pointer;
-		color: rgb(255, 255, 255);
-		font-size: 25px;
-		opacity: 0.8;
-		letter-spacing: 1px;
-
-		a {
-			color: white;
-			text-decoration: none;
-		}
-	}
-}
-
 .Nav {
 	animation: appear 1s;
 	animation-fill-mode: forwards;
 	height: 100%;
-	width: 100px;
-	position: absolute;
+	width: 150px;
+	position: fixed;
 	right: 0;
 	z-index: 1;
 	@include flex-center();
@@ -51,34 +33,38 @@
 	@media screen and (max-width: $breakpoint-mobile) {
 	}
 
-	.Inner {
-		width: 1800px;
-		height: 100%;
-		padding: 20px;
-		margin: auto;
+	ul {
 		@include flex-center;
+		flex-direction: column;
+		width: 100%;
+		list-style: none;
 
-		ul {
-			@include flex-center;
-			flex-direction: column;
-			width: 100%;
+		li {
+			margin: 55px;
+			text-align: center;
+			cursor: pointer;
+			font-size: 30px;
+			opacity: 0.8;
+			letter-spacing: 1px;
+			position: relative;
+			color: $color-alternate;
 
-			.Bars {
-				display: none;
-				color: white;
+			.Icon {
+				position: absolute;
+				top: 0;
+				left: 0;
 			}
-
-			.Logo {
-				// margin-right: auto;
+			.IconCurrentHome {
+				position: absolute;
+				top: 0;
+				left: 0;
 			}
-
-			.Links {
-				@media screen and (max-width: $breakpoint-mobile) {
-					display: none;
-				}
+			.IconCurrent {
+				position: absolute;
+				top: 0;
+				left: 0;
+				opacity: 0;
 			}
-
-			@include listItems();
 		}
 	}
 }

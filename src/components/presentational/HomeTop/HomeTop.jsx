@@ -2,12 +2,14 @@ import { React, useState, useEffect, useRef } from 'react';
 import Style from './homeTop.module.scss';
 
 import BackgroundPic from '../../../images/background-pic.jpeg';
+import AboutMePic from '../../../images/cropped-about-me.png';
 
 export default function HomeTop() {
 	return (
 		<div className={Style.Top}>
-			<img className={Style.BackgroundPic} src={BackgroundPic} alt='Dalton walking' />
-			<div className={Style.Underlay}>
+			{/* <div className={Style.Overlay}> */}
+			<img className={Style.BackgroundPic} src={AboutMePic} alt='Dalton walking' />
+			<section className={Style.Intro}>
 				<div className={Style.Content}>
 					<p className={Style.Hi}>Hi, I'm</p>
 					<h1>Dalton Steele</h1>
@@ -18,7 +20,8 @@ export default function HomeTop() {
 					</ul>
 					<h4 className={Style.Location}>Los Angeles, CA</h4>
 				</div>
-			</div>
+			</section>
+			{/* </div> */}
 		</div>
 	);
 }
