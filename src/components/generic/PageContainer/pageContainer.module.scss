@@ -1,0 +1,44 @@
+@import 'sass';
+
+.Container {
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	overflow: hidden;
+	.Top {
+		width: 100%;
+		height: $padding-vertical;
+		position: fixed;
+		top: 0;
+		background: white;
+		z-index: 9;
+		animation: slideDown 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
+	}
+	.Bottom {
+		width: 100%;
+		height: $padding-vertical;
+		position: fixed;
+		bottom: 0;
+		background: white;
+		z-index: 9;
+		animation: slideUp 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
+	}
+	.Left {
+		width: $padding-horizontal;
+		height: 100%;
+		position: fixed;
+		left: 0;
+		background: white;
+		z-index: 9;
+		animation: slideRight 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
+	}
+	.Right {
+		width: $padding-horizontal;
+		height: 100%;
+		position: fixed;
+		right: 0;
+		background: white;
+		z-index: 9;
+		animation: slideLeft 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
+	}
+}

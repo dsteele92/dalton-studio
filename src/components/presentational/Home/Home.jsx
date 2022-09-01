@@ -5,10 +5,12 @@ import { HomeTop, WebDev, PersonalTraining, Modeling } from 'components';
 export default function Home() {
 	return (
 		<div className={Style.Home}>
-			<HomeTop />
-			<WebDev />
-			<PersonalTraining />
-			<Modeling />
+			<div className={Style.Content}>
+				<HomeTop />
+				{/* <WebDev />
+				<PersonalTraining />
+				<Modeling /> */}
+			</div>
 		</div>
 	);
 }

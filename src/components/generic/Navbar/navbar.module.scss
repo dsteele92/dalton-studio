@@ -3,31 +3,29 @@
 @include disappear;
 @include appear;
 
-@keyframes slideDown {
-	from {
-		transform: translateY(-100%);
-	}
-	to {
-		transform: translateY(0);
-	}
-}
-@keyframes slideUp {
-	from {
-		transform: translateY(0);
-	}
-	to {
-		transform: translateY(-100%);
-	}
+header {
+	position: absolute;
+	top: 15px;
+	left: $padding-horizontal;
+	font-size: 20px;
+	letter-spacing: 1pt;
+	font-weight: 300;
+	font-family: 'Aboreto';
+	position: fixed;
+	z-index: 10;
+	opacity: 0;
+	animation: appear 1s ease-in 0.5s 1 normal forwards;
 }
 
 .Nav {
-	animation: appear 1s;
 	animation-fill-mode: forwards;
 	height: 100%;
-	width: 150px;
+	width: $padding-horizontal;
 	position: fixed;
-	right: 0;
-	z-index: 1;
+	left: 0;
+	z-index: 10;
+	opacity: 0;
+	animation: appear 1s ease-in 0.5s 1 normal forwards;
 	@include flex-center();
 
 	@media screen and (max-width: $breakpoint-mobile) {
@@ -36,33 +34,37 @@
 	ul {
 		@include flex-center;
 		flex-direction: column;
+		align-items: center;
 		width: 100%;
 		list-style: none;
 
 		li {
-			margin: 55px;
+			margin-bottom: 80px;
 			text-align: center;
 			cursor: pointer;
-			font-size: 30px;
+			font-size: 24px;
 			opacity: 0.8;
 			letter-spacing: 1px;
+			color: rgb(124, 124, 124);
 			position: relative;
-			color: $color-alternate;
 
 			.Icon {
 				position: absolute;
 				top: 0;
-				left: 0;
+				left: 50%;
+				transform: translateX(-50%);
 			}
 			.IconCurrentHome {
 				position: absolute;
 				top: 0;
-				left: 0;
+				left: 50%;
+				transform: translateX(-50%);
 			}
 			.IconCurrent {
 				position: absolute;
 				top: 0;
-				left: 0;
+				left: 50%;
+				transform: translateX(-50%);
 				opacity: 0;
 			}
 		}

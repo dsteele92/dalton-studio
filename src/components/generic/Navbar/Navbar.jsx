@@ -4,9 +4,14 @@ import { navbarData } from '../../../data/NavbarData';
 
 import { FaBars } from 'react-icons/fa';
 import { BiHomeSmile } from 'react-icons/bi';
+import { RiHome4Fill } from 'react-icons/ri';
 import { HiCode } from 'react-icons/hi';
+import { BsCodeSlash } from 'react-icons/bs';
 import { IoIosFitness } from 'react-icons/io';
+import { IoMdFitness } from 'react-icons/io';
+import { CgGym } from 'react-icons/cg';
 import { RiCamera3Line } from 'react-icons/ri';
+import { BsCamera2 } from 'react-icons/bs';
 
 import Style from './navbar.module.scss';
 
@@ -21,7 +26,7 @@ export default function Navbar() {
 
 	useEffect(() => {
 		const handleScroll = (event) => {
-			console.log(window.pageYOffset);
+			// console.log(window.pageYOffset);
 			const offset = window.pageYOffset;
 			const height = window.outerHeight;
 			const pageOnePercentOpen = 1 - offset / height;
@@ -70,43 +75,44 @@ export default function Navbar() {
 
 	return (
 		<div>
+			<header>DALTON STEELE</header>
 			<nav className={Style.Nav}>
 				<ul>
 					<li>
 						<div className={Style.Icon}>
-							<BiHomeSmile />
+							<RiHome4Fill />
 						</div>
 						<div className={Style.IconCurrentHome} ref={currentHome}>
-							<BiHomeSmile style={{ fill: 'url(#gradient)' }} />
+							<RiHome4Fill style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
 					<li>
 						<div className={Style.Icon}>
-							<HiCode />
+							<BsCodeSlash />
 						</div>
 						<div className={Style.IconCurrent} ref={currentWebDev}>
-							<HiCode style={{ fill: 'url(#gradient)' }} />
+							<BsCodeSlash style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
 					<li>
 						<div className={Style.Icon}>
-							<IoIosFitness />
+							<IoMdFitness />
 						</div>
 						<div className={Style.IconCurrent} ref={currentFitness}>
-							<IoIosFitness style={{ fill: 'url(#gradient)' }} />
+							<IoMdFitness style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
 					<li>
 						<div className={Style.Icon}>
-							<RiCamera3Line />
+							<BsCamera2 />
 						</div>
 						<div className={Style.IconCurrent} ref={currentModeling}>
-							<RiCamera3Line style={{ fill: 'url(#gradient)' }} />
+							<BsCamera2 style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
 					<svg width='0' height='0'>
 						<linearGradient id='gradient' x1='0%' y1='0%' x2='0%' y2='100%'>
-							<stop stopColor='#e66465' offset='0%' />
+							<stop stopColor='#da4141' offset='0%' />
 							<stop stopColor='#9198e5' offset='100%' />
 						</linearGradient>
 					</svg>
