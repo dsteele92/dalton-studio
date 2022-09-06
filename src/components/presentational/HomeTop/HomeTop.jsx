@@ -11,7 +11,7 @@ export default function HomeTop() {
 	const left = useRef();
 	const hello = useRef();
 	const intro = useRef();
-	const aboutMe = useRef();
+	// const aboutMe = useRef();
 	const bannerCoding = useRef();
 	const webDev = useRef();
 
@@ -41,13 +41,15 @@ export default function HomeTop() {
 				lastScroll = currentScroll;
 			}
 			//----->if scrolling down from top of page
-			// if (directionDown && currentScroll < windowHeight) {
-			// 	window.scrollTo({
-			// 		top: windowHeight,
-			// 		left: 0,
-			// 		behavior: 'smooth',
-			// 	});
-			// }
+			if (directionDown && currentScroll < windowHeight) {
+				// console.log(document.documentElement);
+				// intro.current.scrollIntoView();
+				// window.scrollTo({
+				// 	top: windowHeight,
+				// 	left: 0,
+				// 	behavior: 'smooth',
+				// });
+			}
 			// } else if (!directionDown && currentScroll < 20) {
 			// 	if (initialScroll) {
 			// 		setInitialScroll(false);
@@ -58,11 +60,12 @@ export default function HomeTop() {
 			// });
 			// }
 			// }
+
+			console.log(currentScroll);
 			// -----> control x-axis position of HELLO div
 			const halfX = window.innerWidth / 2;
 			const halfY = window.innerHeight / 2;
 
-			console.log(currentScroll);
 			if (currentScroll <= halfX - 50) {
 				left.current.style.minWidth = `${halfX + currentScroll * 1.5}px`;
 				hello.current.style.left = `${halfX + currentScroll}px`;
@@ -70,7 +73,7 @@ export default function HomeTop() {
 			}
 
 			if (currentScroll > windowHeight * 0.5) {
-				aboutMe.current.style.top = `${1.3 * windowHeight - (currentScroll - windowHeight) / 100}`;
+				// aboutMe.current.style.top = `${1.3 * windowHeight - (currentScroll - windowHeight) / 100}`;
 				intro.current.style.top = `${1.5 * windowHeight - (currentScroll - windowHeight) / 2}px`;
 				bannerCoding.current.style.top = `${2.2 * windowHeight - (currentScroll - windowHeight)}px`;
 				webDev.current.style.top = `${3 * windowHeight - (currentScroll - windowHeight) * 2}px`;
@@ -102,11 +105,11 @@ export default function HomeTop() {
 					<BsArrowDown className={Style.Arrow} />
 				</div>
 			</section>
-			<img className={Style.AboutMePic} ref={aboutMe} src={AboutMePic} alt='Dalton stadning' />
+			{/* <img className={Style.AboutMePic} ref={aboutMe} src={AboutMePic} alt='Dalton stadning' /> */}
 			<section className={Style.Intro} ref={intro}>
 				<div>
 					<h2>Hi, I'm Dalton</h2>
-					<h3>Software Engineer, Personal Trainer, & Fitness Model.</h3>
+					<h3>Software Engineer & Personal Trainer</h3>
 				</div>
 			</section>
 			<div className={Style.BannerCoding} ref={bannerCoding}></div>

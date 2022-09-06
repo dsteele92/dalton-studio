@@ -12,7 +12,7 @@ header {
 	font-weight: 300;
 	font-family: 'Aboreto';
 	position: fixed;
-	z-index: 10;
+	z-index: 100;
 	opacity: 0;
 	animation: appear 1s ease-in 0.5s 1 normal forwards;
 }
@@ -23,7 +23,7 @@ header {
 	width: $padding-horizontal;
 	position: fixed;
 	left: 0;
-	z-index: 10;
+	z-index: 100;
 	opacity: 0;
 	animation: appear 1s ease-in 0.5s 1 normal forwards;
 	@include flex-center();

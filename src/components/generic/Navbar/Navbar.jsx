@@ -24,30 +24,75 @@ export default function Navbar() {
 	// const [popOutNav, setPopOutNav] = useState('initial');
 	// const [popOutNavMobile, setPopOutNavMobile] = useState('initial');
 
+	const goToIntro = () => {
+		if (window.pageYOffset >= 100) {
+			window.scrollTo({
+				top: window.innerWidth / 2 + 200,
+				behavior: 'smooth',
+			});
+		}
+	};
+	const goToWebDev = () => {
+		if (window.pageYOffset >= 100) {
+			window.scrollTo({
+				top: window.innerHeight * 2 + 170,
+				behavior: 'smooth',
+			});
+		}
+	};
+	const goToFitness = () => {
+		if (window.pageYOffset >= 100) {
+			window.scrollTo({
+				top: window.innerHeight * 3 + 250,
+				behavior: 'smooth',
+			});
+		}
+	};
+	const goToTop = () => {
+		if (window.pageYOffset >= 100) {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth',
+			});
+		}
+	};
+
 	useEffect(() => {
 		const handleScroll = (event) => {
 			// console.log(window.pageYOffset);
 			const offset = window.pageYOffset;
 			const height = window.outerHeight;
-			const pageOnePercentOpen = 1 - offset / height;
+			// logic for static page:
+			// const pageOnePercentOpen = 1 - offset / height;
+			// let pageTwoPercentOpen = 0;
+			// let pageThreePercentOpen = 0;
+			// if (offset <= height) {
+			// 	pageTwoPercentOpen = offset / height;
+			// }
+			// if (offset > height && offset <= 2 * height) {
+			// 	pageTwoPercentOpen = 1 - (offset - height) / height;
+			// 	pageThreePercentOpen = (offset - height) / height;
+			// }
+			// if (offset > 2 * height) {
+			// 	pageThreePercentOpen = 1 - (offset - 2 * height) / height;
+			// }
+
+			let pageOnePercentOpen = 1;
 			let pageTwoPercentOpen = 0;
 			let pageThreePercentOpen = 0;
-			let pageFourPercentOpen = 0;
-			if (offset <= height) {
-				pageTwoPercentOpen = offset / height;
+
+			if (offset > 1.2 * height) {
+				pageOnePercentOpen = 1 - ((offset - 1.2 * height) / 1.2) * height;
+				pageTwoPercentOpen = ((offset - 1.2 * height) / 1.2) * height;
 			}
-			if (offset > height && offset <= 2 * height) {
-				pageTwoPercentOpen = 1 - (offset - height) / height;
-				pageThreePercentOpen = (offset - height) / height;
+			if (offset > 2.5 * height) {
+				pageTwoPercentOpen = 1 - ((offset - 2.5 * height) / 2.5) * height;
+				pageThreePercentOpen = ((offset - 2.5 * height) / 2.5) * height;
 			}
-			if (offset > 2 * height) {
-				pageThreePercentOpen = 1 - (offset - 2 * height) / height;
-				pageFourPercentOpen = (offset - 2 * height) / height;
-			}
+
 			currentHome.current.style.opacity = `${pageOnePercentOpen}`;
 			currentWebDev.current.style.opacity = `${pageTwoPercentOpen}`;
 			currentFitness.current.style.opacity = `${pageThreePercentOpen}`;
-			currentModeling.current.style.opacity = `${pageFourPercentOpen}`;
 		};
 		window.addEventListener('scroll', handleScroll);
 
@@ -56,29 +101,12 @@ export default function Navbar() {
 		};
 	}, []);
 
-	// const handlePopOutNav = function () {
-	// 	console.log(popOutNav);
-	// 	if (popOutNav === 'open') {
-	// 		setPopOutNav('closed');
-	// 	} else {
-	// 		setPopOutNav('open');
-	// 	}
-	// };
-	// const handlePopOutNavMobile = function () {
-	// 	console.log(popOutNavMobile);
-	// 	if (popOutNavMobile === 'open') {
-	// 		setPopOutNavMobile('closed');
-	// 	} else {
-	// 		setPopOutNavMobile('open');
-	// 	}
-	// };
-
 	return (
 		<div>
 			<header>DALTON STEELE</header>
 			<nav className={Style.Nav}>
 				<ul>
-					<li>
+					<li onClick={goToTop}>
 						<div className={Style.Icon}>
 							<RiHome4Fill />
 						</div>
@@ -86,7 +114,7 @@ export default function Navbar() {
 							<RiHome4Fill style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
-					<li>
+					<li onClick={goToWebDev}>
 						<div className={Style.Icon}>
 							<BsCodeSlash />
 						</div>
@@ -94,20 +122,12 @@ export default function Navbar() {
 							<BsCodeSlash style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
-					<li>
+					<li onClick={goToFitness}>
 						<div className={Style.Icon}>
 							<IoMdFitness />
 						</div>
 						<div className={Style.IconCurrent} ref={currentFitness}>
 							<IoMdFitness style={{ fill: 'url(#gradient)' }} />
-						</div>
-					</li>
-					<li>
-						<div className={Style.Icon}>
-							<BsCamera2 />
-						</div>
-						<div className={Style.IconCurrent} ref={currentModeling}>
-							<BsCamera2 style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
 					<svg width='0' height='0'>
