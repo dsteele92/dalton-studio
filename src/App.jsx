@@ -1,5 +1,6 @@
 import React from 'react';
-import { Home, Navbar, PageContainer } from 'components';
+import { Navbar, PageContainer } from 'components';
+import { HomePage, PortfolioPage, OldHomePage } from 'pages';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -9,7 +10,9 @@ function App() {
 				<PageContainer />
 				<Navbar />
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route path='/' element={<HomePage />} />
+					<Route path='/old' element={<OldHomePage />} />
+					<Route path='/portfolio' element={<PortfolioPage />} />
 				</Routes>
 			</Router>
 		</div>

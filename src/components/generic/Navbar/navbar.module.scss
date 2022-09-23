@@ -3,8 +3,8 @@
 @include disappear;
 @include appear;
 
-header {
-	position: absolute;
+.Header {
+	position: fixed;
 	top: 15px;
 	left: $padding-horizontal;
 	font-size: 20px;
@@ -14,11 +14,30 @@ header {
 	position: fixed;
 	z-index: 100;
 	opacity: 0;
-	animation: appear 1s ease-in 0.5s 1 normal forwards;
+	animation: appear 1s ease-in 0.5s forwards;
+	transition: 0.5s ease;
+
+	@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+		@media (orientation: landscape) {
+			top: 5%;
+			left: 3%;
+		}
+		@media (orientation: portrait) {
+			top: 3%;
+			left: 5%;
+		}
+	}
+
+	&Scroll {
+		@extend .Header;
+		@media screen and (max-width: $breakpoint-tablet) {
+			opacity: 1;
+			animation: disappear 1s ease-in forwards;
+		}
+	}
 }
 
-.Nav {
-	animation-fill-mode: forwards;
+.Menu {
 	height: 100%;
 	width: $padding-horizontal;
 	position: fixed;
@@ -26,9 +45,53 @@ header {
 	z-index: 100;
 	opacity: 0;
 	animation: appear 1s ease-in 0.5s 1 normal forwards;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+
+	.Bars {
+		font-size: 40px;
+		// color: rgb(124, 124, 124);
+		// color: rgb(85, 85, 85);
+		transform: translateX(50%);
+	}
+
+	@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+		display: none;
+	}
+}
+
+.Mobile {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	height: 40px;
+	width: 40px;
+	background-color: white;
+	z-index: 100;
+	@include flex-center;
+	font-size: 25px;
+	border-radius: 50%;
+	display: none;
+
+	@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+		display: flex;
+	}
+}
+
+.Nav {
+	height: 100%;
+	width: $padding-horizontal;
+	position: fixed;
+	right: 0;
+	z-index: 100;
+	opacity: 0;
+	animation: appear 1s ease-in 0.5s 1 normal forwards;
 	@include flex-center();
 
-	@media screen and (max-width: $breakpoint-mobile) {
+	@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+		display: none;
 	}
 
 	ul {
@@ -38,14 +101,14 @@ header {
 		width: 100%;
 		list-style: none;
 
-		li {
-			margin-bottom: 80px;
+		.List {
+			margin: 40px;
 			text-align: center;
 			cursor: pointer;
-			font-size: 24px;
+			font-size: 28px;
 			opacity: 0.8;
 			letter-spacing: 1px;
-			color: rgb(124, 124, 124);
+			color: rgb(85, 85, 85);
 			position: relative;
 
 			.Icon {

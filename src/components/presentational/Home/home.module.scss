@@ -3,25 +3,44 @@
 @include appear;
 @include disappear;
 
+@mixin listItem {
+	@include flex-center;
+	margin: 10px;
+	p {
+		margin: 10px;
+		font-family: 'Aboreto';
+	}
+}
+
 .Home {
 	width: 100vw;
-	height: 400vh;
+	height: 500vh;
+	// height: fit-content;
 	position: absolute;
 	top: 0;
 	z-index: 1;
+	overflow-x: hidden;
 
-	.ContentHome {
+	.Right {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 200vh;
 		width: 100%;
-		height: 100%;
-		position: relative;
+		z-index: -9;
+		background-color: $color-secondary;
+	}
+	.Left {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 200vh;
+		width: 100%;
+		background-color: $color-background-main;
+		z-index: -9;
 
-		.Left {
-			position: absolute;
-			left: 0;
-			height: 100%;
-			width: 100%;
-
-			background-color: $color-background-main;
+		&Top {
+			@extend .Left;
 			@keyframes slideInBlue {
 				from {
 					width: 100%;
@@ -32,312 +51,435 @@
 			}
 			animation: slideInBlue 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
 		}
-		.Right {
-			position: absolute;
-			right: 0;
-			height: 100%;
-			width: 50%;
-			z-index: -1;
-			background-color: $color-secondary;
+
+		&Scroll {
+			@extend .Left;
+			@keyframes expandBlue {
+				from {
+					width: 50%;
+				}
+				to {
+					width: 100%;
+				}
+			}
+			animation: expandBlue 1.5s cubic-bezier(0.3, 0.05, 0.5, 0.95) 0s 1 normal forwards;
+		}
+	}
+
+	.Hello {
+		position: fixed;
+		top: 50vh;
+		left: 50vw;
+		transform: translate(-50%, -50%);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		font-size: 200px;
+		font-weight: bold;
+		font-family: 'Aboreto';
+		opacity: 0;
+		animation: appear 1s ease-in 0s 1 normal forwards;
+		transition: left 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+		@media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
+			font-size: 150px;
+		}
+		@media screen and (max-width: $breakpoint-tablet) {
+			font-size: 120px;
+		}
+		@media screen and (max-width: $breakpoint-mobile) {
+			font-size: 100px;
+			left: 54vw;
 		}
 
-		.Top {
-			height: 100vh;
-			width: 100%;
-			position: relative;
+		.He {
+			font-family: 'Aboreto';
+			margin-bottom: -15%;
+		}
+		.Llo {
+			font-family: 'Aboreto';
+		}
 
-			.Hello {
-				position: fixed;
-				top: 50vh;
-				left: 50vw;
-				transform: translate(-50%, -50%);
+		&Scroll {
+			@extend .Hello;
+			left: 97vw;
+			@media screen and (max-width: $breakpoint-mobile) {
+				left: 110vw;
+			}
+		}
+	}
+	.Scroll {
+		position: fixed;
+		bottom: 10%;
+		left: 45%;
+		color: white;
+		cursor: pointer;
+		z-index: 10;
+		@include flex-center;
+		flex-direction: column;
+		transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+		opacity: 0;
+		animation: appear 1s 0.5s forwards;
+
+		@media screen and (max-width: $breakpoint-tablet) {
+			left: 40%;
+		}
+
+		p {
+			transform: rotate(-90deg);
+			font-weight: 300;
+			font-size: 12px;
+			margin-bottom: 15px;
+		}
+
+		.Arrow {
+			@keyframes bounce {
+				from {
+					transform: translateY(0);
+				}
+				60% {
+					transform: translateY(15px);
+				}
+				to {
+					transform: translateY(0);
+				}
+			}
+			animation: bounce 1.5s infinite;
+		}
+
+		&Top {
+			@extend .Scroll;
+			@media screen and (max-height: 500px) {
+				color: white;
+				bottom: 10%;
+				left: 10%;
+			}
+		}
+
+		&Active {
+			@extend .Scroll;
+			color: black;
+			bottom: 10%;
+			left: 10%;
+		}
+		&Bottom {
+			@extend .ScrollActive;
+			animation: disappear 2s forwards;
+		}
+	}
+
+	.Intro {
+		position: fixed;
+		top: 35vh;
+		left: 15vw;
+		opacity: 0;
+		// width: 35%;
+		transition: all 0.5s ease;
+		@media screen and (max-width: $breakpoint-mobile) {
+			top: 40vh;
+			width: 200px;
+		}
+		h2 {
+			color: black;
+			font-size: 40px;
+			font-weight: 300;
+			letter-spacing: 1pt;
+			margin-bottom: 5px;
+			@media screen and (max-width: $breakpoint-medium) {
+				font-size: 35px;
+			}
+			@media screen and (max-width: $breakpoint-tablet) {
+				font-size: 30px;
+			}
+			@media screen and (max-width: $breakpoint-mobile) {
+				font-size: 25px;
+			}
+		}
+		h3 {
+			color: $color-alternate;
+			font-size: 30px;
+			letter-spacing: 0.5pt;
+			font-weight: 300;
+			@media screen and (max-width: $breakpoint-medium) {
+				font-size: 27px;
+			}
+			@media screen and (max-width: $breakpoint-tablet) {
+				font-size: 24px;
+			}
+			@media screen and (max-width: $breakpoint-mobile) {
+				font-size: 20px;
+			}
+		}
+		&Appear {
+			@extend .Intro;
+			animation: fadeInLift 1s 0.5s forwards;
+		}
+	}
+
+	// .CodingImage {
+	// 	position: absolute;
+	// 	width: 100%;
+	// 	top: 200vh;
+	// 	z-index: -1;
+	// }
+
+	.BannerCoding {
+		position: absolute;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
+		background-size: cover;
+		background-position: 70% bottom;
+		background-image: url('../../../images/coding.jpg');
+		background-attachment: fixed;
+		z-index: -10;
+	}
+
+	// .MainBackground {
+	// 	position: absolute;
+	// 	top: 270vh;
+	// 	width: 100%;
+	// 	height: 300vh;
+	// 	background-color: $color-background-three;
+	// }
+
+	main {
+		position: absolute;
+		top: 250vh;
+		width: 100%;
+		height: 200vh;
+		background-color: $color-background-two;
+		// padding: 5vh 5vw;
+		// position: absolute;
+		// top: 250vh;
+		// width: 100%;
+		// height: 200vh;
+		.WebDev {
+			position: relative;
+			height: 50%;
+			.WebDevMain {
+				position: absolute;
+				top: 10%;
+				left: 15%;
+				height: 700px;
+				width: 400px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-evenly;
+
+				.Title {
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-start;
+					align-items: flex-start;
+					font-size: 120px;
+					font-weight: normal;
+					font-family: 'Aboreto';
+					color: $color-headers;
+					opacity: 0;
+					.Web {
+						font-family: 'Aboreto';
+						margin-bottom: -10%;
+					}
+					.Dev {
+						font-family: 'Aboreto';
+					}
+
+					@media screen and (max-width: $breakpoint-medium) {
+						font-size: 100px;
+						left: 15%;
+					}
+					@media screen and (max-width: $breakpoint-tablet) {
+						font-size: 80px;
+						left: 20%;
+					}
+					@media screen and (max-width: $breakpoint-mobile) {
+						font-size: 60px;
+						left: 25%;
+					}
+
+					&Appear {
+						@extend .Title;
+						animation: fadeInLift 1.5s forwards;
+					}
+				}
+				.Text {
+					max-width: 400px;
+					opacity: 0;
+					h2 {
+						// color: $color-alternate;
+						color: black;
+						font-size: 30px;
+						letter-spacing: 0.5pt;
+						font-weight: 100;
+					}
+					&Appear {
+						@extend .Text;
+						animation: fadeInLift 1s 0.5s forwards;
+					}
+				}
+				.Buttons {
+					// margin: 20px;
+					width: 400px;
+					// height: 500px;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					align-items: flex-start;
+					opacity: 0;
+					color: white;
+
+					a {
+						text-decoration: none;
+						color: white;
+					}
+
+					&Appear {
+						@extend .Buttons;
+						animation: fadeInSlideRight 1s 0.5s forwards;
+					}
+				}
+			}
+			.WebDevInfo {
+				position: absolute;
+				top: 90%;
+				right: 0;
+				height: 400px;
+				width: 50vw;
+				border-bottom-left-radius: 50px;
+				border: 2px $color-black solid;
+				background-color: rgba($color: white, $alpha: 0.4);
+				padding: 50px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+				font-size: 25px;
+				font-weight: 100;
+				letter-spacing: 1pt;
+				font-family: 'Aboreto';
+				color: $color-black;
+
+				.WebDevContainer {
+					height: 100%;
+					width: 80%;
+					display: grid;
+					grid-template-columns: 1fr 1fr 1fr;
+					grid-template-rows: 1fr 1fr 1fr;
+				}
+			}
+		}
+		.Fitness {
+			position: relative;
+			height: 50%;
+			// background-color: blue;
+			// border: 1px solid black;
+			.FitnessMain {
+				position: absolute;
+				top: 10%;
+				left: 15%;
+				height: 400px;
+				width: 800px;
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-start;
-				align-items: flex-start;
-				font-size: 200px;
-				font-weight: bold;
-				font-family: 'Aboreto';
-				opacity: 0;
-				animation: appear 1s ease-in 0s 1 normal forwards;
 
-				.He {
-					font-family: 'Aboreto';
-					margin-bottom: -15%;
-				}
-				.Llo {
-					font-family: 'Aboreto';
-				}
-			}
-			.Scroll {
-				position: fixed;
-				bottom: 90px;
-				left: 45%;
-				color: white;
-				cursor: pointer;
-				z-index: 10;
-				@include flex-center;
-				flex-direction: column;
-				transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-				opacity: 0;
-				animation: appear 1s 0.5s forwards;
-
-				p {
-					transform: rotate(-90deg);
-					// font-family: 'Aboreto';
-					font-weight: 300;
-					font-size: 12px;
-					margin-bottom: 15px;
-				}
-
-				.Arrow {
-					@keyframes bounce {
-						from {
-							transform: translateY(0);
-						}
-						60% {
-							transform: translateY(15px);
-						}
-						to {
-							transform: translateY(0);
-						}
-					}
-					animation: bounce 1.5s infinite;
-				}
-
-				&Top {
-					@extend .Scroll;
-				}
-
-				&Active {
-					@extend .Scroll;
-					color: black;
-					bottom: 90px;
-					left: 10%;
-				}
-				&Bottom {
-					@extend .ScrollActive;
-					opacity: 1;
-					animation: disappear 2s forwards;
-				}
-			}
-		}
-
-		.Intro {
-			position: fixed;
-			top: 35vh;
-			left: 15vw;
-			opacity: 0;
-			h2 {
-				color: black;
-				font-size: 40px;
-				font-weight: 300;
-				letter-spacing: 1pt;
-				margin-bottom: 5px;
-			}
-			h3 {
-				color: $color-alternate;
-				font-size: 30px;
-				letter-spacing: 0.5pt;
-				font-weight: 300;
-			}
-			&Appear {
-				@extend .Intro;
-				animation: fadeInLift 1.5s forwards;
-			}
-		}
-
-		.BannerCoding {
-			position: absolute;
-			top: 200vh;
-			width: 100%;
-			height: 80vh;
-			background-size: cover;
-			background-position: bottom;
-			background-image: url('../../../images/emile-perron-xrVDYZRGdw4-unsplash.jpg');
-			background-attachment: fixed;
-		}
-
-		.LayerOne {
-			position: absolute;
-			top: 270vh;
-			width: 100%;
-			height: fit-content;
-
-			.WebDevContainer {
-				position: absolute;
-				top: 0;
-				width: 100%;
-				height: 100vh;
-				background-color: $color-background-two;
-
-				.WebDevInfo {
-					position: absolute;
-					// background-color: $color-text-dark;
-					background: rgba($color: #ffffff, $alpha: 0.1);
-					border: 1px solid $color-text-dark;
-					border-radius: 0 40px;
-					padding: 60px;
-					color: $color-alternate;
-
-					top: 300px;
-					right: 0;
-					height: 30%;
-					width: 55%;
-					@include flex-center;
+				.Title {
+					display: flex;
 					flex-direction: column;
-					justify-content: center;
+					justify-content: flex-start;
 					align-items: flex-start;
-					font-size: 25px;
-					font-weight: 100;
-					letter-spacing: 1pt;
+					font-size: 120px;
+					font-weight: normal;
 					font-family: 'Aboreto';
-
-					.RowOne {
-						width: 80%;
-						display: flex;
-						justify-content: space-between;
-						.WebDevOne {
-							@include flex-center;
-							margin: 10px;
-							p {
-								margin: 10px;
-								font-family: 'Aboreto';
-							}
-						}
-						.WebDevTwo {
-							@include flex-center;
-							margin: 10px;
-							p {
-								margin: 10px;
-								font-family: 'Aboreto';
-							}
-						}
-					}
-					.RowTwo {
-						width: 80%;
-						display: flex;
-						justify-content: space-between;
-						.WebDevThree {
-							@include flex-center;
-							margin: 10px;
-							p {
-								margin: 10px;
-								font-family: 'Aboreto';
-							}
-						}
-						.WebDevFour {
-							@include flex-center;
-							margin: 10px;
-							p {
-								margin: 10px;
-								font-family: 'Aboreto';
-							}
-						}
-					}
-				}
-			}
-
-			.BannerFitness {
-				position: absolute;
-				top: 100vh;
-				height: 60vh;
-				width: 100%;
-				background-size: cover;
-				background-position: top;
-				background-image: url('../../../images/210517_ha_steele_006.jpeg');
-				background-attachment: fixed;
-			}
-			.FitnessContainer {
-				position: absolute;
-				width: 100%;
-				height: 100vh;
-				top: 160vh;
-				background-color: $color-background-three;
-				z-index: 1;
-
-				.FitnessInfo {
-					position: absolute;
-					// background-color: $color-button-alternate;
-					background: rgba($color: #ffffff, $alpha: 0.1);
-					border: 1px solid $color-button-alternate;
-					border-radius: 40px 0;
-					padding: 50px;
-					// color: $color-background-three;
-					color: $color-button-alternate;
-					top: 300px;
-					left: 0;
-					height: 30%;
-					width: 55%;
-					@include flex-center;
-					justify-content: flex-end;
-					align-items: flex-start;
-					font-size: 25px;
-					font-weight: 100;
-					letter-spacing: 1pt;
-
-					.FitnessOne {
-						@include flex-center;
-						align-self: flex-start;
-						margin-right: 80px;
-						p {
-							font-family: 'Aboreto';
-							margin-left: 10px;
-						}
-					}
-					.FitnessTwo {
-						@include flex-center;
-						align-self: center;
-						margin-right: 80px;
-						p {
-							font-family: 'Aboreto';
-							margin-left: 10px;
-						}
-					}
-					.FitnessThree {
-						@include flex-center;
-						align-self: flex-end;
-						margin-right: 30px;
-						p {
-							font-family: 'Aboreto';
-							margin-left: 10px;
-						}
-					}
-				}
-			}
-			.Contact {
-				position: absolute;
-				width: 100%;
-				height: 400px;
-				top: 160vh;
-				background-color: $color-secondary;
-
-				.ContactInfo {
-					position: absolute;
-					top: 33%;
-					left: 50%;
-					transform: translateX(-50%);
-					@include flex-center;
-					flex-direction: column;
-					h2 {
+					color: $color-headers;
+					opacity: 0;
+					.Health {
 						font-family: 'Aboreto';
-						font-weight: 100;
-						font-size: 30px;
+						margin-bottom: -5%;
 					}
-					.ContactLinks {
-						margin-top: 20px;
-						width: 100%;
-						font-size: 30px;
-						@include flex-center;
-						justify-content: space-evenly;
+					.Fit {
+						font-family: 'Aboreto';
+					}
 
-						a {
-							color: black;
-							text-decoration: none;
-						}
+					@media screen and (max-width: $breakpoint-medium) {
+						font-size: 100px;
+						left: 15%;
+					}
+					@media screen and (max-width: $breakpoint-tablet) {
+						font-size: 80px;
+						left: 20%;
+					}
+					@media screen and (max-width: $breakpoint-mobile) {
+						font-size: 60px;
+						left: 25%;
+					}
+
+					&Appear {
+						@extend .Title;
+						animation: fadeInLift 1.5s forwards;
+					}
+				}
+				.Text {
+					max-width: 400px;
+					opacity: 0;
+					h2 {
+						// color: $color-alternate;
+						color: black;
+						font-size: 30px;
+						letter-spacing: 0.5pt;
+						font-weight: 100;
+					}
+					&Appear {
+						@extend .Text;
+						animation: fadeInLift 1s 0.5s forwards;
+					}
+				}
+				.Buttons {
+					// margin: 20px;
+					width: 400px;
+					// height: 500px;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					align-items: flex-start;
+					opacity: 0;
+					color: white;
+
+					a {
+						text-decoration: none;
+						color: white;
+					}
+
+					&Appear {
+						@extend .Buttons;
+						animation: fadeInSlideRight 1s 0.5s forwards;
 					}
 				}
 			}
+			.FitnessPicture {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				height: 300px;
+				width: 40%;
+				border-bottom-right-radius: 15px;
+				border-top-right-radius: 15px;
+				background: url(../../../images/hiking.jpeg);
+				background-size: cover;
+				background-position-x: center;
+				background-position-y: 0%;
+				background-repeat: no-repeat;
+			}
 		}
+	}
+	.Contact {
+		position: absolute;
+		bottom: 0;
+		height: 100vh;
+		width: 100%;
+		z-index: -8;
+		background-color: $color-background-three;
 	}
 }

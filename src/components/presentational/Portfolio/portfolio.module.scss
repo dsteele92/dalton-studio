@@ -1,0 +1,91 @@
+@import 'sass';
+
+.Portfolio {
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+	padding: $padding-vertical $padding-horizontal;
+	// background-color: red;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	overflow-y: scroll;
+	// overflow: auto;
+
+	@media screen and (max-width: $breakpoint-mobile) {
+		padding: $padding-vertical-mobile $padding-horizontal-mobile;
+	}
+
+	@mixin project {
+		width: 90%;
+		height: 90%;
+		flex-shrink: 0;
+		margin: 30px;
+		border-radius: 20px;
+		position: relative;
+		transition: all 0.4s ease-in-out;
+		@include flex-center;
+
+		.Description {
+			position: absolute;
+			top: 5%;
+			right: 5%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			h4 {
+				// font-family: 'Aboreto';
+				text-transform: uppercase;
+				font-weight: 300;
+				letter-spacing: 1pt;
+				color: grey;
+				margin-bottom: 3px;
+				// margin-bottom: 5px;
+			}
+			h3 {
+				font-family: 'Aboreto';
+				text-transform: uppercase;
+				font-weight: 100;
+				font-size: 20px;
+				letter-spacing: 0.5pt;
+			}
+		}
+		a {
+			cursor: pointer;
+			height: 100%;
+			width: 100%;
+			@include flex-center;
+			.Image {
+				height: 70%;
+				border-radius: 10px;
+				@media screen and (max-width: 1200px) {
+					height: auto;
+					width: 90%;
+				}
+			}
+		}
+	}
+
+	section:hover {
+		box-shadow: 0 10px 20px 5px rgba(128, 128, 128, 0.316);
+		img {
+			transition: all 0.4s ease-in-out;
+			transform: translateY(-5px);
+		}
+	}
+
+	.GoalsApp {
+		@include project();
+		background: linear-gradient(#a4a9dc5b, #ddb8dc5b);
+	}
+
+	.WeatherApp {
+		@include project();
+		background: linear-gradient(#b1dbe292, #dfa4a485);
+	}
+	.FindFirm {
+		@include project();
+		background: linear-gradient(#e0d5ac92, #afb9e190);
+	}
+}

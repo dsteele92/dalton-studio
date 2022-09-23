@@ -1,8 +1,15 @@
 @import 'sass';
 
 .Container {
-	position: absolute;
+	position: fixed;
 	top: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: 100;
+
+	@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+		display: none;
+	}
 
 	.Top {
 		width: 100vw;
@@ -10,7 +17,6 @@
 		position: fixed;
 		top: 0;
 		background: white;
-		z-index: 100;
 		animation: slideDown 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
 	}
 	.Bottom {
@@ -19,7 +25,6 @@
 		position: fixed;
 		bottom: 0;
 		background: white;
-		z-index: 100;
 		animation: slideUp 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
 	}
 	.Left {
@@ -28,7 +33,6 @@
 		position: fixed;
 		left: 0;
 		background: white;
-		z-index: 100;
 		animation: slideRight 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
 	}
 	.Right {
@@ -37,7 +41,6 @@
 		position: fixed;
 		right: 0;
 		background: white;
-		z-index: 100;
 		animation: slideLeft 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
 	}
 }

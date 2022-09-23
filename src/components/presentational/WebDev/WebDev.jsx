@@ -1,4 +1,5 @@
 import { React, useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Style from './webDev.module.scss';
 import { Button, useInWindow } from 'components';
 
@@ -17,7 +18,9 @@ export default function WebDev(props) {
 			{/* <div className={Style.Image}></div> */}
 			<div className={inWindow ? Style.ButtonsAppear : Style.Buttons}>
 				<Button text='About Me' />
-				<Button text='Portfolio' />
+				<Link to='/portfolio'>
+					<Button text='Portfolio' />
+				</Link>
 			</div>
 		</div>
 	);

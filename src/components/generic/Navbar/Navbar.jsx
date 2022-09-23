@@ -1,81 +1,36 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { navbarData } from '../../../data/NavbarData';
+import { goToIntro, goToWebDev, goToFitness } from '../../../scrollBreakpoints.js';
 
-import { FaBars } from 'react-icons/fa';
-import { BiHomeSmile } from 'react-icons/bi';
 import { RiHome4Fill } from 'react-icons/ri';
-import { HiCode } from 'react-icons/hi';
 import { BsCodeSlash } from 'react-icons/bs';
-import { IoIosFitness } from 'react-icons/io';
 import { IoMdFitness } from 'react-icons/io';
-import { CgGym } from 'react-icons/cg';
-import { RiCamera3Line } from 'react-icons/ri';
-import { BsCamera2 } from 'react-icons/bs';
+import { HiOutlineMenuAlt1 } from 'react-icons/hi';
+import { RiMenu2Line } from 'react-icons/ri';
+import { RiMenu4Fill } from 'react-icons/ri';
+import { CgMenuRight } from 'react-icons/cg';
+// import { HiBars3CenterLeft } from 'react-icons/hi';
+// import { HiOutlineBars3CenterLeft } from 'react-icons/hi';
 
 import Style from './navbar.module.scss';
 
 export default function Navbar() {
-	// const [yScroll, setYScroll] = useState(0);
 	const currentHome = useRef();
 	const currentWebDev = useRef();
 	const currentFitness = useRef();
-	const currentModeling = useRef();
-	// const [popOutNav, setPopOutNav] = useState('initial');
-	// const [popOutNavMobile, setPopOutNavMobile] = useState('initial');
-
-	const goToIntro = () => {
-		if (window.pageYOffset >= 100) {
-			window.scrollTo({
-				top: window.innerWidth / 2 + 200,
-				behavior: 'smooth',
-			});
-		}
-	};
-	const goToWebDev = () => {
-		if (window.pageYOffset >= 100) {
-			window.scrollTo({
-				top: window.innerHeight * 2 + 170,
-				behavior: 'smooth',
-			});
-		}
-	};
-	const goToFitness = () => {
-		if (window.pageYOffset >= 100) {
-			window.scrollTo({
-				top: window.innerHeight * 3 + 250,
-				behavior: 'smooth',
-			});
-		}
-	};
-	const goToTop = () => {
-		if (window.pageYOffset >= 100) {
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth',
-			});
-		}
-	};
+	const [top, setTop] = useState(true);
 
 	useEffect(() => {
 		const handleScroll = (event) => {
-			// console.log(window.pageYOffset);
+			// -----> disable nav links at top of page (to not compete with initial auto scroll)
+			if (window.pageYOffset >= 10) {
+				setTop(false);
+			} else if (window.pageYOffset < 10) {
+				setTop(true);
+			}
+			// -----> manage gradient change of nav links
 			const offset = window.pageYOffset;
 			const height = window.outerHeight;
-			// logic for static page:
-			// const pageOnePercentOpen = 1 - offset / height;
-			// let pageTwoPercentOpen = 0;
-			// let pageThreePercentOpen = 0;
-			// if (offset <= height) {
-			// 	pageTwoPercentOpen = offset / height;
-			// }
-			// if (offset > height && offset <= 2 * height) {
-			// 	pageTwoPercentOpen = 1 - (offset - height) / height;
-			// 	pageThreePercentOpen = (offset - height) / height;
-			// }
-			// if (offset > 2 * height) {
-			// 	pageThreePercentOpen = 1 - (offset - 2 * height) / height;
-			// }
 
 			let pageOnePercentOpen = 1;
 			let pageTwoPercentOpen = 0;
@@ -103,10 +58,16 @@ export default function Navbar() {
 
 	return (
 		<div>
-			<header>DALTON STEELE</header>
+			<header className={top ? Style.Header : Style.HeaderScroll}>DALTON STEELE</header>
+			<nav className={Style.Menu}>
+				<RiMenu4Fill className={Style.Bars} />
+			</nav>
+			<nav className={Style.Mobile}>
+				<RiMenu4Fill />
+			</nav>
 			<nav className={Style.Nav}>
 				<ul>
-					<li onClick={goToTop}>
+					<li className={Style.List} onClick={goToIntro}>
 						<div className={Style.Icon}>
 							<RiHome4Fill />
 						</div>
@@ -114,7 +75,7 @@ export default function Navbar() {
 							<RiHome4Fill style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
-					<li onClick={goToWebDev}>
+					<li className={Style.List} onClick={goToWebDev}>
 						<div className={Style.Icon}>
 							<BsCodeSlash />
 						</div>
@@ -122,7 +83,7 @@ export default function Navbar() {
 							<BsCodeSlash style={{ fill: 'url(#gradient)' }} />
 						</div>
 					</li>
-					<li onClick={goToFitness}>
+					<li className={Style.List} onClick={goToFitness}>
 						<div className={Style.Icon}>
 							<IoMdFitness />
 						</div>

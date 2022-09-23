@@ -1,159 +1,113 @@
 import { React, useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Style from './home.module.scss';
-import { HomeTop, WebDev, PersonalTraining } from 'components';
+import { useIsIntersecting, Button } from 'components';
+// import { goToIntro, goToWebDev, goToFitness, goToBottom, goToTop } from '../../../scrollBreakpoints.js';
 
-import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
-import { MdEmail, MdOutlineEmail } from 'react-icons/md';
+import { BsArrowDown } from 'react-icons/bs';
+import { MdOutlineEmail } from 'react-icons/md';
 import { FaLinkedin, FaRunning, FaLeaf } from 'react-icons/fa';
-import { AiOutlineLinkedin } from 'react-icons/ai';
-import { TiChevronRightOutline } from 'react-icons/ti';
 import { GiMeditation } from 'react-icons/gi';
-import { DiReact, DiJsBadge, DiMongodb, DiFirebase } from 'react-icons/di';
+import {
+	DiReact,
+	DiJsBadge,
+	DiMongodb,
+	DiFirebase,
+	DiHtml5,
+	DiCss3Full,
+	DiGithubBadge,
+	DiNpm,
+	DiNodejsSmall,
+	DiSass,
+} from 'react-icons/di';
+
+import codingImage from '../../../images/coding.jpg';
 
 export default function Home() {
 	const [top, setTop] = useState(true);
 	const [bottom, setBottom] = useState(false);
-	const [showIntro, setShowIntro] = useState(false);
 
 	const left = useRef();
 	const hello = useRef();
 	const intro = useRef();
-	const layerOne = useRef();
 	const bannerCoding = useRef();
-	const webDev = useRef();
 	const webDevInfo = useRef();
-	const bannerFitness = useRef();
-	const fitness = useRef();
-	const fitnessInfo = useRef();
 	const contact = useRef();
 	const contactInfo = useRef();
 
-	const goToIntro = () => {
-		window.scrollTo({
-			top: window.innerWidth / 2 + 200,
-			behavior: 'smooth',
-		});
-	};
-	const goToWebDev = () => {
-		window.scrollTo({
-			top: window.innerHeight * 2 + 170,
-			behavior: 'smooth',
-		});
-	};
-	const goToFitness = () => {
-		window.scrollTo({
-			top: window.innerHeight * 3 + 250,
-			behavior: 'smooth',
-		});
-	};
-	const goToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		});
-	};
-	const goToBottom = () => {
-		window.scrollTo({
-			top: document.documentElement.scrollHeight,
-			behavior: 'smooth',
-		});
-	};
+	// -----> Lazy Loading functions
+	const [titleWD, titleWDIntersecting] = useIsIntersecting({ threshold: 0.5 });
+	// if (titleWDIntersecting) {
+	// 	titleWDIntersecting.unobserve();
+	// }
+	const [textWD, textWDIntersecting] = useIsIntersecting({ threshold: 0.5 });
+	const [buttonsWD, buttonsWDIntersecting] = useIsIntersecting({ threshold: 0.5 });
+	const [webDev, webDevIntersecting] = useIsIntersecting({ threshold: 0 });
+	const [titleHF, titleHFIntersecting] = useIsIntersecting({ threshold: 0.5 });
+	// const [textHF, textHFIntersecting] = useIsIntersecting({ threshold: 0.5 });
+	// const [buttonsHF, buttonsHFIntersecting] = useIsIntersecting({ threshold: 0.5 });
+	const [fitness, fitnessIntersecting] = useIsIntersecting({ threshold: 0 });
+	const [hiking, hikingIntersecting] = useIsIntersecting({ threshold: 0 });
 
 	const scrollArrowClick = () => {
-		if (top) {
-			goToIntro();
-		} else if (window.pageYOffset < 2 * window.innerHeight) {
-			goToWebDev();
-		} else if (window.pageYOffset < document.documentElement.scrollHeight - window.outerHeight - 400) {
-			goToFitness();
-		} else {
-			goToBottom();
-		}
+		// console.log(window.innerWidth / 2 + 200);
+		// if (top) {
+		// 	goToIntro();
+		// } else if (window.pageYOffset < 2 * window.innerHeight) {
+		// 	goToWebDev();
+		// } else if (window.pageYOffset < document.documentElement.scrollHeight - window.outerHeight - 400) {
+		// 	goToFitness();
+		// } else {
+		// 	goToBottom();
+		// }
 	};
 
 	useEffect(() => {
-		let directionDown;
-		let lastScroll = 0;
-
 		const handleScroll = (event) => {
 			// -----> useful variables
 			const windowHeight = window.innerHeight;
+			const halfY = windowHeight / 2;
 			const currentScroll = window.pageYOffset;
-			const halfX = window.innerWidth / 2;
-			const halfY = window.innerHeight / 2;
-
 			console.log(currentScroll);
 
-			// -----> For auto scroll of first section:
-			let atTop = currentScroll < window.innerHeight;
-			//---> first find direction of scroll
-			if (currentScroll > lastScroll) {
-				directionDown = true;
-				lastScroll = currentScroll;
-			} else if (currentScroll < lastScroll) {
-				directionDown = false;
-				lastScroll = currentScroll;
-			}
-			if (atTop && directionDown) {
-				setTimeout(() => {
-					goToIntro();
-				}, 500);
-			} else if (atTop && !directionDown) {
-				setTimeout(() => {
-					goToTop();
-				}, 500);
-			}
+			// setOffsetY(window.pageYOffset);
 
-			// -----> use setTop for adjusting class of down arrow
-			if (currentScroll >= 100) {
+			// -----> state for transitioning out of Hello page
+			if (currentScroll >= 10) {
 				setTop(false);
-			} else if (currentScroll < 100) {
+			} else if (currentScroll < 10) {
 				setTop(true);
 			}
 
-			// -----> control position of HELLO div
-			if (currentScroll <= halfX - 50) {
-				left.current.style.minWidth = `${
-					halfX + currentScroll * 1.5 < window.innerWidth ? halfX + currentScroll * 1.5 : window.innerWidth
-				}px`;
-				hello.current.style.left = `${halfX + currentScroll}px`;
-				hello.current.style.top = `${halfY}px`;
-			}
-			// ---> have it scroll up after a delay
-			if (currentScroll > windowHeight + 100) {
-				hello.current.style.top = `${halfY - currentScroll + windowHeight + 100}px`;
+			// -------> Left (blue) div is 200vh. At 1.2*windowHeight scroll the bottom of the div will be 20% up the page
+			// ... just under the HELLO div. At this point we make the blue div go slightly slower than the scroll
+			// ... (so that the main section will close in on the banner) AND make the HELLO div and intro div scroll up and leave the page
+			if (currentScroll > 1.2 * windowHeight) {
+				left.current.style.transform = `translateY(${(currentScroll - 1.2 * windowHeight) * 0.2}px)`;
+				hello.current.style.top = `${halfY - (currentScroll - 1.2 * windowHeight) * 0.8}px`;
+				intro.current.style.transform = `translateY(-${(currentScroll - 1.2 * windowHeight) * 0.6}px)`;
+				intro.current.style.opacity = `${1 - (currentScroll - 1.2 * windowHeight) / windowHeight}`;
 			}
 
-			// -----> manage state for intro div AND parallax effect on layerOne (next sections)
-			if (currentScroll >= halfX && currentScroll < 2 * windowHeight) {
-				setShowIntro(true);
-				layerOne.current.style.top = `${2.7 * windowHeight - (currentScroll - halfX) / 2}px`;
-			} else {
-				setShowIntro(false);
+			if (currentScroll > 1.5 * windowHeight) {
+				webDevInfo.current.style.transform = `translateY(-${(currentScroll - 1.5 * windowHeight) / 2}px)`;
+				// webDevInfo.current.style.transform = `translateY(-${currentScroll / 2}%)`;
 			}
 
-			if (currentScroll > windowHeight) {
-				webDevInfo.current.style.top = `${600 - (currentScroll - halfX) / 3}px`;
-			}
-			// ---> have it scroll up after a delay
-			if (currentScroll > halfX + 400) {
-				intro.current.style.transform = `translateY(-${(currentScroll - halfX - 400) / 2}px)`;
+			if (hiking) {
+				hiking.current.style.backgroundPositionY = `${
+					(currentScroll - 3 * windowHeight) / 10 < 100 ? (currentScroll - 3 * windowHeight) / 10 : 100
+				}%`;
 			}
 
-			// -----> Raise fitness section (and contact) up over fitness banner
-			if (currentScroll > 2 * windowHeight) {
-				fitness.current.style.top = `${3.3 * windowHeight - (currentScroll - windowHeight)}px`;
-				fitnessInfo.current.style.top = `${600 - (currentScroll - 2.5 * windowHeight) / 2}px`;
-				contact.current.style.top = `${4.3 * windowHeight - (currentScroll - windowHeight)}px`;
-			}
 			// ---> drop contact info down
-			if (currentScroll > document.documentElement.scrollHeight - windowHeight - 400) {
-				console.log(`current scroll: ${currentScroll}`);
-				console.log(`document total: ${document.documentElement.scrollHeight - windowHeight}`);
-				contactInfo.current.style.transform = `translate(-50%, -${
-					(document.documentElement.scrollHeight - windowHeight - currentScroll) * 2
-				}px)`;
-			}
+			// if (currentScroll > document.documentElement.scrollHeight - windowHeight - 400) {
+			// 	console.log(`current scroll: ${currentScroll}`);
+			// 	console.log(`document total: ${document.documentElement.scrollHeight - windowHeight}`);
+			// 	contactInfo.current.style.transform = `translate(-50%, -${
+			// 		(document.documentElement.scrollHeight - windowHeight - currentScroll) * 2
+			// 	}px)`;
+			// }
 
 			//  -----> control state to know when at bottom of page
 			if (currentScroll > document.documentElement.scrollHeight - windowHeight - 200) {
@@ -172,93 +126,135 @@ export default function Home() {
 
 	return (
 		<div className={Style.Home}>
-			<div className={Style.ContentHome}>
-				<div className={Style.Left} ref={left}></div>
-				<div className={Style.Right}></div>
-				<section className={Style.Top}>
-					<div className={Style.Hello} ref={hello}>
-						<div className={Style.He}>HE</div>
-						<div className={Style.Llo}>LLO.</div>
-					</div>
-
-					<div
-						className={top ? Style.ScrollTop : bottom ? Style.ScrollBottom : Style.ScrollActive}
-						onClick={scrollArrowClick}>
-						<p>Scroll</p>
-						<BsArrowDown className={Style.Arrow} />
-					</div>
-				</section>
-
-				<div className={showIntro ? Style.IntroAppear : Style.Intro}>
-					<div ref={intro}>
-						<h2>Hi, I'm Dalton</h2>
-						<h3>Software Engineer & Personal Trainer</h3>
-					</div>
-				</div>
-
-				<div className={Style.BannerCoding} ref={bannerCoding}></div>
-				<div className={Style.LayerOne} ref={layerOne}>
-					<section className={Style.WebDevContainer} ref={webDev}>
-						<WebDev offsetTop={window.innerHeight * 1.7} />
-						<div className={Style.WebDevInfo} ref={webDevInfo}>
-							<div className={Style.RowOne}>
-								<div className={Style.WebDevOne}>
-									<DiReact />
-									<p>React</p>
-								</div>
-								<div className={Style.WebDevOne}>
-									<DiMongodb />
-									<p>Mongo DB w/ Express</p>
-								</div>
-							</div>
-							<div className={Style.RowTwo}>
-								<div className={Style.WebDevThree}>
-									<DiJsBadge />
-									<p>Javascript</p>
-								</div>
-								<div className={Style.WebDevFour}>
-									<DiFirebase />
-									<p>Full Stack Web Apps</p>
-								</div>
-							</div>
-						</div>
-					</section>
-					<div className={Style.BannerFitness} ref={bannerFitness}></div>
-					<section className={Style.FitnessContainer} ref={fitness}>
-						<PersonalTraining offsetTop={window.innerHeight * 3} />
-						<div className={Style.FitnessInfo} ref={fitnessInfo}>
-							<div className={Style.FitnessOne}>
-								<FaRunning />
-								<p>Movement</p>
-							</div>
-							<div className={Style.FitnessTwo}>
-								<FaLeaf />
-								<p>Nutrition</p>
-							</div>
-							<div className={Style.FitnessThree}>
-								<GiMeditation />
-								<p>Mindfulness</p>
-							</div>
-						</div>
-					</section>
-					<section className={Style.Contact} ref={contact}>
-						<div className={Style.ContactInfo} ref={contactInfo}>
-							<h2>Get in touch</h2>
-							<div className={Style.ContactLinks}>
-								<a href='mailto:dalton@steelebodyandmind.com'>
-									<MdOutlineEmail />
-								</a>
-								<a
-									href='https://www.linkedin.com/in/dalton-steele-239816132/'
-									target='_blank'
-									rel='noopener noreferrer'>
-									<FaLinkedin />
-								</a>
-							</div>
-						</div>
-					</section>
+			<div className={Style.Right}></div>
+			<div className={top ? Style.LeftTop : Style.LeftScroll} ref={left}></div>
+			<div className={top ? Style.Hello : Style.HelloScroll} ref={hello}>
+				<div className={Style.He}>HE</div>
+				<div className={Style.Llo}>LLO.</div>
+			</div>
+			<div
+				className={top ? Style.ScrollTop : bottom ? Style.ScrollBottom : Style.ScrollActive}
+				onClick={scrollArrowClick}>
+				<p>Scroll</p>
+				<BsArrowDown className={Style.Arrow} />
+			</div>
+			<div className={top ? Style.Intro : Style.IntroAppear}>
+				<div ref={intro}>
+					<h2>Hi, I'm Dalton</h2>
+					<h3>
+						Software Engineer & Personal Trainer
+						<br />
+						based in Los Angeles, California
+					</h3>
 				</div>
 			</div>
+			<div className={Style.BannerCoding} ref={bannerCoding}></div>
+
+			<main>
+				<section className={Style.WebDev} ref={webDev}>
+					<div className={Style.WebDevMain}>
+						<div className={titleWDIntersecting ? Style.TitleAppear : Style.Title} ref={titleWD}>
+							<div className={Style.Web}>WEB</div>
+							<div className={Style.Dev}>DEV.</div>
+						</div>
+						<div className={textWDIntersecting ? Style.TextAppear : Style.Text} ref={textWD}>
+							<h2>I am a Front-End Software Engineer with a passion for ... something</h2>
+						</div>
+						<div className={buttonsWDIntersecting ? Style.ButtonsAppear : Style.Buttons} ref={buttonsWD}>
+							<Link to='/'>
+								<Button text='About Me' />
+							</Link>
+							<Link to='/portfolio' className={Style.Portfolio}>
+								<Button text='Portfolio' />
+							</Link>
+						</div>
+					</div>
+					<div className={Style.WebDevInfo} ref={webDevInfo}>
+						<div className={Style.WebDevContainer}>
+							<div className={Style.Icon}>
+								<DiHtml5 />
+								<p>HTML</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiCss3Full />
+								<p>CSS</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiJsBadge />
+								<p>Javascript</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiReact />
+								<p>React</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiSass />
+								<p>Sass</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiMongodb />
+								<p>Mongo DB</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiGithubBadge />
+								<p>GitHub</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiNodejsSmall />
+								<p>NodeJS</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiNpm />
+								<p>Node Project Manager</p>
+							</div>
+							{/* <div className={Style.Icon}>
+								<DiFirebase />
+								<p>Full Stack Web Apps</p>
+							</div> */}
+						</div>
+					</div>
+				</section>
+				<section className={Style.Fitness} ref={fitness}>
+					<div className={Style.FitnessMain}>
+						<div className={titleHFIntersecting ? Style.TitleAppear : Style.Title} ref={titleHF}>
+							<div className={Style.Health}>HEALTH</div>
+							<div className={Style.Fit}>& FITNESS.</div>
+						</div>
+						{/* <div className={textHFIntersecting ? Style.TextAppear : Style.Text} ref={textHF}>
+							<h2>I am a Front-End Software Engineer with a passion for ... something</h2>
+						</div>
+						<div className={buttonsHFIntersecting ? Style.ButtonsAppear : Style.Buttons} ref={buttonsHF}>
+							<Link to='/'>
+								<Button text='About Me' />
+							</Link>
+							<Link to='/portfolio' className={Style.Portfolio}>
+								<Button text='Portfolio' />
+							</Link>
+						</div> */}
+					</div>
+					<div className={Style.FitnessPicture} ref={hiking}></div>
+				</section>
+			</main>
+
+			{/* <section className={Style.WebDevContainer} ref={webDev}></section> */}
+			{/* <div className={Style.BannerFitness} ref={bannerFitness}></div> */}
+			{/* <section className={Style.FitnessContainer} ref={fitness}></section> */}
+			<section className={Style.Contact} ref={contact}>
+				<div className={Style.ContactInfo} ref={contactInfo}>
+					<h2>Get in touch</h2>
+					<div className={Style.ContactLinks}>
+						<a href='mailto:dalton@steelebodyandmind.com'>
+							<MdOutlineEmail />
+						</a>
+						<a
+							href='https://www.linkedin.com/in/dalton-steele-239816132/'
+							target='_blank'
+							rel='noopener noreferrer'>
+							<FaLinkedin />
+						</a>
+					</div>
+				</div>
+			</section>
 		</div>
 	);
 }

@@ -2,18 +2,30 @@
 // -----> *** If you change these make sure to change them inside the functional components that use them for animations ***
 $breakpoint-mobile: 480px;
 $breakpoint-tablet: 768px;
+$breakpoint-medium: 992px;
 
 // ---> COLORS:
-$color-background-main: #506997;
-$color-background-two: #975050;
-$color-background-three: beige;
-$color-secondary: #cacaca;
-$color-alternate: bisque;
+// $color-background-main: #506997;
+$color-background-main: #e07a5f;
+// $color-background-main: #6b9080;
+$color-background-two: #f4f1de;
+$color-background-three: #81b29a;
+// $color-secondary: #cacaca;
+// $color-secondary: #dddddd;
+$color-secondary: #f4f1de;
+// $color-secondary: #eaf4f4;
+// $color-alternate: #506997;
+$color-alternate: #f4f1de;
+$color-headers: #010306;
+// $color-alternate: bisque;
 $color-button-alternate: #3a3b3b;
 $color-text-light: #fffbe8;
 $color-text-dark: #010306;
+$color-black: #010306;
 // $color-text-dark: #da4141;
 
 // ---> Others:
 $padding-vertical: 50px;
+$padding-vertical-mobile: 35px;
 $padding-horizontal: 60px;
+$padding-horizontal-mobile: 40px;
