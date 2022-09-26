@@ -5,23 +5,46 @@ $breakpoint-tablet: 768px;
 $breakpoint-medium: 992px;
 
 // ---> COLORS:
-// $color-background-main: #506997;
-$color-background-main: #e07a5f;
-// $color-background-main: #6b9080;
-$color-background-two: #f4f1de;
-$color-background-three: #81b29a;
-// $color-secondary: #cacaca;
-// $color-secondary: #dddddd;
+$color-background-main: #a66060;
+$color-background-two: #5e748e;
+$color-background-three: #f4f1de;
+
+$color-right: #dddddd;
 $color-secondary: #f4f1de;
-// $color-secondary: #eaf4f4;
-// $color-alternate: #506997;
-$color-alternate: #f4f1de;
+$color-alternate: #dddddd;
+
 $color-headers: #010306;
-// $color-alternate: bisque;
+$color-black: #010306;
+
+$color-buttons: #f4f1de;
 $color-button-alternate: #3a3b3b;
 $color-text-light: #fffbe8;
 $color-text-dark: #010306;
-$color-black: #010306;
+
+// so far best:
+// $color-background-main: #506997;
+// $color-background-two: #a66060;
+// $color-background-three: #f4f1de;
+
+// $color-right: #dddddd;
+// $color-secondary: #f4f1de;
+
+// red/cream:
+// $color-background-main: #e07a5f;
+// $color-background-two: #f4f1de;
+// $color-background-three: #81b29a;
+
+// blue/grey:
+// $color-background-main: #506997;
+// $color-right: #dddddd;
+
+// $color-background-main: #506997;
+// $color-background-main: #6b9080;
+// $color-right: #cacaca;
+// $color-right: #dddddd;
+// $color-right: #eaf4f4;
+// $color-secondary: #506997;
+// $color-secondary: bisque;
 // $color-text-dark: #da4141;
 
 // ---> Others:

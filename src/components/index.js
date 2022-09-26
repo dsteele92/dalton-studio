@@ -10,4 +10,5 @@ export { default as Portfolio } from './presentational/Portfolio/Portfolio.jsx';
 export { default as PersonalTraining } from './presentational/PersonalTraining/PersonalTraining.jsx';
 
 export { default as useInWindow } from './hooks/useInWindow.jsx';
+export { default as useHasIntersected } from './hooks/useHasIntersected.jsx';
 export { default as useIsIntersecting } from './hooks/useIsIntersecting.jsx';

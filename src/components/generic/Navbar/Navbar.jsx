@@ -36,13 +36,14 @@ export default function Navbar() {
 			let pageTwoPercentOpen = 0;
 			let pageThreePercentOpen = 0;
 
-			if (offset > 1.2 * height) {
-				pageOnePercentOpen = 1 - ((offset - 1.2 * height) / 1.2) * height;
-				pageTwoPercentOpen = ((offset - 1.2 * height) / 1.2) * height;
+			if (offset > 1.5 * height) {
+				// pageOnePercentOpen = 1 - ((offset - 1.5 * height) / 1.5) * height;
+				pageOnePercentOpen = 1 - (offset - 1.5 * height) / height;
+				pageTwoPercentOpen = (offset - 1.5 * height) / height;
 			}
 			if (offset > 2.5 * height) {
-				pageTwoPercentOpen = 1 - ((offset - 2.5 * height) / 2.5) * height;
-				pageThreePercentOpen = ((offset - 2.5 * height) / 2.5) * height;
+				pageTwoPercentOpen = 1 - (offset - 2.5 * height) / height;
+				pageThreePercentOpen = (offset - 2.5 * height) / height;
 			}
 
 			currentHome.current.style.opacity = `${pageOnePercentOpen}`;
