@@ -8,7 +8,7 @@
 	z-index: 1;
 	position: relative;
 
-	@media screen and (max-width: $breakpoint-medium) {
+	@media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-medium) {
 		width: 250px;
 		height: 80px;
 	}
@@ -16,7 +16,7 @@
 		width: 200px;
 		height: 60px;
 	}
-	@media screen and (max-width: $breakpoint-mobile) {
+	@media screen and (max-width: $breakpoint-mobile), (max-height: $breakpoint-tablet) {
 		width: 150px;
 		height: 60px;
 	}
@@ -37,10 +37,10 @@
 		@media screen and (max-width: $breakpoint-medium) {
 			font-size: 25px;
 		}
-		@media screen and (max-width: $breakpoint-tablet) {
-			font-size: 25px;
+		@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+			font-size: 20px;
 		}
-		@media screen and (max-width: $breakpoint-mobile) {
+		@media screen and (max-width: $breakpoint-mobile), (max-height: $breakpoint-mobile) {
 			font-size: 20px;
 		}
 
@@ -58,6 +58,10 @@
 		}
 
 		&:hover::after {
+			top: 0px;
+			left: 0px;
+		}
+		&:active::after {
 			top: 0px;
 			left: 0px;
 		}

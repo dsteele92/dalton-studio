@@ -1,8 +1,5 @@
 @import 'sass';
 
-@include appear;
-@include disappear;
-
 @mixin listItem {
 	@include flex-center;
 	margin: 10px;

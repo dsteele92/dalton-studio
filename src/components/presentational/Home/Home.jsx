@@ -2,7 +2,7 @@ import { React, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Style from './home.module.scss';
 import { useIsIntersecting, useHasIntersected, Button, ButtonAlt } from 'components';
-// import { goToIntro, goToWebDev, goToFitness, goToBottom, goToTop } from '../../../scrollBreakpoints.js';
+import { goToIntro, goToWebDev, goToFitness, goToBottom, goToTop } from '../../../scrollBreakpoints.js';
 
 import { BsArrowDown } from 'react-icons/bs';
 import { MdOutlineEmail } from 'react-icons/md';
@@ -40,29 +40,28 @@ export default function Home() {
 	const mainLine = useRef();
 
 	// -----> Lazy Loading functions
-	const [titleWD, titleWDIntersected] = useHasIntersected({ threshold: 0.8 });
-	const [textWD, textWDIntersected] = useHasIntersected({ threshold: 0.8 });
-	const [buttonsWD, buttonsWDIntersected] = useHasIntersected({ threshold: 0.8 });
+	const [titleWD, titleWDIntersected] = useHasIntersected({ threshold: 0.5 });
+	const [textWD, textWDIntersected] = useHasIntersected({ threshold: 0.5 });
+	const [buttonsWD, buttonsWDIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [webDev, webDevIntersected] = useHasIntersected({ threshold: 0 });
 
-	const [titleHF, titleHFIntersected] = useHasIntersected({ threshold: 0.8 });
-	const [textHF, textHFIntersected] = useHasIntersected({ threshold: 0.8 });
-	const [buttonsHF, buttonsHFIntersected] = useHasIntersected({ threshold: 0.8 });
+	const [titleHF, titleHFIntersected] = useHasIntersected({ threshold: 0.5 });
+	const [textHF, textHFIntersected] = useHasIntersected({ threshold: 0.5 });
+	const [buttonsHF, buttonsHFIntersected] = useHasIntersected({ threshold: 0.5 });
 
 	// const [hiking, hikingIntersecting] = useIsIntersecting({ threshold: 0 });
 	// const [contact, contactIntersecting] = useIsIntersecting({ threshold: 0 });
 
 	const scrollArrowClick = () => {
-		// console.log(window.innerWidth / 2 + 200);
-		// if (top) {
-		// 	goToIntro();
-		// } else if (window.pageYOffset < 2 * window.innerHeight) {
-		// 	goToWebDev();
-		// } else if (window.pageYOffset < document.documentElement.scrollHeight - window.outerHeight - 400) {
-		// 	goToFitness();
-		// } else {
-		// 	goToBottom();
-		// }
+		if (top) {
+			goToIntro();
+		} else if (window.pageYOffset < 2.5 * window.innerHeight) {
+			goToWebDev();
+		} else if (window.pageYOffset < 3.5 * window.innerHeight) {
+			goToFitness();
+		} else {
+			goToBottom();
+		}
 	};
 
 	useEffect(() => {
@@ -108,10 +107,14 @@ export default function Home() {
 				}%`;
 			}
 
+			if (currentScroll > 3.5 * windowHeight) {
+				bannerCoding.current.style.display = 'none';
+			} else {
+				bannerCoding.current.style.display = 'block';
+			}
+
 			if (currentScroll > document.documentElement.scrollHeight - 1.5 * windowHeight) {
-				console.log(document.documentElement.scrollHeight - windowHeight - currentScroll);
-				// console.log(windowHeight);
-				// console.log(currentScroll);
+				// console.log(document.documentElement.scrollHeight - windowHeight - currentScroll);
 				contactInfo.current.style.top = `${
 					67 - (document.documentElement.scrollHeight - windowHeight - currentScroll) / 6
 				}%`;
@@ -184,20 +187,70 @@ export default function Home() {
 								/>
 							</svg>
 							<div className={Style.Web}>WEB</div>
-							<div className={Style.Dev}>
-								DEV<span>.</span>
-							</div>
+							<div className={Style.Dev}>DEV.</div>
 						</div>
 						<div className={textWDIntersected ? Style.TextAppear : Style.Text} ref={textWD}>
 							<h2>I am a Front-End Software Engineer with a passion for ... something</h2>
 						</div>
-						<div className={buttonsWDIntersected ? Style.ButtonsAppear : Style.Buttons} ref={buttonsWD}>
+						<div className={textWDIntersected ? Style.ButtonsAppear : Style.Buttons} ref={buttonsWD}>
 							<Link to='/'>
 								<Button text='About Me' />
 							</Link>
 							<Link to='/portfolio' className={Style.Portfolio}>
 								<Button text='Portfolio' />
 							</Link>
+						</div>
+					</div>
+					<div className={Style.WebDevInfoMobile}>
+						<div className={Style.WebDevContainerMobile}>
+							<div className={Style.Icon}>
+								<DiHtml5 />
+								<p>HTML</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiCss3Full />
+								<p>CSS</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiJsBadge />
+								<p>Javascript</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiReact />
+								<p>React</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiSass />
+								<p>Sass</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiGithubBadge />
+								<p>GitHub</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiNodejsSmall />
+								<p>NodeJS</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiNpm />
+								<p>NPM</p>
+							</div>
+							<div className={Style.Icon}>
+								<SiPostman />
+								<p>Postman</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiMongodb />
+								<p>Mongo DB</p>
+							</div>
+							<div className={Style.Icon}>
+								<SiExpress />
+								<p>Express</p>
+							</div>
+							<div className={Style.Icon}>
+								<DiFirebase />
+								<p>Full Stack Web Apps</p>
+							</div>
 						</div>
 					</div>
 					<div className={Style.WebDevInfo} ref={webDevInfo}>
@@ -262,9 +315,7 @@ export default function Home() {
 							/>
 						</svg>
 						<div className={Style.Health}>HEALTH</div>
-						<div className={Style.Fit}>
-							& FITNESS<span>.</span>
-						</div>
+						<div className={Style.Fit}>& FITNESS.</div>
 					</div>
 					<div className={Style.FitnessInfo}>
 						<div className={textHFIntersected ? Style.TextAppear : Style.Text} ref={textHF}>
@@ -278,13 +329,14 @@ export default function Home() {
 								one-on-one with clients to make lasting commitments to their health.{' '}
 							</h2>
 						</div>
-						<div className={buttonsHFIntersected ? Style.ButtonsAppear : Style.Buttons} ref={buttonsHF}>
+						<div className={textHFIntersected ? Style.ButtonsAppear : Style.Buttons} ref={buttonsHF}>
 							<Link to='/'>
 								<Button text='Learn More' />
 							</Link>
 						</div>
 					</div>
 					<div className={Style.FitnessPicture} ref={hiking}></div>
+					<div className={Style.FitnessPictureMobile}></div>
 				</section>
 			</main>
 			<section className={Style.Contact} ref={contact}>
@@ -303,6 +355,26 @@ export default function Home() {
 							</a>
 						</div>
 					</div>
+					{/* add form here */}
+				</div>
+			</section>
+			<section className={Style.ContactMobile}>
+				<div className={Style.ContactInfo}>
+					<div className={Style.GetInTouch}>
+						<h2>Get in touch</h2>
+						<div className={Style.ContactLinks}>
+							<a href='mailto:dalton@steelebodyandmind.com'>
+								<MdOutlineEmail />
+							</a>
+							<a
+								href='https://www.linkedin.com/in/dalton-steele-239816132/'
+								target='_blank'
+								rel='noopener noreferrer'>
+								<FaLinkedin />
+							</a>
+						</div>
+					</div>
+					{/* add form here */}
 				</div>
 			</section>
 		</div>

@@ -2,7 +2,7 @@ import { React } from 'react';
 
 import Style from './pageContainer.module.scss';
 
-export default function Navbar() {
+export default function PageContainer() {
 	return (
 		<div className={Style.Container}>
 			<div className={Style.Top}></div>

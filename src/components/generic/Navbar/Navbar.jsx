@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { goToIntro, goToWebDev, goToFitness } from '../../../scrollBreakpoints.js';
+import { goToIntro, goToWebDev, goToFitness, goToBottom } from '../../../scrollBreakpoints.js';
 
 import { RiHome4Fill } from 'react-icons/ri';
 import { BsCodeSlash } from 'react-icons/bs';
@@ -19,6 +19,10 @@ export default function Navbar() {
 	const currentWebDev = useRef();
 	const currentFitness = useRef();
 	const [top, setTop] = useState(true);
+
+	const [menuHover, setMenuHover] = useState(false);
+	const [menuClick, setMenuClick] = useState(false);
+	const [mobileMenuClick, setMobileMenuClick] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = (event) => {
@@ -59,14 +63,53 @@ export default function Navbar() {
 
 	return (
 		<div>
-			<header className={top ? Style.Header : Style.HeaderScroll}>DALTON STEELE</header>
+			<div className={Style.Container}>
+				<div className={menuClick ? Style.TopMenuActive : Style.Top}></div>
+				<div className={menuClick ? Style.BottomMenuActive : Style.Bottom}></div>
+				<div className={menuClick ? Style.LeftMenuActive : Style.Left}></div>
+				<div className={menuClick ? Style.RightMenuActive : Style.Right}></div>
+			</div>
+			<header className={menuClick ? Style.HeaderMenuActive : Style.Header}>DALTON STEELE</header>
+			<header className={top ? Style.HeaderMobile : Style.HeaderMobileScroll}>DALTON STEELE</header>
 			<nav className={Style.Menu}>
-				<RiMenu4Fill className={Style.Bars} />
+				<div
+					className={menuClick ? Style.IconMenuActive : Style.Icon}
+					onMouseEnter={() => setMenuHover(true)}
+					onMouseLeave={() => setMenuHover(false)}
+					onClick={() => setMenuClick(!menuClick)}>
+					<div className={Style.Bars}>
+						<svg
+							height='10px'
+							width='50px'
+							className={menuClick ? Style.Bar1X : menuHover ? Style.Bar1Hover : Style.Bar}>
+							<line x1='28' y1='0' x2='50px' y2='0' className={Style.Line} />
+						</svg>
+						<svg
+							height='10px'
+							width='50px'
+							className={menuClick ? Style.Bar2X : menuHover ? Style.Bar2Hover : Style.Bar}>
+							<line x1='17' y1='0' x2='50px' y2='0' className={Style.Line} />
+						</svg>
+						<svg
+							height='10px'
+							width='50px'
+							className={menuClick ? Style.Bar3X : menuHover ? Style.Bar3Hover : Style.Bar}>
+							<line x1='28' y1='0' x2='50px' y2='0' className={Style.Line} />
+						</svg>
+					</div>
+					<div className={menuClick ? Style.LettersMenuActive : Style.Letters}>
+						<p className={menuHover ? Style.U : ''}>U</p>
+						<p className={menuHover ? Style.N : ''}>N</p>
+						<p className={menuHover ? Style.E : ''}>E</p>
+						<p className={menuHover ? Style.M : ''}>M</p>
+					</div>
+				</div>
 			</nav>
+			<div className={menuClick ? Style.MenuBackgroundActive : Style.MenuBackground}></div>
 			<nav className={Style.Mobile}>
 				<RiMenu4Fill />
 			</nav>
-			<nav className={Style.Nav}>
+			<nav className={menuClick ? Style.NavMenuActive : Style.Nav}>
 				<ul>
 					<li className={Style.List} onClick={goToIntro}>
 						<div className={Style.Icon}>
