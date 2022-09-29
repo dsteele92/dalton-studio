@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Home } from 'components';
+import { Home, RightNav } from 'components';
 
 export default function HomePage() {
 	return <Home />;

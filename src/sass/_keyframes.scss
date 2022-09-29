@@ -16,6 +16,24 @@
 	}
 }
 
+@keyframes leftSlideIn {
+	from {
+		width: 100%;
+	}
+	to {
+		width: 50%;
+	}
+}
+
+@keyframes leftExpand {
+	from {
+		width: 50%;
+	}
+	to {
+		width: 100%;
+	}
+}
+
 @keyframes fadeInLift {
 	from {
 		opacity: 0;

@@ -1,14 +1,13 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Style from './home.module.scss';
-import { useIsIntersecting, useHasIntersected, Button, ButtonAlt } from 'components';
-import { goToIntro, goToWebDev, goToFitness, goToBottom, goToTop } from '../../../scrollBreakpoints.js';
+import { useHasIntersected, Button } from 'components';
 
 import { BsArrowDown } from 'react-icons/bs';
-import { MdOutlineEmail } from 'react-icons/md';
 import { FaLinkedin, FaRunning, FaLeaf } from 'react-icons/fa';
 import { GiMeditation } from 'react-icons/gi';
 import { SiPostman, SiExpress } from 'react-icons/si';
+import { AiOutlineMail } from 'react-icons/ai';
 import {
 	DiReact,
 	DiJsBadge,
@@ -22,8 +21,6 @@ import {
 	DiSass,
 } from 'react-icons/di';
 
-import codingImage from '../../../images/coding.jpg';
-
 export default function Home() {
 	const [top, setTop] = useState(true);
 	const [bottom, setBottom] = useState(false);
@@ -31,38 +28,16 @@ export default function Home() {
 	const left = useRef();
 	const hello = useRef();
 	const intro = useRef();
-	const bannerCoding = useRef();
 	const webDevInfo = useRef();
-	const fitness = useRef();
 	const hiking = useRef();
-	const contact = useRef();
+	const bannerCoding = useRef();
 	const contactInfo = useRef();
-	const mainLine = useRef();
 
 	// -----> Lazy Loading functions
 	const [titleWD, titleWDIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [textWD, textWDIntersected] = useHasIntersected({ threshold: 0.5 });
-	const [buttonsWD, buttonsWDIntersected] = useHasIntersected({ threshold: 0.5 });
-	const [webDev, webDevIntersected] = useHasIntersected({ threshold: 0 });
-
 	const [titleHF, titleHFIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [textHF, textHFIntersected] = useHasIntersected({ threshold: 0.5 });
-	const [buttonsHF, buttonsHFIntersected] = useHasIntersected({ threshold: 0.5 });
-
-	// const [hiking, hikingIntersecting] = useIsIntersecting({ threshold: 0 });
-	// const [contact, contactIntersecting] = useIsIntersecting({ threshold: 0 });
-
-	const scrollArrowClick = () => {
-		if (top) {
-			goToIntro();
-		} else if (window.pageYOffset < 2.5 * window.innerHeight) {
-			goToWebDev();
-		} else if (window.pageYOffset < 3.5 * window.innerHeight) {
-			goToFitness();
-		} else {
-			goToBottom();
-		}
-	};
 
 	useEffect(() => {
 		const handleScroll = (event) => {
@@ -120,15 +95,6 @@ export default function Home() {
 				}%`;
 			}
 
-			// ---> drop contact info down
-			// if (currentScroll > document.documentElement.scrollHeight - windowHeight - 400) {
-			// 	console.log(`current scroll: ${currentScroll}`);
-			// 	console.log(`document total: ${document.documentElement.scrollHeight - windowHeight}`);
-			// 	contactInfo.current.style.transform = `translate(-50%, -${
-			// 		(document.documentElement.scrollHeight - windowHeight - currentScroll) * 2
-			// 	}px)`;
-			// }
-
 			//  -----> control state to know when at bottom of page
 			if (currentScroll > document.documentElement.scrollHeight - windowHeight - 200) {
 				setBottom(true);
@@ -142,7 +108,7 @@ export default function Home() {
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, [hiking]);
+	}, []);
 
 	return (
 		<div className={Style.Home}>
@@ -152,9 +118,7 @@ export default function Home() {
 				<div className={Style.He}>HE</div>
 				<div className={Style.Llo}>LLO.</div>
 			</div>
-			<div
-				className={top ? Style.ScrollTop : bottom ? Style.ScrollBottom : Style.ScrollActive}
-				onClick={scrollArrowClick}>
+			<div className={top ? Style.ScrollTop : bottom ? Style.ScrollBottom : Style.ScrollActive}>
 				<p>Scroll</p>
 				<BsArrowDown className={Style.Arrow} />
 			</div>
@@ -177,7 +141,7 @@ export default function Home() {
 			<div className={Style.BannerCoding} ref={bannerCoding}></div>
 
 			<main>
-				<section className={Style.WebDev} ref={webDev}>
+				<section className={Style.WebDev}>
 					<div className={Style.WebDevMain}>
 						<div className={titleWDIntersected ? Style.TitleAppear : Style.Title} ref={titleWD}>
 							<svg height='20' width='120'>
@@ -192,8 +156,8 @@ export default function Home() {
 						<div className={textWDIntersected ? Style.TextAppear : Style.Text} ref={textWD}>
 							<h2>I am a Front-End Software Engineer with a passion for ... something</h2>
 						</div>
-						<div className={textWDIntersected ? Style.ButtonsAppear : Style.Buttons} ref={buttonsWD}>
-							<Link to='/'>
+						<div className={textWDIntersected ? Style.ButtonsAppear : Style.Buttons}>
+							<Link to='/about'>
 								<Button text='About Me' />
 							</Link>
 							<Link to='/portfolio' className={Style.Portfolio}>
@@ -306,7 +270,7 @@ export default function Home() {
 						</div>
 					</div>
 				</section>
-				<section className={Style.Fitness} ref={fitness}>
+				<section className={Style.Fitness}>
 					<div className={titleHFIntersected ? Style.TitleAppear : Style.Title} ref={titleHF}>
 						<svg height='20' width='120'>
 							<polyline
@@ -329,8 +293,8 @@ export default function Home() {
 								one-on-one with clients to make lasting commitments to their health.{' '}
 							</h2>
 						</div>
-						<div className={textHFIntersected ? Style.ButtonsAppear : Style.Buttons} ref={buttonsHF}>
-							<Link to='/'>
+						<div className={textHFIntersected ? Style.ButtonsAppear : Style.Buttons}>
+							<Link to='/fitness'>
 								<Button text='Learn More' />
 							</Link>
 						</div>
@@ -339,13 +303,13 @@ export default function Home() {
 					<div className={Style.FitnessPictureMobile}></div>
 				</section>
 			</main>
-			<section className={Style.Contact} ref={contact}>
+			<section className={Style.Contact}>
 				<div className={Style.ContactInfo} ref={contactInfo}>
 					<div className={Style.GetInTouch}>
 						<h2>Get in touch</h2>
 						<div className={Style.ContactLinks}>
 							<a href='mailto:dalton@steelebodyandmind.com'>
-								<MdOutlineEmail />
+								<AiOutlineMail />
 							</a>
 							<a
 								href='https://www.linkedin.com/in/dalton-steele-239816132/'
@@ -364,7 +328,7 @@ export default function Home() {
 						<h2>Get in touch</h2>
 						<div className={Style.ContactLinks}>
 							<a href='mailto:dalton@steelebodyandmind.com'>
-								<MdOutlineEmail />
+								<AiOutlineMail />
 							</a>
 							<a
 								href='https://www.linkedin.com/in/dalton-steele-239816132/'
@@ -374,7 +338,6 @@ export default function Home() {
 							</a>
 						</div>
 					</div>
-					{/* add form here */}
 				</div>
 			</section>
 		</div>

@@ -28,28 +28,12 @@
 
 		&Top {
 			@extend .Left;
-			@keyframes slideInBlue {
-				from {
-					width: 100%;
-				}
-				to {
-					width: 50%;
-				}
-			}
-			animation: slideInBlue 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
+			animation: leftSlideIn 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
 		}
 
 		&Scroll {
 			@extend .Left;
-			@keyframes expandBlue {
-				from {
-					width: 50%;
-				}
-				to {
-					width: 100%;
-				}
-			}
-			animation: expandBlue 1.5s cubic-bezier(0.3, 0.05, 0.5, 0.95) 0s 1 normal forwards;
+			animation: leftExpand 1.5s cubic-bezier(0.3, 0.05, 0.5, 0.95) 0s 1 normal forwards;
 		}
 	}
 
@@ -107,7 +91,7 @@
 		bottom: 10%;
 		left: 45%;
 		color: white;
-		cursor: pointer;
+		cursor: default;
 		z-index: 10;
 		@include flex-center;
 		flex-direction: column;
@@ -169,6 +153,9 @@
 		opacity: 0;
 		// width: 35%;
 		transition: all 0.5s ease;
+		@media screen and (max-width: $breakpoint-tablet) {
+			width: 300px;
+		}
 		@media screen and (max-width: $breakpoint-mobile) {
 			top: 40vh;
 			width: 200px;
@@ -207,12 +194,12 @@
 			color: $color-alternate;
 			font-size: 30px;
 			letter-spacing: 0.5pt;
-			font-weight: 300;
+			font-weight: 100;
 			@media screen and (max-width: $breakpoint-medium) {
 				font-size: 27px;
 			}
 			@media screen and (max-width: $breakpoint-tablet) {
-				font-size: 24px;
+				font-size: 22px;
 			}
 			@media screen and (max-width: $breakpoint-mobile) {
 				font-size: 20px;
@@ -754,12 +741,12 @@
 			h2 {
 				font-family: 'Aboreto';
 				font-weight: 100;
-				font-size: 30px;
+				font-size: 35px;
 			}
 			.ContactLinks {
 				margin-top: 20px;
 				width: 100%;
-				font-size: 30px;
+				font-size: 35px;
 				@include flex-center;
 				justify-content: space-evenly;
 
