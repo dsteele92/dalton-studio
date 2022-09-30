@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Style from './home.module.scss';
-import { useHasIntersected, Button } from 'components';
+import { useHasIntersected, Button, ScrollArrow } from 'components';
 
 import { BsArrowDown } from 'react-icons/bs';
 import { FaLinkedin, FaRunning, FaLeaf } from 'react-icons/fa';
@@ -23,7 +23,6 @@ import {
 
 export default function Home() {
 	const [top, setTop] = useState(true);
-	const [bottom, setBottom] = useState(false);
 
 	const left = useRef();
 	const hello = useRef();
@@ -94,13 +93,6 @@ export default function Home() {
 					67 - (document.documentElement.scrollHeight - windowHeight - currentScroll) / 6
 				}%`;
 			}
-
-			//  -----> control state to know when at bottom of page
-			if (currentScroll > document.documentElement.scrollHeight - windowHeight - 200) {
-				setBottom(true);
-			} else {
-				setBottom(false);
-			}
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -118,10 +110,7 @@ export default function Home() {
 				<div className={Style.He}>HE</div>
 				<div className={Style.Llo}>LLO.</div>
 			</div>
-			<div className={top ? Style.ScrollTop : bottom ? Style.ScrollBottom : Style.ScrollActive}>
-				<p>Scroll</p>
-				<BsArrowDown className={Style.Arrow} />
-			</div>
+			<ScrollArrow />
 			<div className={top ? Style.Intro : Style.IntroAppear}>
 				<div ref={intro}>
 					<svg height='18' width='300'>
@@ -319,7 +308,6 @@ export default function Home() {
 							</a>
 						</div>
 					</div>
-					{/* add form here */}
 				</div>
 			</section>
 			<section className={Style.ContactMobile}>

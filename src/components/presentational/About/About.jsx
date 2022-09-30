@@ -2,7 +2,8 @@ import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Style from './about.module.scss';
 
-import AboutMePic from '../../../images/about-me-pic.jpeg';
+import { LinksGrid, ScrollArrowTopOnly, ScrollArrow } from 'components';
+import AboutMePic from '../../../images/aboutMe_compressed.jpeg';
 
 export default function About() {
 	const [top, setTop] = useState(true);
@@ -31,7 +32,7 @@ export default function About() {
 			<div className={Style.Right}></div>
 			<div className={top ? Style.LeftTop : Style.LeftScroll}></div>
 			<main>
-				<div className={Style.AboutMe}>
+				<section className={top ? Style.AboutMe : Style.AboutMeScroll}>
 					<div className={Style.Title}>
 						<svg height='20' width='120'>
 							<polyline
@@ -42,21 +43,37 @@ export default function About() {
 						<div className={Style.About}>ABOUT</div>
 					</div>
 					<h2>I'm Dalton, a Software engineer with bla bla bla</h2>
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!</p>
 					<p>
 						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!
 						Cumque recusandae enim nostrum dolor voluptates reiciendis non fugit fugiat harum qui. Officia
 						vitae accusantium pariatur ullam eum.
 					</p>
+				</section>
+
+				<section className={top ? Style.CV : Style.CVScroll}>
+					<h2>Education & Stuff</h2>
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!</p>
 					<p>
 						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!
 						Cumque recusandae enim nostrum dolor voluptates reiciendis non fugit fugiat harum qui. Officia
 						vitae accusantium pariatur ullam eum.
 					</p>
-				</div>
-				<div className={Style.PhotoDiv}>
+				</section>
+
+				<div className={top ? Style.PhotoDiv : Style.PhotoDivScroll}>
 					<img src={AboutMePic} alt='Dalton' />
 				</div>
+				{!top ? (
+					<section className={Style.Links}>
+						<LinksGrid />
+					</section>
+				) : (
+					''
+				)}
 			</main>
+			<ScrollArrowTopOnly />
+			{/* <ScrollArrow /> */}
 		</div>
 	);
 }
