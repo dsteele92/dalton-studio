@@ -1,7 +1,11 @@
 import React from 'react';
 
-// import { Portfolio } from 'components';
+import { PersonalTraining } from 'components';
 
 export default function FitnessPage() {
-	return <div></div>;
+	return (
+		<div>
+			<PersonalTraining />
+		</div>
+	);
 }

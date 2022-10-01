@@ -1,37 +1,52 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Style from './about.module.scss';
 
-import { LinksGrid, ScrollArrowTopOnly, ScrollArrow } from 'components';
+import { LinksGrid, ScrollArrowTopOnly, LoadingBounce } from 'components';
 import AboutMePic from '../../../images/aboutMe_compressed.jpeg';
 
 export default function About() {
 	const [top, setTop] = useState(true);
+	const [loaded, setLoaded] = useState(false);
+
+	const aboutMePic = useRef();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
+		const handleLoad = (event) => {
+			setTimeout(() => {
+				setLoaded(true);
+			}, '1000');
+		};
+
 		const handleScroll = (event) => {
 			// -----> state for transitioning out of top
-			if (window.pageYOffset >= 10) {
+			if (window.pageYOffset >= 1) {
+				console.log(window.pageYOffset);
 				setTop(false);
-			} else if (window.pageYOffset < 10) {
+			} else if (window.pageYOffset < 1) {
 				setTop(true);
 			}
 		};
 
+		aboutMePic.current.addEventListener('load', handleLoad);
 		window.addEventListener('scroll', handleScroll);
 
 		return () => {
+			window.removeEventListener('load', handleLoad);
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
 
 	return (
-		<div className={Style.AboutPage}>
+		<div className={!loaded ? Style.AboutPageLoading : Style.AboutPage}>
 			<div className={Style.Right}></div>
-			<div className={top ? Style.LeftTop : Style.LeftScroll}></div>
-			<main>
+			<div className={!loaded ? Style.LeftLoading : top ? Style.LeftTop : Style.LeftScroll}></div>
+			<div className={!loaded ? Style.LoadingPage : Style.LoadingPageHide}>
+				<LoadingBounce />
+			</div>
+			<main className={loaded ? Style.Main : Style.MainLoading}>
 				<section className={top ? Style.AboutMe : Style.AboutMeScroll}>
 					<div className={Style.Title}>
 						<svg height='20' width='120'>
@@ -42,14 +57,20 @@ export default function About() {
 						</svg>
 						<div className={Style.About}>ABOUT</div>
 					</div>
-					<h2>I'm Dalton, a Software engineer with bla bla bla</h2>
-					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!</p>
-					<p>
+					<h2 className={Style.Intro}>I'm Dalton, a Software engineer with bla bla bla</h2>
+					<p className={Style.Intro}>
+						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!
+					</p>
+					<p className={Style.Intro}>
 						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!
 						Cumque recusandae enim nostrum dolor voluptates reiciendis non fugit fugiat harum qui. Officia
 						vitae accusantium pariatur ullam eum.
 					</p>
 				</section>
+
+				<div className={top ? Style.PhotoDiv : Style.PhotoDivScroll}>
+					<img src={AboutMePic} alt='Dalton' ref={aboutMePic} />
+				</div>
 
 				<section className={top ? Style.CV : Style.CVScroll}>
 					<h2>Education & Stuff</h2>
@@ -61,19 +82,14 @@ export default function About() {
 					</p>
 				</section>
 
-				<div className={top ? Style.PhotoDiv : Style.PhotoDivScroll}>
-					<img src={AboutMePic} alt='Dalton' />
+				<section className={top ? Style.LinksHide : Style.Links}>
+					<LinksGrid />
+				</section>
+
+				<div className={Style.ScrollArrow}>
+					<ScrollArrowTopOnly className={Style.ScrollArrow} />
 				</div>
-				{!top ? (
-					<section className={Style.Links}>
-						<LinksGrid />
-					</section>
-				) : (
-					''
-				)}
 			</main>
-			<ScrollArrowTopOnly />
-			{/* <ScrollArrow /> */}
 		</div>
 	);
 }

@@ -1,95 +1,275 @@
 @import 'sass';
 
-.Fitness {
-	width: 100%;
-	height: 100%;
-	position: relative;
-	// padding: 50px 60px;
+.FitnessPage {
+	width: 100vw;
+	height: 200vh;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	overflow-x: hidden;
 
-	.Title {
-		position: absolute;
-		top: 15%;
-		right: 13%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		font-size: 100px;
-		font-weight: normal;
-		font-family: 'Aboreto';
-		opacity: 0;
-
-		@media screen and (max-width: $breakpoint-medium) {
-			font-size: 100px;
-			left: 15%;
-		}
-		@media screen and (max-width: $breakpoint-tablet) {
-			font-size: 80px;
-			left: 20%;
-		}
-		@media screen and (max-width: $breakpoint-mobile) {
-			font-size: 60px;
-			left: 25%;
-		}
-
-		.Health {
-			font-family: 'Aboreto';
-			margin-bottom: -5%;
-		}
-		.AndFit {
-			font-family: 'Aboreto';
-			margin-left: 5%;
-			white-space: nowrap;
-		}
-		&Appear {
-			@extend .Title;
-			animation: fadeInLift 1.5s forwards;
-		}
+	&Loading {
+		@extend .FitnessPage;
+		height: 100vh;
 	}
 
-	.Text {
-		position: absolute;
-		top: 45%;
-		right: 15%;
-		max-width: 400px;
-		opacity: 0;
-		h2 {
-			// color: $color-secondary;
-			color: black;
-			font-size: 30px;
-			letter-spacing: 0.5pt;
-			font-weight: 100;
-		}
-		&Appear {
-			@extend .Text;
-			animation: fadeInLift 1s 0.5s forwards;
-		}
+	@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+		height: fit-content;
 	}
 
-	.Image {
+	.Top {
 		position: absolute;
-		top: 20%;
+		top: 0;
 		right: 0;
-		overflow: hidden;
-		height: 35%;
-		width: 50%;
-		// background-image: url(../../../images//lifeimprovements.png);
-		background-size: cover;
-		background-position: top;
-		// background-attachment: fixed;
+		height: 100%;
+		width: 100%;
+		z-index: -9;
+		background-color: #f3f3f3;
+	}
+	.Bottom {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background-color: $color-background-three;
+		z-index: -9;
+		@include flex-center;
+
+		@keyframes bottomSlideIn {
+			from {
+				top: 0;
+			}
+			to {
+				top: 50vh;
+			}
+		}
+		@keyframes bottomSlideUp {
+			from {
+				top: 50vh;
+			}
+			to {
+				top: 0;
+			}
+		}
+
+		&Top {
+			@extend .Bottom;
+			@media screen and (min-width: $breakpoint-tablet) and (min-height: $breakpoint-tablet) {
+				animation: bottomSlideIn 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
+			}
+		}
+
+		&Scroll {
+			@extend .Bottom;
+			@media screen and (min-width: $breakpoint-tablet) and (min-height: $breakpoint-tablet) {
+				animation: bottomSlideUp 1s cubic-bezier(0.3, 0.05, 0.5, 0.95) 0s 1 normal forwards;
+			}
+		}
+	}
+	.LoadingPage {
+		height: 100vh;
+		width: 100vw;
+		@include flex-center;
+		opacity: 1;
+		transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+		&Hide {
+			@extend .LoadingPage;
+			animation: fadeThenLeave 0.5s ease forwards;
+			@keyframes fadeThenLeave {
+				0% {
+					opacity: 1;
+					transform: translateX(0);
+				}
+				99% {
+					opacity: 0;
+					transform: translateX(0);
+				}
+				100% {
+					opacity: 0;
+					transform: translateX(-100vw);
+				}
+			}
+		}
 	}
 
-	.Buttons {
-		position: absolute;
-		bottom: 20%;
-		left: 15%;
-		width: 800px;
-		@include flex-center;
-		opacity: 0;
+	.Main {
+		&Loading {
+			@extend .Main;
+			display: none;
+		}
 
-		&Appear {
-			@extend .Buttons;
-			animation: fadeInSlideLeft 1s 0.5s forwards;
+		.Fitness {
+			position: absolute;
+			top: 0;
+			height: 100vh;
+			width: 100vw;
+			transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+			@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+			}
+
+			.Title {
+				position: absolute;
+				bottom: 57vh;
+				left: 12%;
+				font-size: 100px;
+				font-weight: normal;
+				font-family: 'Aboreto';
+				color: $color-headers;
+				opacity: 0;
+				animation: fadeInLift 1s forwards;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+
+				.WDIcon {
+					fill: none;
+					stroke: black;
+					stroke-width: 4;
+					stroke-dasharray: 300;
+					stroke-dashoffset: 300;
+					transform: scale(0.5);
+					// transition: all 1.5s ease 0.5s;
+
+					@keyframes dashoffset {
+						from {
+							stroke-dashoffset: 300;
+						}
+						to {
+							stroke-dashoffset: 0;
+						}
+					}
+
+					animation: dashoffset 1.5s ease 0.5s forwards;
+				}
+
+				.Header {
+					font-family: 'Aboreto';
+
+					@media screen and (max-width: $breakpoint-large) {
+						font-size: 90px;
+					}
+					@media screen and (max-width: $breakpoint-medium) {
+						font-size: 80px;
+					}
+					@media screen and (max-width: $breakpoint-tablet) {
+						font-size: 70px;
+					}
+					@media screen and (max-height: $breakpoint-tablet) {
+						font-size: 70px;
+					}
+					@media screen and (max-width: $breakpoint-mobile) {
+						font-size: 60px;
+					}
+				}
+			}
+
+			.Intro {
+				animation: fadeInLift 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+				position: absolute;
+				top: 55vh;
+				left: 12vw;
+				width: 30vw;
+			}
+
+			h2 {
+				font-size: 35px;
+				font-weight: 100;
+				margin-bottom: 30px;
+				@media screen and (max-width: $breakpoint-large) {
+					font-size: 30px;
+				}
+				@media screen and (max-width: $breakpoint-medium) {
+					font-size: 28px;
+				}
+				@media screen and (max-width: $breakpoint-tablet) {
+					font-size: 26px;
+				}
+				@media screen and (max-height: $breakpoint-tablet) {
+					font-size: 24px;
+				}
+				@media screen and (max-width: $breakpoint-mobile) {
+					font-size: 22px;
+				}
+			}
+			p {
+				font-size: 24px;
+				font-weight: 100;
+				letter-spacing: 1pt;
+				margin-bottom: 20px;
+				@media screen and (max-width: $breakpoint-large) {
+					font-size: 22px;
+				}
+				@media screen and (max-width: $breakpoint-medium) {
+					font-size: 20px;
+				}
+				@media screen and (max-width: $breakpoint-tablet) {
+					font-size: 18px;
+				}
+				@media screen and (max-height: $breakpoint-tablet) {
+					font-size: 16px;
+				}
+				@media screen and (max-width: $breakpoint-mobile) {
+					font-size: 14px;
+				}
+			}
+		}
+
+		.Running {
+			position: absolute;
+			top: 50vh;
+			right: 3vw;
+			height: 50vh;
+			width: 47vw;
+			transition: all 1s ease;
+			opacity: 0;
+			animation: fadeInLift 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+			overflow: hidden;
+
+			@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+				position: relative;
+				height: fit-content;
+				width: 100%;
+				left: 0;
+				justify-content: center;
+				margin-bottom: 50px;
+			}
+
+			img {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 100%;
+			}
+		}
+
+		.Testimonials {
+			position: absolute;
+			top: 100vh;
+			height: 100vh;
+			width: 100%;
+			background: linear-gradient($color-background-three, #f3f3f3);
+			@include flex-center;
+		}
+
+		.Links {
+			position: fixed;
+			top: 0;
+			right: 5%;
+			height: 100%;
+			width: 45%;
+			@include flex-center;
+
+			// opacity: 0;
+			transition: all 0.2s ease;
+
+			&Scroll {
+				@extend .Links;
+				opacity: 1;
+			}
 		}
 	}
 }

@@ -5,6 +5,8 @@ export { default as ButtonAlt } from './generic/Buttons/ButtonAlt.jsx';
 export { default as LinksGrid } from './generic/LinksGrid/LinksGrid.jsx';
 export { default as ScrollArrow } from './generic/ScrollArrow/ScrollArrow.jsx';
 export { default as ScrollArrowTopOnly } from './generic/ScrollArrowTopOnly/ScrollArrowTopOnly.jsx';
+export { default as ScrollArrowTopAndBottom } from './generic/ScrollArrowTopAndBottom/ScrollArrowTopAndBottom.jsx';
+export { default as LoadingBounce } from './generic/LoadingBounce/LoadingBounce.jsx';
 
 export { default as Home } from './presentational/Home/Home.jsx';
 export { default as About } from './presentational/About/About.jsx';

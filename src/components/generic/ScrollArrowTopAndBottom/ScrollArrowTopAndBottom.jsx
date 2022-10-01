@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react';
-import Style from './scrollArrowTopOnly.module.scss';
-import { BsArrowDown } from 'react-icons/bs';
+import Style from './scrollArrowTopAndBottom.module.scss';
+import { BsArrowDown, BsArrowUp } from 'react-icons/bs';
 
-export default function ScrollArrowTopOnly(props) {
+export default function ScrollArrowTopAndBottom() {
 	const [top, setTop] = useState(true);
 
 	useEffect(() => {
@@ -23,11 +23,11 @@ export default function ScrollArrowTopOnly(props) {
 	}, []);
 
 	return (
-		<div
-			className={top ? Style.ScrollTop : Style.ScrollTopHide}
-			style={{ color: props.color ? props.color : 'white' }}>
-			<p>Scroll</p>
-			<BsArrowDown className={Style.Arrow} />
+		<div className={top ? Style.ScrollTop : Style.ScrollBottom}>
+			<p className={Style.Scroll}>Scroll</p>
+			<p className={Style.BackToTop}>Back to top</p>
+			<BsArrowDown className={Style.ArrowDown} />
+			<BsArrowUp className={Style.ArrowUp} />
 		</div>
 	);
 }

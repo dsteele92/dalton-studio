@@ -4,30 +4,46 @@ import Style from './linksGrid.module.scss';
 import { RiHome4Fill } from 'react-icons/ri';
 import { BsCodeSlash } from 'react-icons/bs';
 import { IoMdFitness } from 'react-icons/io';
-import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { MdOutlineAlternateEmail, MdOutlineWavingHand } from 'react-icons/md';
+import { ImCool } from 'react-icons/im';
 
-export default function LinksGrid() {
+export default function LinksGrid(props) {
 	let location = useLocation();
+
+	let color = props.color ? props.color : '#dddddd';
+	let opacity = props.opacity ? props.opacity : 0.7;
+
 	return (
 		<div className={Style.LinksGrid}>
 			<div className={location.pathname === '/about' ? Style.Hide : Style.About}>
-				<h2>ABOUT</h2>
+				<Link to='/about'>
+					<ImCool className={Style.Icon} style={{ color: color, opacity: opacity }} />
+					<h2>ABOUT</h2>
+				</Link>
 			</div>
 			<div className={location.pathname === '/portfolio' ? Style.Hide : Style.Coding}>
-				<BsCodeSlash className={Style.Icon} />
-				<h2>CODING</h2>
+				<Link to='/portfolio'>
+					<BsCodeSlash className={Style.Icon} style={{ color: color, opacity: opacity }} />
+					<h2>CODING</h2>
+				</Link>
 			</div>
 			<div className={location.pathname === '/fitness' ? Style.Hide : Style.Fitness}>
-				<IoMdFitness className={Style.Icon} />
-				<h2>FITNESS</h2>
+				<Link to='/fitness'>
+					<IoMdFitness className={Style.Icon} style={{ color: color, opacity: opacity }} />
+					<h2>FITNESS</h2>
+				</Link>
 			</div>
 			<div className={location.pathname === '/contact' ? Style.Hide : Style.Contact}>
-				<MdOutlineAlternateEmail className={Style.Icon} />
-				<h2>CONTACT</h2>
+				<Link to='/contact'>
+					<MdOutlineAlternateEmail className={Style.Icon} style={{ color: color, opacity: opacity }} />
+					<h2>CONTACT</h2>
+				</Link>
 			</div>
 			<div className={location.pathname === '/' ? Style.Hide : Style.Home}>
-				<RiHome4Fill className={Style.Icon} />
-				<h2>HOME</h2>
+				<Link to='/'>
+					<RiHome4Fill className={Style.Icon} style={{ color: color, opacity: opacity }} />
+					<h2>HOME</h2>
+				</Link>
 			</div>
 		</div>
 	);
