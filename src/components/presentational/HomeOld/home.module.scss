@@ -679,10 +679,6 @@
 			@include flex-center;
 			flex-direction: column;
 			white-space: nowrap;
-			a {
-				color: black;
-				text-decoration: none;
-			}
 			h2 {
 				font-family: 'Aboreto';
 				font-size: 35px;
@@ -710,10 +706,6 @@
 			@extend .Contact;
 			.ContactInfo {
 				top: 67%;
-				a {
-					color: black;
-					text-decoration: none;
-				}
 				h2 {
 					font-family: 'Aboreto';
 					font-size: 30px;

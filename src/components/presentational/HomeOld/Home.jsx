@@ -295,9 +295,7 @@ export default function Home() {
 			<section className={Style.Contact}>
 				<div className={Style.ContactInfo} ref={contactInfo}>
 					<div className={Style.GetInTouch}>
-						<Link to='/contact'>
-							<h2>Get in touch</h2>
-						</Link>
+						<h2>Get in touch</h2>
 						<div className={Style.ContactLinks}>
 							<a href='mailto:dalton@steelebodyandmind.com'>
 								<AiOutlineMail />
@@ -315,9 +313,7 @@ export default function Home() {
 			<section className={Style.ContactMobile}>
 				<div className={Style.ContactInfo}>
 					<div className={Style.GetInTouch}>
-						<Link to='/contact'>
-							<h2>Get in touch</h2>
-						</Link>
+						<h2>Get in touch</h2>
 						<div className={Style.ContactLinks}>
 							<a href='mailto:dalton@steelebodyandmind.com'>
 								<AiOutlineMail />

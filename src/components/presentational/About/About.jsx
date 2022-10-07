@@ -2,7 +2,8 @@ import { React, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Style from './about.module.scss';
 
-import { LinksGrid, ScrollArrowTopOnly, LoadingBounce } from 'components';
+import { LinksGrid, ScrollArrowTopOnly, ScrollArrowBottom, LoadingBounce } from 'components';
+import { goToTop, goToBottom } from '../../../scrollBreakpoints.js';
 import AboutMePic from '../../../images/aboutMe_compressed.jpeg';
 
 export default function About() {
@@ -22,19 +23,19 @@ export default function About() {
 
 		const handleScroll = (event) => {
 			// -----> state for transitioning out of top
-			if (window.pageYOffset >= 1) {
-				console.log(window.pageYOffset);
+			if (window.pageYOffset >= 10) {
 				setTop(false);
-			} else if (window.pageYOffset < 1) {
+			} else if (window.pageYOffset < 10) {
 				setTop(true);
 			}
 		};
 
-		aboutMePic.current.addEventListener('load', handleLoad);
+		let picture = aboutMePic.current;
+		picture.addEventListener('load', handleLoad);
 		window.addEventListener('scroll', handleScroll);
 
 		return () => {
-			window.removeEventListener('load', handleLoad);
+			picture.removeEventListener('load', handleLoad);
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
@@ -55,7 +56,7 @@ export default function About() {
 								points='10,10 30,30 50,10 70,30 90,10 110,30 130,10 150,30 170,10 190,30 210,10'
 							/>
 						</svg>
-						<div className={Style.About}>ABOUT</div>
+						<div className={Style.Header}>ABOUT</div>
 					</div>
 					<h2 className={Style.Intro}>I'm Dalton, a Software engineer with bla bla bla</h2>
 					<p className={Style.Intro}>
@@ -86,8 +87,11 @@ export default function About() {
 					<LinksGrid />
 				</section>
 
-				<div className={Style.ScrollArrow}>
-					<ScrollArrowTopOnly className={Style.ScrollArrow} />
+				<div className={Style.ScrollArrow} onClick={goToBottom}>
+					<ScrollArrowTopOnly />
+				</div>
+				<div className={Style.ScrollArrow} onClick={goToTop}>
+					<ScrollArrowBottom />
 				</div>
 			</main>
 		</div>

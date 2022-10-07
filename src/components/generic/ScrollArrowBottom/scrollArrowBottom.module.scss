@@ -1,15 +1,15 @@
 @import 'sass';
 
-.ScrollTop {
+.Scroll {
 	position: fixed;
 	bottom: 10%;
-	left: 45%;
-	color: white;
+	left: 10%;
+	color: black;
 	z-index: 10;
 	@include flex-center;
 	flex-direction: column;
-	opacity: 0;
-	animation: appear 1s 0.5s forwards;
+	transition: all 1s ease 0.5s;
+	opacity: 1;
 
 	@media screen and (max-width: $breakpoint-tablet) {
 		left: 40%;
@@ -23,7 +23,7 @@
 		transform: rotate(-90deg);
 		font-weight: 300;
 		font-size: 12px;
-		margin-bottom: 15px;
+		margin-bottom: 0;
 	}
 
 	.Arrow {
@@ -39,11 +39,12 @@
 			}
 		}
 		animation: bounce 1.5s infinite;
+		margin-bottom: 30px;
 	}
 
 	&Hide {
-		@extend .ScrollTop;
-		opacity: 1;
-		animation: disappear 0.5s forwards;
+		@extend .Scroll;
+		opacity: 0;
+		transition: all 0.5s ease;
 	}
 }

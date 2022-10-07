@@ -4,7 +4,6 @@ import { BsArrowDown } from 'react-icons/bs';
 
 export default function ScrollArrowTopOnly(props) {
 	const [top, setTop] = useState(true);
-
 	useEffect(() => {
 		const handleScroll = (event) => {
 			// -----> state for transitioning out of top

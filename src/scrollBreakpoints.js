@@ -4,6 +4,12 @@ export const goToIntro = () => {
 		behavior: 'smooth',
 	});
 };
+export const goToNext = () => {
+	window.scrollTo({
+		top: 150,
+		behavior: 'smooth',
+	});
+};
 export const goToWebDev = () => {
 	window.scrollTo({
 		top: window.innerHeight * 2.6,
