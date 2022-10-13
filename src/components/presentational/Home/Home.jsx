@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Style from './home.module.scss';
-import { useHasIntersected, Button, ScrollArrow } from 'components';
+import { useHasIntersected, Button, ButtonAlt, ScrollArrow } from 'components';
 
 import { BsArrowDown } from 'react-icons/bs';
 import { FaLinkedin, FaRunning, FaLeaf } from 'react-icons/fa';
@@ -27,17 +27,21 @@ export default function Home() {
 	const left = useRef();
 	const hello = useRef();
 	const intro = useRef();
-	const webDevInfo = useRef();
+	// const webDevInfo = useRef();
 	// const hiking = useRef();
 	const bannerCoding = useRef();
 	const contactInfo = useRef();
+	const webDev1 = useRef();
+	const webDev2 = useRef();
+	const webDev3 = useRef();
 
 	// -----> Lazy Loading functions
 	const [titleWD, titleWDIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [textWD, textWDIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [titleHF, titleHFIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [textHF, textHFIntersected] = useHasIntersected({ threshold: 0.5 });
-	const [hiking, hikingIntersected] = useHasIntersected({ threshold: 1 });
+	const [webDevInfo, webDevInfoIntersected] = useHasIntersected({ threshold: 0.5 });
+	const [hiking, hikingIntersected] = useHasIntersected({ threshold: 0.75 });
 
 	useEffect(() => {
 		const handleScroll = (event) => {
@@ -56,33 +60,55 @@ export default function Home() {
 				setTop(true);
 			}
 
-			// -------> Left (blue) div is 200vh. At 1.2*windowHeight scroll the bottom of the div will be 20% up the page
+			// -------> Left (blue) div is 200vh. At 0.7*windowHeight scroll the bottom of the div will be 20% up the page
 			// ... just under the HELLO div. At this point we make the blue div go slightly slower than the scroll
 			// ... (so that the main section will close in on the banner) AND make the HELLO div and intro div scroll up and leave the page
-			if (currentScroll > 1.2 * windowHeight) {
-				left.current.style.transform = `translateY(${(currentScroll - 1.2 * windowHeight) * 0.2}px)`;
+			if (currentScroll > 0.7 * windowHeight) {
+				left.current.style.transform = `translateY(${(currentScroll - 0.7 * windowHeight) * 0.2}px)`;
 				hello.current.style.top = `${
-					currentScroll - 1.2 * windowHeight > 0 ? halfY - (currentScroll - 1.2 * windowHeight) * 0.8 : halfY
+					currentScroll - 0.7 * windowHeight > 0 ? halfY - (currentScroll - 0.7 * windowHeight) * 0.8 : halfY
 				}px`;
-				intro.current.style.transform = `translateY(-${(currentScroll - 1.2 * windowHeight) * 0.6}px)`;
-				intro.current.style.opacity = `${1 - (currentScroll - 1.2 * windowHeight) / windowHeight}`;
+				intro.current.style.transform = `translateY(-${(currentScroll - 0.7 * windowHeight) * 0.6}px)`;
+				intro.current.style.opacity = `${1 - (currentScroll - 0.7 * windowHeight) / windowHeight}`;
 			}
 
-			if (currentScroll > 1.5 * windowHeight) {
-				webDevInfo.current.style.transform = `translateY(-${(currentScroll - 1.5 * windowHeight) / 2}px)`;
+			if (currentScroll > 0.9 * windowHeight) {
+				// webDevInfo.current.style.transform = `translateY(-${(currentScroll - 1.0 * windowHeight) / 2}px)`;
+				console.log((currentScroll - windowHeight) / 5);
+				webDev1.current.style.transform = `translateY(${
+					currentScroll - windowHeight < 0
+						? 200
+						: (currentScroll - windowHeight) / 6 < 200
+						? 200 - (currentScroll - windowHeight) / 6
+						: 0
+				}px)`;
+				webDev2.current.style.transform = `translateX(${
+					currentScroll - windowHeight < 0
+						? 200
+						: (currentScroll - windowHeight) / 6 < 200
+						? 200 - (currentScroll - windowHeight) / 6
+						: 0
+				}px)`;
+				webDev3.current.style.transform = `translateY(-${
+					currentScroll - windowHeight < 0
+						? 200
+						: (currentScroll - windowHeight) / 6 < 200
+						? 200 - (currentScroll - windowHeight) / 6
+						: 0
+				}px)`;
 			}
 
-			if (currentScroll > 2.5 * windowHeight) {
+			if (currentScroll > 2.0 * windowHeight) {
 				hiking.current.style.backgroundPositionY = `${
-					currentScroll - 3 * windowHeight < 0
+					currentScroll - 2.5 * windowHeight < 0
 						? 0
-						: (currentScroll - 3 * windowHeight) / 10 < 100
-						? (currentScroll - 3 * windowHeight) / 10
+						: (currentScroll - 2.5 * windowHeight) / 10 < 100
+						? (currentScroll - 2.5 * windowHeight) / 10
 						: 100
 				}%`;
 			}
 
-			if (currentScroll > 3.5 * windowHeight) {
+			if (currentScroll > 3 * windowHeight) {
 				bannerCoding.current.style.display = 'none';
 			} else {
 				bannerCoding.current.style.display = 'block';
@@ -101,7 +127,7 @@ export default function Home() {
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, []);
+	}, [hiking, webDevInfo]);
 
 	return (
 		<div className={Style.Home}>
@@ -207,7 +233,77 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
+					<div className={Style.WebDevTetris}>
+						<div className={Style.WebDev1} ref={webDev1}>
+							<div className={Style.WebDev1A}>
+								<div className={Style.Icon}>
+									<DiNodejsSmall />
+									<p>NodeJS</p>
+								</div>
+								<div className={Style.Icon}>
+									<DiNpm />
+									<p>NPM</p>
+								</div>
+								<div className={Style.Icon}>
+									<DiMongodb />
+									<p>Mongo DB</p>
+								</div>
+								<div className={Style.Icon}>
+									<SiExpress />
+									<p>Express</p>
+								</div>
+							</div>
+							<div className={Style.WebDev1B}>
+								<div className={Style.Icon}>
+									<DiFirebase />
+									<p>Full Stack Web Apps</p>
+								</div>
+							</div>
+							<div className={Style.WebDev1C}></div>
+						</div>
+						<div className={Style.WebDev2} ref={webDev2}>
+							<div className={Style.Icon}>
+								<DiGithubBadge />
+								<p>GitHub</p>
+							</div>
+							<div className={Style.Icon}>
+								<SiPostman />
+								<p>Postman</p>
+							</div>
+						</div>
+						<div className={Style.WebDev3} ref={webDev3}>
+							<div className={Style.WebDev3A}>
+								<div className={Style.Icon}>
+									<DiHtml5 />
+									<p>HTML</p>
+								</div>
+								<div className={Style.Icon}>
+									<DiCss3Full />
+									<p>CSS</p>
+								</div>
+								<div className={Style.Icon}>
+									<DiReact />
+									<p>React</p>
+								</div>
+								<div className={Style.Icon}>
+									<DiSass />
+									<p>Sass</p>
+								</div>
+							</div>
+							<div className={Style.WebDev3B}>
+								<div className={Style.Icon}>
+									<DiJsBadge />
+									<p>Javascript</p>
+								</div>
+							</div>
+							<div className={Style.WebDev3C}></div>
+						</div>
+					</div>
 					<div className={Style.WebDevInfo} ref={webDevInfo}>
+						<div
+							className={
+								webDevInfoIntersected ? Style.WebDevInfoCoverUnwrap : Style.WebDevInfoCover
+							}></div>
 						<div className={Style.WebDevContainer}>
 							<div className={Style.Icon}>
 								<DiHtml5 />
@@ -285,7 +381,7 @@ export default function Home() {
 						</div>
 						<div className={textHFIntersected ? Style.ButtonsAppear : Style.Buttons}>
 							<Link to='/fitness'>
-								<Button text='Learn More' />
+								<ButtonAlt text='Learn More' />
 							</Link>
 						</div>
 					</div>

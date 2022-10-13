@@ -219,19 +219,19 @@
 
 			.U {
 				transform: translateX(6px) rotateZ(-90deg);
-				color: white;
+				// color: #ffffff;
 			}
 			.N {
 				transform: translateX(-4px) rotateZ(-90deg);
-				color: white;
+				// color: #ffffff;
 			}
 			.E {
 				transform: translateX(4px) rotateZ(-90deg);
-				color: white;
+				// color: #ffffff;
 			}
 			.M {
 				transform: translateX(-8px) rotateZ(-90deg);
-				color: white;
+				// color: #ffffff;
 			}
 
 			&MenuActive {
@@ -316,7 +316,7 @@
 			}
 			&About {
 				@extend .Highlight;
-				background-color: rgba($color: $color-about, $alpha: 0.3);
+				background-color: rgba($color: #6c8a7a, $alpha: 0.3);
 				&Current {
 					@extend .HighlightAbout;
 					transform: translate(0, -50%);
@@ -324,7 +324,7 @@
 			}
 			&Coding {
 				@extend .Highlight;
-				background-color: rgba($color: #9d9d9d, $alpha: 0.3);
+				background-color: rgba($color: #656565, $alpha: 0.3);
 				&Current {
 					@extend .HighlightCoding;
 					transform: translate(0, -50%);
@@ -404,10 +404,10 @@
 }
 
 .about {
-	background-color: $color-about;
+	background-color: #6c8a7a;
 }
 .portfolio {
-	background-color: #9d9d9d;
+	background-color: #656565;
 }
 .fitness {
 	background-color: $color-background-three;
@@ -593,6 +593,11 @@
 		justify-content: center;
 		align-items: flex-start;
 
+		@media screen and (max-height: 600px) {
+			top: 10%;
+			height: 60%;
+		}
+
 		.List {
 			list-style: none;
 			position: relative;
@@ -635,12 +640,12 @@
 
 				&About {
 					@extend .HighlightCurrent;
-					background-color: rgba($color: $color-about, $alpha: 0.3);
+					background-color: rgba($color: #6c8a7a, $alpha: 0.3);
 				}
 
 				&Coding {
 					@extend .HighlightCurrent;
-					background-color: rgba($color: #9d9d9d, $alpha: 0.3);
+					background-color: rgba($color: #656565, $alpha: 0.3);
 				}
 
 				&Fitness {

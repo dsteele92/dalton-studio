@@ -73,8 +73,15 @@ export default function Contact() {
 						<p>Dalton Steele</p>
 						<p>Los Angeles, CA</p>
 						<div className={Style.ContactIcons}>
-							<AiOutlineMail />
-							<RiLinkedinLine />
+							<a href='mailto:dalton@steelebodyandmind.com'>
+								<AiOutlineMail />
+							</a>
+							<a
+								href='https://www.linkedin.com/in/dalton-steele-239816132/'
+								target='_blank'
+								rel='noopener noreferrer'>
+								<RiLinkedinLine />
+							</a>
 						</div>
 					</div>
 				</section>

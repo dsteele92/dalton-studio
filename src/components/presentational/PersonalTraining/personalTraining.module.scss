@@ -298,7 +298,8 @@
 			position: fixed;
 			height: 50vh;
 			width: 47vw;
-			right: 50px;
+			// right: $padding-horizontal;
+			left: 50vw;
 			top: 50vh;
 			opacity: 1;
 			transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -307,7 +308,7 @@
 			@media screen and (max-width: $breakpoint-tablet) {
 				position: relative;
 				top: 0;
-				right: 0;
+				left: 0;
 				height: fit-content;
 				width: 100%;
 				overflow: visible;

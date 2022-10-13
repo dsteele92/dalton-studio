@@ -1,6 +1,6 @@
 export const goToIntro = () => {
 	window.scrollTo({
-		top: window.innerHeight,
+		top: window.innerHeight / 2,
 		behavior: 'smooth',
 	});
 };
@@ -12,13 +12,13 @@ export const goToNext = () => {
 };
 export const goToWebDev = () => {
 	window.scrollTo({
-		top: window.innerHeight * 2.6,
+		top: window.innerHeight * 2.05,
 		behavior: 'smooth',
 	});
 };
 export const goToFitness = () => {
 	window.scrollTo({
-		top: window.innerHeight * 3.55,
+		top: window.innerHeight * 3,
 		behavior: 'smooth',
 	});
 };

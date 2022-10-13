@@ -21,13 +21,13 @@ export default function RightNav() {
 			let pageTwoPercentOpen = 0;
 			let pageThreePercentOpen = 0;
 
-			if (offset > 1.5 * height) {
-				pageOnePercentOpen = 1 - (offset - 1.5 * height) / height;
-				pageTwoPercentOpen = (offset - 1.5 * height) / height;
+			if (offset > 1.0 * height) {
+				pageOnePercentOpen = 1 - (offset - 1.0 * height) / height;
+				pageTwoPercentOpen = (offset - 1.0 * height) / height;
 			}
-			if (offset > 2.5 * height) {
-				pageTwoPercentOpen = 1 - (offset - 2.5 * height) / height;
-				pageThreePercentOpen = (offset - 2.5 * height) / height;
+			if (offset > 2.0 * height) {
+				pageTwoPercentOpen = 1 - (offset - 2.0 * height) / height;
+				pageThreePercentOpen = (offset - 2.0 * height) / height;
 			}
 
 			currentHome.current.style.opacity = `${pageOnePercentOpen}`;

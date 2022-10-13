@@ -140,14 +140,14 @@ export default function Navbar() {
 					</li>
 				</ul>
 				<div className={Style.Contact}>
+					<a href='mailto:dalton@steelebodyandmind.com'>
+						<AiOutlineMail />
+					</a>
 					<a
 						href='https://www.linkedin.com/in/dalton-steele-239816132/'
 						target='_blank'
 						rel='noopener noreferrer'>
 						<RiLinkedinLine />
-					</a>
-					<a href='mailto:dalton@steelebodyandmind.com'>
-						<AiOutlineMail />
 					</a>
 				</div>
 			</menu>
