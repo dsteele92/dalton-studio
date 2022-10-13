@@ -28,7 +28,7 @@ export default function Home() {
 	const hello = useRef();
 	const intro = useRef();
 	const webDevInfo = useRef();
-	const hiking = useRef();
+	// const hiking = useRef();
 	const bannerCoding = useRef();
 	const contactInfo = useRef();
 
@@ -37,6 +37,7 @@ export default function Home() {
 	const [textWD, textWDIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [titleHF, titleHFIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [textHF, textHFIntersected] = useHasIntersected({ threshold: 0.5 });
+	const [hiking, hikingIntersected] = useHasIntersected({ threshold: 1 });
 
 	useEffect(() => {
 		const handleScroll = (event) => {
@@ -288,7 +289,13 @@ export default function Home() {
 							</Link>
 						</div>
 					</div>
-					<div className={Style.FitnessPicture} ref={hiking}></div>
+
+					<div className={Style.FitnessPicture} ref={hiking}>
+						<div
+							className={
+								hikingIntersected ? Style.FitnessPictureCoverUnwrap : Style.FitnessPictureCover
+							}></div>
+					</div>
 					<div className={Style.FitnessPictureMobile}></div>
 				</section>
 			</main>

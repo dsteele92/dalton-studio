@@ -6,7 +6,7 @@ export const goToIntro = () => {
 };
 export const goToNext = () => {
 	window.scrollTo({
-		top: 150,
+		top: 300,
 		behavior: 'smooth',
 	});
 };

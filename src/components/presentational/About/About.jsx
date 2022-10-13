@@ -56,7 +56,7 @@ export default function About() {
 								points='10,10 30,30 50,10 70,30 90,10 110,30 130,10 150,30 170,10 190,30 210,10'
 							/>
 						</svg>
-						<div className={Style.Header}>ABOUT</div>
+						<div className={Style.Header}>ABOUT.</div>
 					</div>
 					<h2 className={Style.Intro}>I'm Dalton, a Software engineer with bla bla bla</h2>
 					<p className={Style.Intro}>

@@ -608,6 +608,7 @@
 					}
 				}
 			}
+
 			.FitnessPicture {
 				position: absolute;
 				top: 40%;
@@ -621,6 +622,32 @@
 				background-position-x: center;
 				background-position-y: 0%;
 				background-repeat: no-repeat;
+
+				.FitnessPictureCover {
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					right: 0;
+					background: $color-background-two;
+
+					@keyframes unwrap {
+						from {
+							width: 100%;
+						}
+						to {
+							width: 0%;
+						}
+					}
+					@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+						display: none;
+					}
+
+					&Unwrap {
+						@extend .FitnessPictureCover;
+						animation: unwrap 0.75s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+					}
+				}
 
 				@media screen and (max-width: $breakpoint-tablet) and (orientation: portrait) {
 					top: 70%;

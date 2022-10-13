@@ -1,7 +1,7 @@
 import React from 'react';
 
-// import { Portfolio } from 'components';
+import { Contact } from 'components';
 
 export default function ContactPage() {
-	return <div></div>;
+	return <Contact />;
 }

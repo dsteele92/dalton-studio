@@ -3,7 +3,6 @@ import { React, useState, useEffect, useRef } from 'react';
 import Style from './personalTraining.module.scss';
 import { LinksLine, ScrollArrowTopOnly, ScrollArrowBottom, LoadingBounce } from 'components';
 import { goToTop, goToNext } from '../../../scrollBreakpoints.js';
-import { testimonials } from '../../../testimonials.js';
 import { ImQuotesLeft, ImQuotesRight } from 'react-icons/im';
 
 import RunningPic from '../../../images/run_compressed.jpeg';
@@ -19,6 +18,7 @@ export default function PersonalTraining() {
 	const [top, setTop] = useState(true);
 	const [loaded, setLoaded] = useState(false);
 	const [client, setClient] = useState('');
+	const [seeLinks, setSeeLinks] = useState(false);
 
 	const pic1 = useRef();
 	const AndrewPic = useRef();
@@ -29,13 +29,21 @@ export default function PersonalTraining() {
 	const VijayPic = useRef();
 	const AyakaPic = useRef();
 
+	// const [links, linksIntersected] = useHasIntersected({ threshold: 0.5 });
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
+		let loaded = 0;
 		const handleLoad = (event) => {
-			setTimeout(() => {
-				setLoaded(true);
-			}, '1000');
+			loaded++;
+			// console.log(loaded);
+			if (loaded === 8) {
+				// console.log('all 8 loaded');
+				setTimeout(() => {
+					setLoaded(true);
+				}, '1000');
+			}
 		};
 
 		const handleScroll = (event) => {
@@ -45,10 +53,30 @@ export default function PersonalTraining() {
 			} else if (window.pageYOffset < 1) {
 				setTop(true);
 			}
+			if (window.pageYOffset >= document.documentElement.scrollHeight - window.innerHeight - 300) {
+				setSeeLinks(true);
+			}
+			if (window.pageYOffset < document.documentElement.scrollHeight - window.innerHeight - 600) {
+				setSeeLinks(false);
+			}
 		};
 
 		let picture1 = pic1.current;
+		let andrew = AndrewPic.current;
+		let cayley = CayleyPic.current;
+		let andrewH = AndrewHPic.current;
+		let joanna = JoannaPic.current;
+		let chet = ChetPic.current;
+		let vijay = VijayPic.current;
+		let ayaka = AyakaPic.current;
 		picture1.addEventListener('load', handleLoad);
+		andrew.addEventListener('load', handleLoad);
+		cayley.addEventListener('load', handleLoad);
+		andrewH.addEventListener('load', handleLoad);
+		joanna.addEventListener('load', handleLoad);
+		chet.addEventListener('load', handleLoad);
+		vijay.addEventListener('load', handleLoad);
+		ayaka.addEventListener('load', handleLoad);
 		window.addEventListener('scroll', handleScroll);
 
 		return () => {
@@ -73,10 +101,10 @@ export default function PersonalTraining() {
 								points='10,10 30,30 50,10 70,30 90,10 110,30 130,10 150,30 170,10 190,30 210,10'
 							/>
 						</svg>
-						<div className={Style.Header}>HEALTH & FITNESS</div>
+						<div className={Style.Header}>HEALTH & FITNESS.</div>
 					</div>
 					<div className={top ? Style.Intro : Style.IntroScroll}>
-						<h2>I'm Dalton, a Software engineer with bla bla bla</h2>
+						<h2>I'm Dalton, a Personal Trainer with bla bla bla</h2>
 						<p>
 							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!
 							Cumque recusandae enim nostrum dolor voluptates reiciendis non fugit fugiat harum qui.
@@ -94,6 +122,18 @@ export default function PersonalTraining() {
 						<article>
 							<ImQuotesLeft className={Style.Left} />
 							<ImQuotesRight className={Style.Right} />
+							<h1
+								className={
+									client === '' ? Style.TestimonialsHeaderHover : Style.TestimonialsHeaderHoverHide
+								}>
+								Hover to see what people are saying...
+							</h1>
+							<h1
+								className={
+									client === '' ? Style.TestimonialsHeaderTap : Style.TestimonialsHeaderTapHide
+								}>
+								Tap to see what people are saying...
+							</h1>
 							<p className={client === 'Andrew' ? Style.TextCurrent : Style.Text}>
 								Last January I committed to making personal fitness a lifestyle. Since all-around
 								physical wellness was a priority, I wanted to practice routines that incorporated more
@@ -135,7 +175,26 @@ export default function PersonalTraining() {
 								done for myself. I tell everyone in general that training is the best investment I have
 								made for my health and my sanity.
 							</p>
-							<p className={client === 'Ayaka' ? Style.TextCurrent : Style.Text}></p>
+							<p className={client === 'Ayaka' ? Style.TextCurrent : Style.Text}>
+								“I’ve known Dalton for over a year, and we have work out sessions twice or three times a
+								week. I am Japanese and had the opportunity to work in the US 3 years ago, but just 6
+								months later the COVID pandemic began. This made my life in the US difficult, and I felt
+								very alone. In the COVID situation, I was much more cautious about making friends and
+								going out. So, when I was first invited to a workout class with Dalton, I was quite
+								nervous because I was worried about whether I would be able to work out with him, both
+								verbally and physically. But after the first few times, those worries disappeared.
+								Dalton cheered me up a lot and told everything very politely and patiently until I could
+								understand. Also, Dalton has tried to learn Japanese and he cheers and counts reps in
+								Japanese. Sometimes the numbers go back and forth, and Dalton gives me additional reps,
+								though! Lol.
+								<br />
+								Anyway, thanks to Dalton, now I can get tight and gorgeous belly, beautiful butt and
+								back, strong arms enough to carry most of things in life, and too strong legs for lady.
+								I love them!! In addition, working out with him gives me the strength to live in a
+								foreign country by myself, and the confidence that it is never too late to be strong and
+								beautiful!! I would say I couldn’t enjoy the life in the US that much without him. I
+								will continue to work hard to achieve higher goal with Dalton!!”
+							</p>
 							<p className={client === 'Chet' ? Style.TextCurrent : Style.Text}>
 								I met Dalton a few months ago and he’s honestly changed my life. We workout together
 								three days per week virtually, and then he puts together a workout for me to do solo one
@@ -213,84 +272,97 @@ export default function PersonalTraining() {
 							</p>
 						</article>
 
-						<div className={Style.ClientAndrew}>
-							<img
-								src={Andrew}
-								alt='Andrew'
-								ref={AndrewPic}
-								className={Style.Andrew}
-								onMouseEnter={() => setClient('Andrew')}
-							/>
-						</div>
-						<div className={Style.ClientJoanna}>
-							<img
-								src={Joanna}
-								alt='Joanna'
-								ref={JoannaPic}
-								className={Style.Joanna}
-								onMouseEnter={() => setClient('Joanna')}
-							/>
-						</div>
-						<div className={Style.ClientVijay}>
-							<img
-								src={Vijay}
-								alt='Vijay'
-								ref={VijayPic}
-								className={Style.Vijay}
-								onMouseEnter={() => setClient('Vijay')}
-							/>
-						</div>
-						<div className={Style.ClientAyaka}>
-							<img
-								src={Ayaka}
-								alt='Ayaka'
-								ref={AyakaPic}
-								className={Style.Ayaka}
-								onMouseEnter={() => setClient('Ayaka')}
-							/>
-						</div>
-						<div className={Style.ClientChet}>
-							<img
-								src={Chet}
-								alt='Chet'
-								ref={ChetPic}
-								className={Style.Chet}
-								onMouseEnter={() => setClient('Chet')}
-							/>
-						</div>
-						<div className={Style.ClientAndrewH}>
-							<img
-								src={AndrewH}
-								alt='AndrewH'
-								ref={AndrewHPic}
-								className={Style.AndrewH}
-								onMouseEnter={() => setClient('AndrewH')}
-							/>
-						</div>
-						<div className={Style.ClientCayley}>
-							<img
-								src={Cayley}
-								alt='Cayley'
-								ref={CayleyPic}
-								className={Style.Cayley}
-								onMouseEnter={() => setClient('Cayley')}
-							/>
+						<div className={Style.ClientAvatars}>
+							<div className={Style.ClientAndrew}>
+								<img
+									src={Andrew}
+									alt='Andrew'
+									ref={AndrewPic}
+									className={Style.Andrew}
+									onMouseEnter={() => setClient('Andrew')}
+								/>
+							</div>
+							<div className={Style.ClientJoanna}>
+								<img
+									src={Joanna}
+									alt='Joanna'
+									ref={JoannaPic}
+									className={Style.Joanna}
+									onMouseEnter={() => setClient('Joanna')}
+								/>
+							</div>
+							<div className={Style.ClientAyaka}>
+								<img
+									src={Ayaka}
+									alt='Ayaka'
+									ref={AyakaPic}
+									className={Style.Ayaka}
+									onMouseEnter={() => setClient('Ayaka')}
+								/>
+							</div>
+							<div className={Style.ClientChet}>
+								<img
+									src={Chet}
+									alt='Chet'
+									ref={ChetPic}
+									className={Style.Chet}
+									onMouseEnter={() => setClient('Chet')}
+								/>
+							</div>
+							<div className={Style.ClientVijay}>
+								<img
+									src={Vijay}
+									alt='Vijay'
+									ref={VijayPic}
+									className={Style.Vijay}
+									onMouseEnter={() => setClient('Vijay')}
+								/>
+							</div>
+							<div className={Style.ClientCayley}>
+								<img
+									src={Cayley}
+									alt='Cayley'
+									ref={CayleyPic}
+									className={Style.Cayley}
+									onMouseEnter={() => setClient('Cayley')}
+								/>
+							</div>
+							<div className={Style.ClientAndrewH}>
+								<img
+									src={AndrewH}
+									alt='AndrewH'
+									ref={AndrewHPic}
+									className={Style.AndrewH}
+									onMouseEnter={() => setClient('AndrewH')}
+								/>
+							</div>
 						</div>
 					</div>
 				</section>
-				{/* <section className={top ? Style.LinksHide : Style.Links}>
+				<section className={top ? Style.ConsultationHide : Style.Consultation}>
+					<div>CONSULTATION BITCH</div>
+				</section>
+				<section className={seeLinks ? Style.Links : Style.LinksHide}>
 					<LinksLine color='white' opacity='1' />
-				</section> */}
+				</section>
 				{/* <section className={Style.Links}>
 					<LinksGrid color='#707070' />
 				</section> */}
 			</main>
-			<div className={Style.ScrollArrow} onClick={goToNext}>
-				<ScrollArrowTopOnly color='black' />
-			</div>
-			<div className={Style.ScrollArrow} onClick={goToTop}>
-				<ScrollArrowBottom />
-			</div>
+			{loaded ? (
+				<div className={Style.ScrollArrow} onClick={goToNext}>
+					<ScrollArrowTopOnly color='black' />
+				</div>
+			) : (
+				''
+			)}
+			{loaded ? (
+				<div className={Style.ScrollArrow} onClick={goToTop}>
+					<ScrollArrowBottom />
+				</div>
+			) : (
+				''
+			)}
 		</div>
 	);
 }

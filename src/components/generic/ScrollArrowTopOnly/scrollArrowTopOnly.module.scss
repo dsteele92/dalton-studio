@@ -9,7 +9,7 @@
 	@include flex-center;
 	flex-direction: column;
 	opacity: 0;
-	animation: appear 1s 0.5s forwards;
+	animation: appear 1s 1s forwards;
 
 	@media screen and (max-width: $breakpoint-tablet) {
 		left: 40%;

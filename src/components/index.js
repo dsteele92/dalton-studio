@@ -14,6 +14,7 @@ export { default as About } from './presentational/About/About.jsx';
 export { default as WebDev } from './presentational/WebDev/WebDev.jsx';
 export { default as Portfolio } from './presentational/Portfolio/Portfolio.jsx';
 export { default as PersonalTraining } from './presentational/PersonalTraining/PersonalTraining.jsx';
+export { default as Contact } from './presentational/Contact/Contact.jsx';
 
 export { default as useInWindow } from './hooks/useInWindow.jsx';
 export { default as useHasIntersected } from './hooks/useHasIntersected.jsx';

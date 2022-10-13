@@ -324,7 +324,7 @@
 			}
 			&Coding {
 				@extend .Highlight;
-				background-color: rgba($color: $color-coding, $alpha: 0.3);
+				background-color: rgba($color: #9d9d9d, $alpha: 0.3);
 				&Current {
 					@extend .HighlightCoding;
 					transform: translate(0, -50%);
@@ -332,7 +332,7 @@
 			}
 			&Fitness {
 				@extend .Highlight;
-				background-color: rgba($color: $color-fitness, $alpha: 0.3);
+				background-color: rgba($color: #dfd271, $alpha: 0.3);
 				&Current {
 					@extend .HighlightFitness;
 					transform: translate(0, -50%);
@@ -407,7 +407,7 @@
 	background-color: $color-about;
 }
 .portfolio {
-	background-color: $color-coding;
+	background-color: #9d9d9d;
 }
 .fitness {
 	background-color: $color-background-three;
@@ -640,12 +640,12 @@
 
 				&Coding {
 					@extend .HighlightCurrent;
-					background-color: rgba($color: $color-coding, $alpha: 0.3);
+					background-color: rgba($color: #9d9d9d, $alpha: 0.3);
 				}
 
 				&Fitness {
 					@extend .HighlightCurrent;
-					background-color: rgba($color: $color-fitness, $alpha: 0.3);
+					background-color: rgba($color: #dfd271, $alpha: 0.3);
 				}
 
 				&Contact {

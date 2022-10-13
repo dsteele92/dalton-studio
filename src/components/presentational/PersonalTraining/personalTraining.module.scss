@@ -2,7 +2,10 @@
 
 .FitnessPage {
 	width: 100vw;
-	height: 200vh;
+	@media screen and (max-width: $breakpoint-tablet) {
+		height: fit-content;
+	}
+	height: 2100px;
 	position: absolute;
 	top: 0;
 	z-index: 1;
@@ -14,7 +17,7 @@
 	}
 
 	@media screen and (max-width: $breakpoint-tablet) {
-		background-color: $color-background-three;
+		background-color: $color-fitness;
 	}
 
 	.Top {
@@ -24,7 +27,7 @@
 		height: 100%;
 		width: 100%;
 		z-index: -9;
-		background-color: #f3f3f3;
+		background-color: $color-light;
 		@media screen and (max-width: $breakpoint-tablet) {
 			display: none;
 		}
@@ -35,7 +38,7 @@
 		left: 0;
 		height: 100%;
 		width: 100%;
-		background: $color-background-three;
+		background: $color-fitness;
 		z-index: -9;
 		@include flex-center;
 
@@ -43,22 +46,22 @@
 			from {
 				top: 0;
 				height: 100%;
-				background: linear-gradient($color-background-three, #f3f3f3);
+				background: linear-gradient($color-fitness, #f3f3f3);
 			}
 			to {
 				top: 50vh;
 				height: 50%;
-				background: $color-background-three;
+				background: $color-fitness;
 			}
 		}
 		@keyframes bottomSlideUp {
 			from {
 				top: 50vh;
-				background: $color-background-three;
+				background: $color-fitness;
 			}
 			to {
 				top: 0;
-				background: linear-gradient($color-background-three, #f3f3f3);
+				background: linear-gradient($color-fitness, #f3f3f3);
 			}
 		}
 
@@ -104,7 +107,7 @@
 	}
 
 	.Main {
-		height: 100vh;
+		height: 100%;
 		width: 100%;
 		position: absolute;
 		top: 0;
@@ -142,7 +145,6 @@
 				position: relative;
 				height: fit-content;
 				width: 100%;
-				justify-content: flex-start;
 				top: 0;
 				right: 0;
 				padding: 10%;
@@ -296,7 +298,7 @@
 			position: fixed;
 			height: 50vh;
 			width: 47vw;
-			right: 3vw;
+			right: 50px;
 			top: 50vh;
 			opacity: 1;
 			transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -304,12 +306,12 @@
 
 			@media screen and (max-width: $breakpoint-tablet) {
 				position: relative;
-				margin-bottom: 40px;
 				top: 0;
 				right: 0;
-				height: auto;
+				height: fit-content;
 				width: 100%;
 				overflow: visible;
+				margin-bottom: 20px;
 			}
 
 			&Scroll {
@@ -320,15 +322,6 @@
 					top: 0;
 					opacity: 1;
 				}
-			}
-
-			@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
-				position: relative;
-				height: fit-content;
-				width: 100%;
-				left: 0;
-				justify-content: center;
-				margin-bottom: 50px;
 			}
 
 			img {
@@ -357,32 +350,61 @@
 		.Testimonials {
 			position: absolute;
 			top: 300px;
-			// height: 1500px;
 			width: 100%;
 			transition: all 1s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s;
 			opacity: 1;
-			// z-index: -1;
 			padding: 50px 150px;
-			// @media screen and (max-width: $breakpoint-large) {
-			// 	padding: 50px 150px;
-			// }
 			@media screen and (max-width: $breakpoint-tablet) {
 				position: relative;
 				top: 0;
-				margin-bottom: 40px;
+				padding: 50px;
+				margin-bottom: 20px;
+				min-height: fit-content;
 			}
 
 			.Clients {
 				position: relative;
 				width: 100%;
-				height: 1000px;
+				height: 500px;
 				display: flex;
 				flex-direction: column;
-				justify-content: flex-start;
-				align-items: flex-start;
+				justify-content: center;
+				align-items: center;
+
+				@media screen and (max-width: $breakpoint-tablet) {
+					height: fit-content;
+				}
 
 				article {
-					display: none;
+					position: relative;
+					padding: 50px 10px;
+					text-align: justify;
+					@include flex-center;
+					font-size: 16px;
+					font-weight: 100;
+					max-height: 100%;
+					@media screen and (max-width: $breakpoint-tablet) {
+						margin-bottom: 30px;
+						min-height: 400px;
+					}
+					@media screen and (max-width: $breakpoint-mobile) {
+						max-height: 700px;
+					}
+
+					p {
+						width: 100%;
+						max-height: 100%;
+						@media screen and (max-width: $breakpoint-mobile) {
+							max-height: 600px;
+						}
+						overflow-y: auto;
+						br {
+							display: block; /* makes it have a width */
+							content: ''; /* clears default height */
+							margin-top: 10px; /* change this to whatever height you want it */
+						}
+					}
+
 					@media screen and (min-width: $breakpoint-tablet) {
 						display: flex;
 						position: absolute;
@@ -393,29 +415,56 @@
 						width: 50%;
 						@media screen and (min-width: $breakpoint-medium) {
 							width: 55%;
-							top: 220px;
+							top: 225px;
 							height: 400px;
 						}
 						@media screen and (min-width: $breakpoint-large) {
+							top: 275px;
+						}
+						@media screen and (min-width: 1600px) {
 							width: 60%;
-							top: 300px;
-							// height: 450px;
 						}
 						padding: 20px 50px;
+						@media screen and (max-width: $breakpoint-large) {
+							padding: 50px 10px;
+						}
 						text-align: justify;
 						@include flex-center;
 						font-size: 16px;
 						font-weight: 100;
 					}
 
-					p {
+					.TestimonialsHeaderHover {
 						width: 100%;
 						max-height: 100%;
-						overflow-y: auto;
-						br {
-							display: block; /* makes it have a width */
-							content: ''; /* clears default height */
-							margin-top: 10px; /* change this to whatever height you want it */
+						@include flex-center;
+						font-family: 'Aboreto';
+						font-size: 50px;
+						font-weight: 300;
+						text-align: center;
+						@media screen and (max-width: $breakpoint-tablet) {
+							display: none;
+						}
+
+						&Hide {
+							@extend .TestimonialsHeaderHover;
+							display: none;
+						}
+					}
+					.TestimonialsHeaderTap {
+						display: none;
+						@media screen and (max-width: $breakpoint-tablet) {
+							width: 100%;
+							max-height: 100%;
+							@include flex-center;
+							font-family: 'Aboreto';
+							font-size: 40px;
+							font-weight: 300;
+							text-align: center;
+						}
+						&Hide {
+							@extend .TestimonialsHeaderTap;
+							display: none;
 						}
 					}
 
@@ -445,34 +494,43 @@
 					}
 				}
 
-				.Client {
-					border-color: rgba(255, 255, 255, 0);
-					border-radius: 50%;
-					overflow: hidden;
-					border: none;
-					box-shadow: 0 10px 20px 5px #80808051;
-					// box-sizing: content-box;
-					// border: 2px solid;
-
-					height: 100px;
-					@media screen and (min-width: $breakpoint-tablet) {
-						height: 120px;
+				.ClientAvatars {
+					@media screen and (max-width: $breakpoint-tablet) {
+						display: flex;
+						justify-content: center;
+						flex-wrap: wrap;
+						// overflow-x: auto;
 					}
-					@media screen and (min-width: $breakpoint-medium) {
-						height: 150px;
-					}
-					@media screen and (min-width: $breakpoint-large) {
-						height: 200px;
-					}
-
-					img {
-						height: 100%;
-					}
-					.Ayaka {
+					.Client {
+						border-color: rgba(255, 255, 255, 0);
 						border-radius: 50%;
-					}
+						overflow: hidden;
+						border: none;
+						box-shadow: 0 10px 20px 5px #80808051;
+						margin: 10px;
 
-					@media screen and (min-width: $breakpoint-tablet) {
+						flex-shrink: 0;
+						// box-sizing: content-box;
+						// border: 2px solid;
+
+						height: 100px;
+						@media screen and (min-width: $breakpoint-tablet) {
+							height: 120px;
+						}
+						@media screen and (min-width: $breakpoint-medium) {
+							height: 150px;
+						}
+						@media screen and (min-width: $breakpoint-large) {
+							height: 200px;
+						}
+
+						img {
+							height: 100%;
+						}
+						.Ayaka {
+							border-radius: 50%;
+						}
+
 						&::after {
 							height: 100%;
 							width: 100%;
@@ -482,6 +540,10 @@
 							@include flex-center;
 							font-family: 'Aboreto';
 							font-size: 26px;
+							@media screen and (max-width: $breakpoint-tablet) {
+								font-size: 18px;
+							}
+
 							font-weight: 300;
 							background: rgba($color: #ffffff, $alpha: 0.6);
 							transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -489,135 +551,96 @@
 						&:hover::after {
 							top: 0;
 						}
-					}
+						&:active::after {
+							top: 0;
+						}
 
-					&Andrew {
-						@extend .Client;
-						@media screen and (min-width: $breakpoint-tablet) {
-							position: absolute;
-							top: 50px;
-							left: 25%;
+						&Andrew {
+							@extend .Client;
+							position: relative;
 							&::after {
 								content: 'Andrew';
 							}
+							@media screen and (min-width: $breakpoint-tablet) {
+								position: absolute;
+								top: 50px;
+								left: 25%;
+							}
 						}
-					}
-					&Joanna {
-						@extend .Client;
-						@media screen and (min-width: $breakpoint-tablet) {
-							position: absolute;
-							top: 50px;
-							right: 25%;
+						&Joanna {
+							@extend .Client;
+							position: relative;
 							&::after {
 								content: 'Joanna';
 							}
+							@media screen and (min-width: $breakpoint-tablet) {
+								position: absolute;
+								top: 50px;
+								right: 25%;
+							}
 						}
-					}
-					&Vijay {
-						@extend .Client;
-						@media screen and (min-width: $breakpoint-tablet) {
-							position: absolute;
-							top: 600px;
-							left: 5%;
+						&Vijay {
+							@extend .Client;
+							position: relative;
 							&::after {
 								content: 'Vijay';
 							}
+							@media screen and (min-width: $breakpoint-tablet) {
+								position: absolute;
+								top: 600px;
+								left: 5%;
+							}
 						}
-					}
-					&Chet {
-						@extend .Client;
-						@media screen and (min-width: $breakpoint-tablet) {
-							position: absolute;
-							top: 300px;
-							right: 0;
+						&Chet {
+							@extend .Client;
+							position: relative;
 							&::after {
 								content: 'Chet';
 							}
+							@media screen and (min-width: $breakpoint-tablet) {
+								position: absolute;
+								top: 300px;
+								right: 0;
+							}
 						}
-					}
-					&Ayaka {
-						@extend .Client;
-						@media screen and (min-width: $breakpoint-tablet) {
-							position: absolute;
-							top: 300px;
-							left: 0;
+						&Ayaka {
+							@extend .Client;
+							position: relative;
 							&::after {
 								content: 'Ayaka';
 							}
+							@media screen and (min-width: $breakpoint-tablet) {
+								position: absolute;
+								top: 300px;
+								left: 0;
+							}
 						}
-					}
-					&Cayley {
-						@extend .Client;
-						@media screen and (min-width: $breakpoint-tablet) {
-							position: absolute;
-							top: 600px;
-							right: 5%;
+						&Cayley {
+							@extend .Client;
+							position: relative;
 							&::after {
 								content: 'Cayley';
 							}
-						}
-					}
-					&AndrewH {
-						@extend .Client;
-						@media screen and (min-width: $breakpoint-tablet) {
-							position: absolute;
-							top: 750px;
-							left: 50%;
-							&::after {
-								content: 'AndrewH';
+							@media screen and (min-width: $breakpoint-tablet) {
+								position: absolute;
+								top: 600px;
+								right: 5%;
 							}
-							transform: translateX(-50%);
+						}
+						&AndrewH {
+							@extend .Client;
+							position: relative;
+							&::after {
+								content: 'Andrew';
+							}
+							@media screen and (min-width: $breakpoint-tablet) {
+								position: absolute;
+								top: 725px;
+								left: 50%;
+								transform: translateX(-50%);
+							}
 						}
 					}
-
-					// @media screen and (min-width: $breakpoint-tablet) {
-					// 	.Andrew {
-					// 		position: absolute;
-					// 		top: 50px;
-					// 		left: 25%;
-					// 		overflow: hidden;
-					// 		&::after {
-					// 			content: 'Andrew';
-					// 			height: 100%;
-					// 			width: 100%;
-					// 			position: absolute;
-					// 			top: 0;
-					// 			left: 0;
-					// 			background: rgba($color: #bebebe, $alpha: 0.5);
-					// 		}
-					// 	}
-					// 	.Joanna {
-					// 		position: absolute;
-					// 		top: 50px;
-					// 		right: 25%;
-					// 	}
-					// 	.Vijay {
-					// 		position: absolute;
-					// 		top: 600px;
-					// 		left: 5%;
-					// 	}
-					// 	.Chet {
-					// 		position: absolute;
-					// 		top: 300px;
-					// 		right: 0;
-					// 	}
-					// 	.Ayaka {
-					// 		position: absolute;
-					// 		top: 300px;
-					// 		left: 0;
-					// 	}
-					// 	.Cayley {
-					// 		position: absolute;
-					// 		top: 600px;
-					// 		right: 5%;
-					// 	}
-					// 	.AndrewH {
-					// 		position: absolute;
-					// 		top: 750px;
-					// 		left: 50%;
-					// 		transform: translateX(-50%);
-					// 	}
-					// }
 				}
 			}
 
@@ -631,31 +654,62 @@
 			}
 		}
 
-		.Links {
-			position: fixed;
-			// height: 50%;
-			// width: 50%;
-			bottom: 50px;
-			left: 50%;
-			transform: translateX(-50%);
-			// @include flex-center;
-			// flex-direction: column;
-			transition: all 0.2s ease;
+		.Consultation {
+			position: absolute;
+			top: 1350px;
+			height: 400px;
+			width: 100%;
+			transition: all 1s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s;
+			opacity: 1;
+			padding: 50px 150px;
+			@include flex-center;
+			border: 1px solid black;
+
 			@media screen and (max-width: $breakpoint-tablet) {
-				background-color: $color-about;
 				position: relative;
-				width: 100%;
-				right: 0;
-				height: auto;
-				&::before {
-					content: '';
-					height: 50px;
-				}
-				&::after {
-					content: '';
-					height: 50px;
+				top: 0;
+				padding: 50px;
+				margin-bottom: 20px;
+				height: 300px;
+			}
+
+			&Hide {
+				@extend .Consultation;
+				opacity: 0;
+				transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+				@media screen and (max-width: $breakpoint-tablet) {
+					opacity: 1;
 				}
 			}
+		}
+
+		.Links {
+			position: absolute;
+			top: 1800px;
+			left: 50%;
+			transform: translateX(-50%);
+
+			@media screen and (max-width: $breakpoint-tablet) {
+				position: relative;
+				top: 0;
+				width: 100%;
+				left: 0;
+				@include flex-center;
+				transform: none;
+				// margin: 30px 0;
+				padding: 30px 0;
+				// margin-bottom: 200px;
+				// height: auto;
+				// &::before {
+				// 	content: '';
+				// 	height: 30px;
+				// }
+				// &::after {
+				// 	content: '';
+				// 	height: 30px;
+				// }
+			}
+
 			&Hide {
 				@extend .Links;
 				display: none;

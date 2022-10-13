@@ -1,91 +1,388 @@
 @import 'sass';
 
 .Portfolio {
-	height: 100vh;
 	width: 100vw;
-	position: relative;
-	padding: $padding-vertical $padding-horizontal;
-	// background-color: red;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	@media screen and (max-width: $breakpoint-tablet) {
+		// height: fit-content;
+	}
+	height: fit-content;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	overflow-x: hidden;
+	background-color: $color-light;
 
-	overflow-y: scroll;
-	// overflow: auto;
-
-	@media screen and (max-width: $breakpoint-mobile) {
-		padding: $padding-vertical-mobile $padding-horizontal-mobile;
+	&Loading {
+		@extend .Portfolio;
+		height: 100vh;
 	}
 
-	@mixin project {
-		width: 90%;
-		height: 90%;
-		flex-shrink: 0;
-		margin: 30px;
-		border-radius: 20px;
-		position: relative;
-		transition: all 0.4s ease-in-out;
+	@media screen and (max-width: $breakpoint-tablet) {
+		// background-color: $color-right;
+	}
+
+	.OpenScreen {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: $color-right;
+		z-index: -9;
 		@include flex-center;
 
-		.Description {
-			position: absolute;
-			top: 5%;
-			right: 5%;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-end;
-			h4 {
-				// font-family: 'Aboreto';
-				text-transform: uppercase;
-				font-weight: 300;
-				letter-spacing: 1pt;
-				color: grey;
-				margin-bottom: 3px;
-				// margin-bottom: 5px;
+		@keyframes ScreenSlideDown {
+			from {
+				height: 100%;
 			}
-			h3 {
-				font-family: 'Aboreto';
-				text-transform: uppercase;
-				font-weight: 100;
-				font-size: 20px;
-				letter-spacing: 0.5pt;
+			to {
+				height: 0;
 			}
 		}
-		a {
-			cursor: pointer;
-			height: 100%;
-			width: 100%;
-			@include flex-center;
-			.Image {
-				height: 70%;
-				border-radius: 10px;
-				@media screen and (max-width: 1200px) {
-					height: auto;
-					width: 90%;
+
+		&Loaded {
+			@extend .OpenScreen;
+			// @media screen and (min-width: $breakpoint-tablet) and (min-height: $breakpoint-tablet) {
+			animation: ScreenSlideDown 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 normal forwards;
+			// }
+		}
+	}
+	.LoadingPage {
+		height: 100vh;
+		width: 100vw;
+		@include flex-center;
+		opacity: 1;
+		transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+		&Hide {
+			@extend .LoadingPage;
+			animation: fadeThenLeave 0.5s ease forwards;
+			@keyframes fadeThenLeave {
+				0% {
+					opacity: 1;
+					transform: translateX(0);
+				}
+				99% {
+					opacity: 0;
+					transform: translateX(0);
+				}
+				100% {
+					opacity: 0;
+					transform: translateX(-100vw);
 				}
 			}
 		}
 	}
+	.Main {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		opacity: 0;
+		animation: fadeInLift 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 
-	section:hover {
-		box-shadow: 0 10px 20px 5px rgba(128, 128, 128, 0.316);
-		img {
-			transition: all 0.4s ease-in-out;
-			transform: translateY(-5px);
+		@media screen and (max-width: $breakpoint-tablet) {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 7vh;
+			left: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+		}
+
+		&Loading {
+			@extend .Main;
+			display: none;
+		}
+
+		.Work {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+			// opacity: 0;
+			// animation: fadeInLift 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
+			@media screen and (max-width: $breakpoint-tablet) {
+				position: relative;
+				height: fit-content;
+				width: 100%;
+				justify-content: flex-start;
+				top: 0;
+				right: 0;
+				padding: 10%;
+			}
+
+			.Title {
+				position: absolute;
+				left: 20%;
+				top: 50vh;
+				transform: translateY(-50%);
+				opacity: 1;
+				transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+				font-size: 120px;
+				font-weight: normal;
+				font-family: 'Aboreto';
+				color: $color-headers;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: flex-start;
+
+				@media screen and (max-width: $breakpoint-tablet) {
+					position: relative;
+					margin-bottom: 40px;
+					top: 0;
+					left: 0;
+					transform: none;
+				}
+
+				.Icon {
+					fill: none;
+					stroke: black;
+					stroke-width: 4;
+					stroke-dasharray: 300;
+					stroke-dashoffset: 300;
+					transform: scale(0.5);
+					// transition: all 1.5s ease 0.5s;
+
+					@keyframes dashoffset {
+						from {
+							stroke-dashoffset: 300;
+						}
+						to {
+							stroke-dashoffset: 0;
+						}
+					}
+
+					animation: dashoffset 1.5s ease 0.5s forwards;
+				}
+
+				.Header {
+					font-family: 'Aboreto';
+
+					@media screen and (max-width: $breakpoint-large) {
+						font-size: 100px;
+					}
+					@media screen and (max-width: $breakpoint-medium) {
+						font-size: 80px;
+					}
+					@media screen and (max-height: $breakpoint-tablet) {
+						font-size: 65px;
+					}
+					@media screen and (max-width: $breakpoint-tablet) {
+						display: none;
+					}
+
+					&Mobile {
+						@extend .Header;
+						display: none;
+						@media screen and (max-width: $breakpoint-tablet) {
+							display: block;
+							font-size: 65px;
+						}
+						@media screen and (max-width: $breakpoint-mobile) {
+							font-size: 50px;
+						}
+					}
+				}
+			}
+
+			.Intro {
+				position: fixed;
+				left: 50%;
+				width: 30%;
+				top: 50vh;
+				// transform: translateY(-50%);
+				opacity: 1;
+				transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+				@media screen and (max-width: $breakpoint-tablet) {
+					position: relative;
+					margin-bottom: 20px;
+					top: 0;
+					left: 0;
+					width: 100%;
+				}
+
+				&Scroll {
+					@extend .Intro;
+					top: 100vh;
+					opacity: 0;
+					@media screen and (max-width: $breakpoint-tablet) {
+						top: 0;
+						opacity: 1;
+					}
+				}
+			}
+
+			h2 {
+				font-size: 35px;
+				font-weight: 100;
+				margin-bottom: 30px;
+				@media screen and (max-width: $breakpoint-large) {
+					font-size: 30px;
+				}
+				@media screen and (max-width: $breakpoint-medium) {
+					font-size: 28px;
+				}
+				@media screen and (max-width: $breakpoint-tablet) {
+					font-size: 26px;
+				}
+				@media screen and (max-height: $breakpoint-tablet) {
+					font-size: 24px;
+				}
+				@media screen and (max-width: $breakpoint-mobile) {
+					font-size: 22px;
+				}
+			}
+			p {
+				font-size: 24px;
+				font-weight: 100;
+				letter-spacing: 1pt;
+				margin-bottom: 20px;
+				@media screen and (max-width: $breakpoint-large) {
+					font-size: 22px;
+				}
+				@media screen and (max-width: $breakpoint-medium) {
+					font-size: 20px;
+				}
+				@media screen and (max-width: $breakpoint-tablet) {
+					font-size: 18px;
+				}
+				@media screen and (max-height: $breakpoint-tablet) {
+					font-size: 16px;
+				}
+				@media screen and (max-width: $breakpoint-mobile) {
+					font-size: 14px;
+				}
+			}
+		}
+
+		.Projects {
+			position: absolute;
+			height: fit-content;
+			width: 100%;
+			top: 80vh;
+			border: 1px solid blue;
+			padding: 0 60px 50px;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 50vh 50vh;
+
+			@media screen and (max-width: $breakpoint-tablet) {
+				grid-template-columns: 100%;
+				grid-template-rows: 50vh 50vh 50vh 50vh;
+				padding: 0;
+				position: relative;
+				top: 0;
+			}
+
+			.Red {
+				height: 100%;
+				width: 100%;
+				background: red;
+			}
+			.Blue {
+				height: 100%;
+				width: 100%;
+				background: Blue;
+			}
 		}
 	}
-
-	.GoalsApp {
-		@include project();
-		background: linear-gradient(#a4a9dc5b, #ddb8dc5b);
-	}
-
-	.WeatherApp {
-		@include project();
-		background: linear-gradient(#b1dbe292, #dfa4a485);
-	}
-	.FindFirm {
-		@include project();
-		background: linear-gradient(#e0d5ac92, #afb9e190);
-	}
 }
+
+// .Portfolio {
+// 	height: 100vh;
+// 	width: 100vw;
+// 	position: relative;
+// 	padding: $padding-vertical $padding-horizontal;
+// 	// background-color: red;
+// 	display: flex;
+// 	flex-direction: column;
+// 	align-items: center;
+
+// 	overflow-y: scroll;
+// 	// overflow: auto;
+
+// 	@media screen and (max-width: $breakpoint-mobile) {
+// 		padding: $padding-vertical-mobile $padding-horizontal-mobile;
+// 	}
+
+// 	@mixin project {
+// 		width: 90%;
+// 		height: 90%;
+// 		flex-shrink: 0;
+// 		margin: 30px;
+// 		border-radius: 20px;
+// 		position: relative;
+// 		transition: all 0.4s ease-in-out;
+// 		@include flex-center;
+
+// 		.Description {
+// 			position: absolute;
+// 			top: 5%;
+// 			right: 5%;
+// 			display: flex;
+// 			flex-direction: column;
+// 			align-items: flex-end;
+// 			h4 {
+// 				// font-family: 'Aboreto';
+// 				text-transform: uppercase;
+// 				font-weight: 300;
+// 				letter-spacing: 1pt;
+// 				color: grey;
+// 				margin-bottom: 3px;
+// 				// margin-bottom: 5px;
+// 			}
+// 			h3 {
+// 				font-family: 'Aboreto';
+// 				text-transform: uppercase;
+// 				font-weight: 100;
+// 				font-size: 20px;
+// 				letter-spacing: 0.5pt;
+// 			}
+// 		}
+// 		a {
+// 			cursor: pointer;
+// 			height: 100%;
+// 			width: 100%;
+// 			@include flex-center;
+// 			.Image {
+// 				height: 70%;
+// 				border-radius: 10px;
+// 				@media screen and (max-width: 1200px) {
+// 					height: auto;
+// 					width: 90%;
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	section:hover {
+// 		box-shadow: 0 10px 20px 5px rgba(128, 128, 128, 0.316);
+// 		img {
+// 			transition: all 0.4s ease-in-out;
+// 			transform: translateY(-5px);
+// 		}
+// 	}
+
+// 	.GoalsApp {
+// 		@include project();
+// 		background: linear-gradient(#a4a9dc5b, #ddb8dc5b);
+// 	}
+
+// 	.WeatherApp {
+// 		@include project();
+// 		background: linear-gradient(#b1dbe292, #dfa4a485);
+// 	}
+// 	.FindFirm {
+// 		@include project();
+// 		background: linear-gradient(#e0d5ac92, #afb9e190);
+// 	}
+// }

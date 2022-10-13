@@ -3,14 +3,14 @@
 .LinksGrid {
 	height: 200px;
 	width: 800px;
-	// @media screen and (max-width: $breakpoint-large) {
-	// 	height: 400px;
-	// 	width: 400px;
-	// }
-	// @media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
-	// 	height: 300px;
-	// 	width: 300px;
-	// }
+	@media screen and (max-width: $breakpoint-large) {
+		height: 150px;
+		width: 600px;
+	}
+	@media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
+		height: 100px;
+		width: 400px;
+	}
 	// border: 1px solid black;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -38,12 +38,12 @@
 			// color: white;
 			opacity: 0.7;
 			transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-			// @media screen and (max-width: $breakpoint-large) {
-			// 	font-size: 300px;
-			// }
-			// @media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
-			// 	font-size: 250px;
-			// }
+			@media screen and (max-width: $breakpoint-large) {
+				font-size: 200px;
+			}
+			@media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
+				font-size: 150px;
+			}
 		}
 		h2 {
 			position: absolute;
@@ -61,10 +61,10 @@
 			transform: translate(5px, 10px);
 			transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 			@media screen and (max-width: $breakpoint-large) {
-				font-size: 40px;
+				font-size: 25px;
 			}
 			@media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
-				font-size: 30px;
+				font-size: 20px;
 				transform: translate(3px, 6px);
 			}
 		}
@@ -72,12 +72,12 @@
 		&:hover {
 			.Icon {
 				font-size: 200px;
-				// @media screen and (max-width: $breakpoint-large) {
-				// 	font-size: 230px;
-				// }
-				// @media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
-				// 	font-size: 180px;
-				// }
+				@media screen and (max-width: $breakpoint-large) {
+					font-size: 150px;
+				}
+				@media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
+					font-size: 100px;
+				}
 			}
 			h2 {
 				transform: translate(0, 0);
@@ -89,27 +89,27 @@
 		display: none;
 	}
 	.About {
-		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.3s;
+		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.1s;
 		// color: $color-about;
 		// background-color: $color-about;
 	}
 	.Coding {
-		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.4s;
+		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.2s;
 		// color: $color-coding;
 		// background-color: $color-coding;
 	}
 	.Fitness {
-		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.5s;
+		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.3s;
 		// color: $color-fitness;
 		// background-color: $color-fitness;
 	}
 	.Contact {
-		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.6s;
+		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.4s;
 		// color: $color-contact;
 		// background-color: $color-contact;
 	}
 	.Home {
-		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.7s;
+		animation: fadeInLift 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.5s;
 		// color: $color-background-main;
 		// background-color: $color-background-main;
 	}
