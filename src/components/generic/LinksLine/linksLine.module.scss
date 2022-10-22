@@ -14,7 +14,12 @@
 	// border: 1px solid black;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
-	// background-color: rgba($color: white, $alpha: 1);
+	@media screen and (max-width: $breakpoint-mobile) {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		height: 300px;
+		width: 300px;
+	}
 	align-items: end;
 	justify-items: end;
 	overflow: hidden;
@@ -44,6 +49,9 @@
 			@media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
 				font-size: 150px;
 			}
+			@media screen and (max-width: $breakpoint-mobile) {
+				font-size: 250px;
+			}
 		}
 		h2 {
 			position: absolute;
@@ -66,6 +74,9 @@
 			@media screen and (max-width: $breakpoint-medium), (max-height: $breakpoint-tablet) {
 				font-size: 20px;
 				transform: translate(3px, 6px);
+			}
+			@media screen and (max-width: $breakpoint-mobile) {
+				font-size: 30px;
 			}
 		}
 

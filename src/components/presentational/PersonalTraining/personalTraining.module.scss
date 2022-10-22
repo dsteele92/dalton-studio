@@ -46,22 +46,22 @@
 			from {
 				top: 0;
 				height: 100%;
-				background: linear-gradient($color-fitness, #f3f3f3);
+				// background: linear-gradient($color-fitness, #f3f3f3);
 			}
 			to {
 				top: 50vh;
 				height: 50%;
-				background: $color-fitness;
+				// background: $color-fitness;
 			}
 		}
 		@keyframes bottomSlideUp {
 			from {
 				top: 50vh;
-				background: $color-fitness;
+				// background: $color-fitness;
 			}
 			to {
 				top: 0;
-				background: linear-gradient($color-fitness, #f3f3f3);
+				// background: linear-gradient($color-fitness, #f3f3f3);
 			}
 		}
 
@@ -662,9 +662,30 @@
 			width: 100%;
 			transition: all 1s cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s;
 			opacity: 1;
-			padding: 50px 150px;
+			padding: 50px 15%;
 			@include flex-center;
-			border: 1px solid black;
+			flex-direction: column;
+			// border: 1px solid black;
+			background: linear-gradient($color-fitness 0%, #ffffff 5%, #ffffff 95%, $color-fitness 100%);
+			font-size: 35px;
+			font-weight: 100;
+			margin-bottom: 30px;
+			text-align: center;
+			@media screen and (max-width: $breakpoint-large) {
+				font-size: 30px;
+			}
+			@media screen and (max-width: $breakpoint-medium) {
+				font-size: 28px;
+			}
+			@media screen and (max-width: $breakpoint-tablet) {
+				font-size: 26px;
+			}
+			@media screen and (max-height: $breakpoint-tablet) {
+				font-size: 24px;
+			}
+			@media screen and (max-width: $breakpoint-mobile) {
+				font-size: 20px;
+			}
 
 			@media screen and (max-width: $breakpoint-tablet) {
 				position: relative;
@@ -672,6 +693,13 @@
 				padding: 50px;
 				margin-bottom: 20px;
 				height: 300px;
+			}
+
+			.ConsultationText {
+				margin-bottom: 50px;
+				@media screen and (max-width: $breakpoint-tablet) {
+					margin-bottom: 25px;
+				}
 			}
 
 			&Hide {

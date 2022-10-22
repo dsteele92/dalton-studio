@@ -267,10 +267,10 @@
 		.Projects {
 			position: absolute;
 			height: fit-content;
-			width: 100%;
+			width: 100vw;
 			top: 80vh;
-			border: 1px solid blue;
-			padding: 0 60px 50px;
+			// border: 1px solid blue;
+			padding: 0 $padding-horizontal 50px;
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			grid-template-rows: 50vh 50vh;
@@ -287,11 +287,29 @@
 				height: 100%;
 				width: 100%;
 				background: red;
+				opacity: 0;
+				animation: fadeInLift 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.175) 0.8s forwards;
 			}
 			.Blue {
 				height: 100%;
 				width: 100%;
 				background: Blue;
+				opacity: 0;
+				animation: fadeInLift 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.175) 1s forwards;
+			}
+			.Green {
+				height: 100%;
+				width: 100%;
+				background: Green;
+				opacity: 0;
+				animation: fadeInLift 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.175) 1.2s forwards;
+			}
+			.Yellow {
+				height: 100%;
+				width: 100%;
+				background: Yellow;
+				opacity: 0;
+				animation: fadeInLift 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.175) 1.4s forwards;
 			}
 		}
 	}

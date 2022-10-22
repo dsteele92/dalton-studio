@@ -1,15 +1,13 @@
 import { React, useState, useEffect, useRef } from 'react';
 import Style from './contact.module.scss';
-import { LinksLine, ScrollArrowTopOnly, ScrollArrowBottom, LoadingBounce } from 'components';
+import { LoadingBounce, Form } from 'components';
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLinkedinLine } from 'react-icons/ri';
 
 export default function Contact() {
 	const [top, setTop] = useState(true);
 	const [loaded, setLoaded] = useState(false);
-	const [seeLinks, setSeeLinks] = useState(false);
-
-	// const pic1 = useRef();
+	// const [seeLinks, setSeeLinks] = useState(false);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -27,12 +25,12 @@ export default function Contact() {
 			} else if (window.pageYOffset < 1) {
 				setTop(true);
 			}
-			if (window.pageYOffset >= document.documentElement.scrollHeight - window.innerHeight - 300) {
-				setSeeLinks(true);
-			}
-			if (window.pageYOffset < document.documentElement.scrollHeight - window.innerHeight - 600) {
-				setSeeLinks(false);
-			}
+			// if (window.pageYOffset >= document.documentElement.scrollHeight - window.innerHeight - 300) {
+			// 	setSeeLinks(true);
+			// }
+			// if (window.pageYOffset < document.documentElement.scrollHeight - window.innerHeight - 600) {
+			// 	setSeeLinks(false);
+			// }
 		};
 
 		// let picture1 = pic1.current;
@@ -65,7 +63,7 @@ export default function Contact() {
 				</section>
 				<section className={Style.ContactForm}>
 					<div className={Style.FormDiv}>
-						<h2>Contact Form</h2>
+						<Form />
 					</div>
 				</section>
 				<section className={Style.ContactInfo}>
@@ -73,7 +71,7 @@ export default function Contact() {
 						<p>Dalton Steele</p>
 						<p>Los Angeles, CA</p>
 						<div className={Style.ContactIcons}>
-							<a href='mailto:dalton@steelebodyandmind.com'>
+							<a href='mailto:ds@dalton.studio'>
 								<AiOutlineMail />
 							</a>
 							<a

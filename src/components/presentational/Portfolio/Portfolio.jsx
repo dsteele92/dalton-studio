@@ -70,17 +70,15 @@ export default function Portfolio() {
 						<div className={Style.HeaderMobile}>WORK.</div>
 					</div>
 					<div className={top ? Style.Intro : Style.IntroScroll}>
-						<h2>I'm Dalton, a Personal Trainer with bla bla bla</h2>
-						<p>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!
-						</p>
+						<h2>Say some stuff about what I like to code.</h2>
+						<p>Besides this website, I've made a few sites and apps.</p>
 					</div>
 				</section>
 				<section className={Style.Projects}>
 					<div className={Style.Red}></div>
 					<div className={Style.Blue}></div>
-					<div className={Style.Blue}></div>
-					<div className={Style.Red}></div>
+					<div className={Style.Green}></div>
+					<div className={Style.Yellow}></div>
 				</section>
 			</main>
 		</div>

@@ -8,9 +8,9 @@ export default function ScrollArrowBottom(props) {
 	useEffect(() => {
 		const handleScroll = (event) => {
 			// -----> state for transitioning out of Bottom
-			if (window.pageYOffset >= document.documentElement.scrollHeight - window.innerHeight - 100) {
+			if (window.pageYOffset >= document.documentElement.scrollHeight - window.innerHeight - 10) {
 				setBottom(true);
-			} else if (window.pageYOffset < document.documentElement.scrollHeight - window.innerHeight - 100) {
+			} else if (window.pageYOffset < document.documentElement.scrollHeight - window.innerHeight - 10) {
 				setBottom(false);
 			}
 		};

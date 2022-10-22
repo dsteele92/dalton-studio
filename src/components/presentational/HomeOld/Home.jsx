@@ -297,7 +297,7 @@ export default function Home() {
 					<div className={Style.GetInTouch}>
 						<h2>Get in touch</h2>
 						<div className={Style.ContactLinks}>
-							<a href='mailto:dalton@steelebodyandmind.com'>
+							<a href='mailto:ds@dalton.studio'>
 								<AiOutlineMail />
 							</a>
 							<a
@@ -315,7 +315,7 @@ export default function Home() {
 					<div className={Style.GetInTouch}>
 						<h2>Get in touch</h2>
 						<div className={Style.ContactLinks}>
-							<a href='mailto:dalton@steelebodyandmind.com'>
+							<a href='mailto:ds@dalton.studio'>
 								<AiOutlineMail />
 							</a>
 							<a

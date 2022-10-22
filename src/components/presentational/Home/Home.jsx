@@ -40,10 +40,11 @@ export default function Home() {
 	const [textWD, textWDIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [titleHF, titleHFIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [textHF, textHFIntersected] = useHasIntersected({ threshold: 0.5 });
-	const [webDevInfo, webDevInfoIntersected] = useHasIntersected({ threshold: 0.5 });
 	const [hiking, hikingIntersected] = useHasIntersected({ threshold: 0.75 });
+	const [contactInfoMobile, contactInfoMobileIntersected] = useHasIntersected({ threshold: 0.5 });
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		const handleScroll = (event) => {
 			// -----> useful variables
 			const windowHeight = window.innerHeight;
@@ -74,7 +75,7 @@ export default function Home() {
 
 			if (currentScroll > 0.9 * windowHeight) {
 				// webDevInfo.current.style.transform = `translateY(-${(currentScroll - 1.0 * windowHeight) / 2}px)`;
-				console.log((currentScroll - windowHeight) / 5);
+				// console.log((currentScroll - windowHeight) / 6);
 				webDev1.current.style.transform = `translateY(${
 					currentScroll - windowHeight < 0
 						? 200
@@ -127,7 +128,7 @@ export default function Home() {
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, [hiking, webDevInfo]);
+	}, [hiking]);
 
 	return (
 		<div className={Style.Home}>
@@ -170,7 +171,10 @@ export default function Home() {
 							<div className={Style.Dev}>DEV.</div>
 						</div>
 						<div className={textWDIntersected ? Style.TextAppear : Style.Text} ref={textWD}>
-							<h2>I am a Front-End Software Engineer with a passion for ... something</h2>
+							<h2>
+								I am a Front-End Developer with a passion for creating dynamic and intuitive user
+								experiences.
+							</h2>
 						</div>
 						<div className={textWDIntersected ? Style.ButtonsAppear : Style.Buttons}>
 							<Link to='/about'>
@@ -181,58 +185,7 @@ export default function Home() {
 							</Link>
 						</div>
 					</div>
-					<div className={Style.WebDevInfoMobile}>
-						<div className={Style.WebDevContainerMobile}>
-							<div className={Style.Icon}>
-								<DiHtml5 />
-								<p>HTML</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiCss3Full />
-								<p>CSS</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiJsBadge />
-								<p>Javascript</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiReact />
-								<p>React</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiSass />
-								<p>Sass</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiGithubBadge />
-								<p>GitHub</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiNodejsSmall />
-								<p>NodeJS</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiNpm />
-								<p>NPM</p>
-							</div>
-							<div className={Style.Icon}>
-								<SiPostman />
-								<p>Postman</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiMongodb />
-								<p>Mongo DB</p>
-							</div>
-							<div className={Style.Icon}>
-								<SiExpress />
-								<p>Express</p>
-							</div>
-							<div className={Style.Icon}>
-								<DiFirebase />
-								<p>Full Stack Web Apps</p>
-							</div>
-						</div>
-					</div>
+
 					<div className={Style.WebDevTetris}>
 						<div className={Style.WebDev1} ref={webDev1}>
 							<div className={Style.WebDev1A}>
@@ -299,12 +252,9 @@ export default function Home() {
 							<div className={Style.WebDev3C}></div>
 						</div>
 					</div>
-					<div className={Style.WebDevInfo} ref={webDevInfo}>
-						<div
-							className={
-								webDevInfoIntersected ? Style.WebDevInfoCoverUnwrap : Style.WebDevInfoCover
-							}></div>
-						<div className={Style.WebDevContainer}>
+
+					<div className={Style.WebDevInfoMobile}>
+						<div className={Style.WebDevContainerMobile}>
 							<div className={Style.Icon}>
 								<DiHtml5 />
 								<p>HTML</p>
@@ -402,7 +352,7 @@ export default function Home() {
 							<h2>Get in touch</h2>
 						</Link>
 						<div className={Style.ContactLinks}>
-							<a href='mailto:dalton@steelebodyandmind.com'>
+							<a href='mailto:ds@dalton.studio'>
 								<AiOutlineMail />
 							</a>
 							<a
@@ -416,13 +366,15 @@ export default function Home() {
 				</div>
 			</section>
 			<section className={Style.ContactMobile}>
-				<div className={Style.ContactInfo}>
+				<div
+					ref={contactInfoMobile}
+					className={contactInfoMobileIntersected ? Style.ContactInfoAppear : Style.ContactInfo}>
 					<div className={Style.GetInTouch}>
 						<Link to='/contact'>
 							<h2>Get in touch</h2>
 						</Link>
 						<div className={Style.ContactLinks}>
-							<a href='mailto:dalton@steelebodyandmind.com'>
+							<a href='mailto:ds@dalton.studio'>
 								<AiOutlineMail />
 							</a>
 							<a

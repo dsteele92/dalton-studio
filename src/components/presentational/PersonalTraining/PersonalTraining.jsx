@@ -1,7 +1,8 @@
 import { React, useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 import Style from './personalTraining.module.scss';
-import { LinksLine, ScrollArrowTopOnly, ScrollArrowBottom, LoadingBounce } from 'components';
+import { LinksLine, ScrollArrowTopOnly, ScrollArrowBottom, LoadingBounce, JumpButton } from 'components';
 import { goToTop, goToNext } from '../../../scrollBreakpoints.js';
 import { ImQuotesLeft, ImQuotesRight } from 'react-icons/im';
 
@@ -104,11 +105,12 @@ export default function PersonalTraining() {
 						<div className={Style.Header}>HEALTH & FITNESS.</div>
 					</div>
 					<div className={top ? Style.Intro : Style.IntroScroll}>
-						<h2>I'm Dalton, a Personal Trainer with bla bla bla</h2>
+						<h2>
+							My focus is to give people the tools and knowledge needed to live their healthiest lives.
+						</h2>
 						<p>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod accusamus quae repudiandae!
-							Cumque recusandae enim nostrum dolor voluptates reiciendis non fugit fugiat harum qui.
-							Officia vitae accusantium pariatur ullam eum.
+							Areas of expertise include weight loss, balance & stability, strength & endurance, mobility,
+							injury rehab/prevention, and athletic performance.
 						</p>
 					</div>
 				</section>
@@ -340,7 +342,13 @@ export default function PersonalTraining() {
 					</div>
 				</section>
 				<section className={top ? Style.ConsultationHide : Style.Consultation}>
-					<div>CONSULTATION BITCH</div>
+					<div className={Style.ConsultationText}>
+						I occasionaly accept new clients. If you are interested in training or would like to talk,
+						please leave your contact information and I will reach out to you.
+					</div>
+					<Link to='/contact'>
+						<JumpButton />
+					</Link>
 				</section>
 				<section className={seeLinks ? Style.Links : Style.LinksHide}>
 					<LinksLine color='white' opacity='1' />

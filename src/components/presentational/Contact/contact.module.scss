@@ -3,9 +3,6 @@
 .Contact {
 	width: 100vw;
 	height: 100vh;
-	@media screen and (max-width: $breakpoint-tablet) {
-		height: fit-content;
-	}
 	position: absolute;
 	top: 0;
 	z-index: 1;
@@ -17,8 +14,9 @@
 		height: 100vh;
 	}
 
-	@media screen and (max-width: $breakpoint-tablet) {
+	@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
 		background-color: $color-contact;
+		height: fit-content;
 	}
 
 	.OpenScreen {
@@ -28,7 +26,7 @@
 		height: 100%;
 		width: 100%;
 		background: $color-contact;
-		z-index: -3;
+		z-index: -9;
 		@include flex-center;
 
 		@keyframes ScreenSlideCorner {
@@ -52,9 +50,9 @@
 
 		&Loaded {
 			@extend .OpenScreen;
-			animation: ScreenSlideDown 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s forwards;
-			@media screen and (min-width: $breakpoint-tablet) {
-				animation: ScreenSlideCorner 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s forwards;
+			animation: ScreenSlideCorner 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s forwards;
+			@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+				animation: ScreenSlideDown 1.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0s forwards;
 			}
 		}
 	}
@@ -92,8 +90,8 @@
 		opacity: 0;
 		animation: fadeInLift 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 
-		@media screen and (max-width: $breakpoint-tablet) {
-			height: 100%;
+		@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+			height: fit-content;
 			width: 100%;
 			position: absolute;
 			top: 7vh;
@@ -119,7 +117,7 @@
 			// opacity: 0;
 			// animation: fadeInLift 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 
-			@media screen and (max-width: $breakpoint-tablet) {
+			@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
 				position: relative;
 				height: fit-content;
 				width: 100%;
@@ -130,6 +128,7 @@
 			}
 
 			.Title {
+				z-index: 3;
 				position: absolute;
 				left: 15vw;
 				top: 50vh;
@@ -145,9 +144,9 @@
 				justify-content: flex-start;
 				align-items: flex-start;
 
-				@media screen and (max-width: $breakpoint-tablet) {
+				@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
 					position: relative;
-					margin-bottom: 40px;
+					margin-bottom: 20px;
 					top: 0;
 					left: 0;
 					transform: none;
@@ -209,7 +208,7 @@
 			background: $color-alternate;
 			@include flex-center;
 			overflow: hidden;
-			z-index: -4;
+			// z-index: -4;
 
 			// transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
 			animation: RollOutRight 0.6s cubic-bezier(0.86, 0, 0.07, 1) 1s forwards;
@@ -223,14 +222,14 @@
 				}
 			}
 
-			@media screen and (max-width: $breakpoint-tablet) {
+			@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
 				position: relative;
 				margin-bottom: 20px;
 				top: 0;
 				left: 0;
 				width: 100%;
-				height: 300px;
-				padding: 10%;
+				height: 350px;
+				padding: 0 10%;
 				animation: none;
 				background: none;
 			}
@@ -240,9 +239,12 @@
 				width: 100%;
 				padding: 0 $padding-horizontal $padding-vertical 0;
 				@include flex-center;
-				@media screen and (max-width: $breakpoint-tablet) {
+				opacity: 0;
+				animation: appear 0.3s ease-in 1.5s forwards;
+				@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
 					padding: 0 0 0 0;
 					animation: none;
+					opacity: 1;
 				}
 			}
 		}
@@ -254,14 +256,14 @@
 			width: 50%;
 			padding: 0 0 $padding-vertical $padding-horizontal;
 
-			@media screen and (max-width: $breakpoint-tablet) {
+			@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
 				position: relative;
 				@include flex-center;
 				top: 0;
 				left: 0;
 				width: 100%;
 				height: 200px;
-				padding: 10%;
+				padding: 0 10%;
 				animation: none;
 			}
 
@@ -286,15 +288,15 @@
 
 				opacity: 0;
 				animation: fadeInLift 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0.75s forwards;
-				@media screen and (max-width: $breakpoint-tablet) {
+				@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
 					position: relative;
 					top: 0;
 					left: 0;
 					padding: 0 0 0 0;
 					animation: none;
 					opacity: 1;
-					width: 90%;
-					// align-items: center;
+					width: 100%;
+					font-size: 25px;
 				}
 
 				.ContactIcons {
@@ -304,6 +306,10 @@
 					width: 80px;
 					display: flex;
 					justify-content: space-between;
+					@media screen and (max-width: $breakpoint-tablet), (max-height: $breakpoint-tablet) {
+						font-size: 25px;
+						width: 60px;
+					}
 
 					a {
 						color: black;
