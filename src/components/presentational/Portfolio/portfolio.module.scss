@@ -3,12 +3,12 @@
 .Portfolio {
 	width: 100vw;
 	@media screen and (max-width: $breakpoint-tablet) {
-		// height: fit-content;
+		height: fit-content;
 	}
-	height: fit-content;
-	position: absolute;
-	top: 0;
-	z-index: 1;
+	height: 220vh;
+	position: relative;
+	// top: 0;
+	// z-index: 1;
 	overflow-x: hidden;
 	background-color: $color-light;
 
@@ -101,7 +101,7 @@
 		.Work {
 			position: absolute;
 			width: 100%;
-			height: 100%;
+			height: fit-content;
 			top: 0;
 			left: 0;
 			transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -264,6 +264,112 @@
 			}
 		}
 
+		@mixin project {
+			width: 100%;
+			height: 100%;
+			flex-shrink: 0;
+			// margin: 30px;
+			// border-radius: 20px;
+			position: relative;
+			transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+			@include flex-center;
+			overflow: hidden;
+
+			.Anchor {
+				cursor: pointer;
+				height: 100%;
+				width: 100%;
+				@include flex-center;
+				.Description {
+					position: absolute;
+					top: 5%;
+					right: 5%;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-end;
+					h4 {
+						// font-family: 'Aboreto';
+						text-transform: uppercase;
+						font-weight: 300;
+						letter-spacing: 1pt;
+						color: grey;
+						margin-bottom: 3px;
+						// margin-bottom: 5px;
+					}
+					h3 {
+						font-family: 'Aboreto';
+						text-transform: uppercase;
+						font-weight: 100;
+						font-size: 20px;
+						letter-spacing: 0.5pt;
+					}
+				}
+				.Image {
+					// z-index: 1;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					height: 60%;
+					border-radius: 10px;
+					transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+					@media screen and (max-width: 1200px) {
+						height: auto;
+						width: 80%;
+					}
+					@media screen and (max-width: $breakpoint-tablet) {
+						height: 60%;
+						width: auto;
+					}
+					@media screen and (max-width: 600px) {
+						height: auto;
+						width: 80%;
+					}
+				}
+
+				.Gif {
+					// z-index: 2;
+					display: none;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					height: 60%;
+					border-radius: 10px;
+					transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+					@media screen and (max-width: 1200px) {
+						height: auto;
+						width: 80%;
+					}
+
+					@keyframes playGif {
+						0% {
+							transform: scale(1);
+						}
+						100% {
+							transform: scale(1.03);
+						}
+					}
+					&Play {
+						display: block;
+						animation: playGif 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+						@media screen and (max-width: $breakpoint-tablet) {
+							display: none;
+						}
+					}
+				}
+			}
+
+			&:hover {
+				box-shadow: inset 0 0px 25px 5px rgba(128, 128, 128, 0.196);
+				.Image {
+					transform: translate(-50%, -50%) scale(1.03);
+				}
+				@media screen and (max-width: $breakpoint-tablet) {
+				}
+			}
+		}
+
 		.Projects {
 			position: absolute;
 			height: fit-content;
@@ -274,6 +380,7 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			grid-template-rows: 50vh 50vh;
+			background-color: $color-light;
 
 			@media screen and (max-width: $breakpoint-tablet) {
 				grid-template-columns: 100%;
@@ -283,124 +390,166 @@
 				top: 0;
 			}
 
-			.Red {
+			.GoalsApp {
 				height: 100%;
 				width: 100%;
-				background: red;
 				opacity: 0;
 				animation: fadeInLift 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.175) 0.8s forwards;
+				@include project();
+				// background: linear-gradient(#b9b9b950, #6e6e6e41);
+				// @media screen and (max-width: $breakpoint-tablet) {
+				background: linear-gradient(#a4a9dc39, #ddb8dc3d);
+				// }
+				// &::before {
+				// 	height: 100%;
+				// 	width: 100%;
+				// 	background: linear-gradient(#a4a9dc39, #ddb8dc3d);
+				// 	content: '';
+				// 	position: absolute;
+				// 	top: 0;
+				// 	left: 0;
+				// 	transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+				// 	opacity: 0;
+				// }
+				// &:hover::before {
+				// 	opacity: 1;
+				// }
 			}
-			.Blue {
+			.FindFirm {
 				height: 100%;
 				width: 100%;
-				background: Blue;
 				opacity: 0;
 				animation: fadeInLift 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.175) 1s forwards;
+				@include project();
+				// background: linear-gradient(#6e6e6e41, #b9b9b950);
+				// @media screen and (max-width: $breakpoint-tablet) {
+				background: linear-gradient(#e0d5ac48, #afb9e153);
+				// }
+				// &::before {
+				// 	height: 100%;
+				// 	width: 100%;
+				// 	background: linear-gradient(#e0d5ac48, #afb9e153);
+				// 	content: '';
+				// 	position: absolute;
+				// 	top: 0;
+				// 	left: 0;
+				// 	transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+				// 	opacity: 0;
+				// }
+				// &:hover::before {
+				// 	opacity: 1;
+				// }
 			}
-			.Green {
+			.WeatherApp {
 				height: 100%;
 				width: 100%;
-				background: Green;
 				opacity: 0;
 				animation: fadeInLift 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.175) 1.2s forwards;
+				@include project();
+				// background: linear-gradient(#b9b9b950, #6e6e6e41);
+				// @media screen and (max-width: $breakpoint-tablet) {
+				background: linear-gradient(#b1dbe252, #dfa4a452);
+				// }
+				// &::before {
+				// 	height: 100%;
+				// 	width: 100%;
+				// 	background: linear-gradient(#b1dbe252, #dfa4a452);
+				// 	content: '';
+				// 	position: absolute;
+				// 	top: 0;
+				// 	left: 0;
+				// 	transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+				// 	opacity: 0;
+				// }
+				// &:hover::before {
+				// 	opacity: 1;
+				// }
 			}
-			.Yellow {
+			.lifeImprovements {
 				height: 100%;
 				width: 100%;
-				background: Yellow;
 				opacity: 0;
 				animation: fadeInLift 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.175) 1.4s forwards;
+				@include project();
+				// background: linear-gradient(#6e6e6e41, #b9b9b950);
+				// @media screen and (max-width: $breakpoint-tablet) {
+				background: linear-gradient(#cbd2b860, #71b8d44d);
+				// }
+				.Image {
+					height: 60%;
+					border-radius: 10px;
+					transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+					@media screen and (max-width: 1200px) {
+						height: auto;
+						width: 80%;
+					}
+				}
+				// &::before {
+				// 	height: 100%;
+				// 	width: 100%;
+				// 	background: linear-gradient(#3f6a4237, #71b8d44d);
+				// 	content: '';
+				// 	position: absolute;
+				// 	top: 0;
+				// 	left: 0;
+				// 	transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+				// 	opacity: 0;
+				// }
+				// &:hover::before {
+				// 	opacity: 1;
+				// }
+				&::after {
+					height: 100%;
+					width: 100%;
+					background-color: rgba($color: $color-light, $alpha: 0.7);
+					content: 'Coming Soon!';
+					@include flex-center;
+					font-family: 'Aboreto';
+					font-size: 30px;
+					position: absolute;
+					top: 100%;
+					left: 0;
+					transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+					@media screen and (max-width: $breakpoint-tablet) {
+						top: 0;
+					}
+				}
+				&:hover::after {
+					top: 0;
+				}
+			}
+		}
+		.BottomBackground {
+			width: 100%;
+			height: 100vh;
+			position: absolute;
+			bottom: 0;
+			background-color: #f6f6f6;
+			z-index: -1;
+		}
+		.Links {
+			position: absolute;
+			bottom: 100px;
+			left: 50%;
+			transform: translateX(-50%);
+
+			@media screen and (max-width: $breakpoint-tablet) {
+				position: relative;
+				top: 0;
+				width: 100%;
+				left: 0;
+				@include flex-center;
+				transform: none;
+				padding: 30px 0;
+			}
+
+			&Hide {
+				@extend .Links;
+				display: none;
+				@media screen and (max-width: $breakpoint-tablet) {
+					display: flex;
+				}
 			}
 		}
 	}
 }
-
-// .Portfolio {
-// 	height: 100vh;
-// 	width: 100vw;
-// 	position: relative;
-// 	padding: $padding-vertical $padding-horizontal;
-// 	// background-color: red;
-// 	display: flex;
-// 	flex-direction: column;
-// 	align-items: center;
-
-// 	overflow-y: scroll;
-// 	// overflow: auto;
-
-// 	@media screen and (max-width: $breakpoint-mobile) {
-// 		padding: $padding-vertical-mobile $padding-horizontal-mobile;
-// 	}
-
-// 	@mixin project {
-// 		width: 90%;
-// 		height: 90%;
-// 		flex-shrink: 0;
-// 		margin: 30px;
-// 		border-radius: 20px;
-// 		position: relative;
-// 		transition: all 0.4s ease-in-out;
-// 		@include flex-center;
-
-// 		.Description {
-// 			position: absolute;
-// 			top: 5%;
-// 			right: 5%;
-// 			display: flex;
-// 			flex-direction: column;
-// 			align-items: flex-end;
-// 			h4 {
-// 				// font-family: 'Aboreto';
-// 				text-transform: uppercase;
-// 				font-weight: 300;
-// 				letter-spacing: 1pt;
-// 				color: grey;
-// 				margin-bottom: 3px;
-// 				// margin-bottom: 5px;
-// 			}
-// 			h3 {
-// 				font-family: 'Aboreto';
-// 				text-transform: uppercase;
-// 				font-weight: 100;
-// 				font-size: 20px;
-// 				letter-spacing: 0.5pt;
-// 			}
-// 		}
-// 		a {
-// 			cursor: pointer;
-// 			height: 100%;
-// 			width: 100%;
-// 			@include flex-center;
-// 			.Image {
-// 				height: 70%;
-// 				border-radius: 10px;
-// 				@media screen and (max-width: 1200px) {
-// 					height: auto;
-// 					width: 90%;
-// 				}
-// 			}
-// 		}
-// 	}
-
-// 	section:hover {
-// 		box-shadow: 0 10px 20px 5px rgba(128, 128, 128, 0.316);
-// 		img {
-// 			transition: all 0.4s ease-in-out;
-// 			transform: translateY(-5px);
-// 		}
-// 	}
-
-// 	.GoalsApp {
-// 		@include project();
-// 		background: linear-gradient(#a4a9dc5b, #ddb8dc5b);
-// 	}
-
-// 	.WeatherApp {
-// 		@include project();
-// 		background: linear-gradient(#b1dbe292, #dfa4a485);
-// 	}
-// 	.FindFirm {
-// 		@include project();
-// 		background: linear-gradient(#e0d5ac92, #afb9e190);
-// 	}
-// }

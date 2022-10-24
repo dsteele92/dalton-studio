@@ -15,8 +15,14 @@ export default function About() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
+		const disableScroll = (event) => {
+			window.scrollTo(0, 0);
+		};
+
 		const handleLoad = (event) => {
 			setTimeout(() => {
+				window.removeEventListener('scroll', disableScroll);
+				window.addEventListener('scroll', handleScroll);
 				setLoaded(true);
 			}, '1000');
 		};
@@ -32,7 +38,7 @@ export default function About() {
 
 		let picture = aboutMePic.current;
 		picture.addEventListener('load', handleLoad);
-		window.addEventListener('scroll', handleScroll);
+		window.addEventListener('scroll', disableScroll);
 
 		return () => {
 			picture.removeEventListener('load', handleLoad);
@@ -41,7 +47,7 @@ export default function About() {
 	}, []);
 
 	return (
-		<div className={!loaded ? Style.AboutPageLoading : Style.AboutPage}>
+		<div className={Style.AboutPage}>
 			<div className={Style.Right}></div>
 			<div className={!loaded ? Style.LeftLoading : top ? Style.LeftTop : Style.LeftScroll}></div>
 			<div className={!loaded ? Style.LoadingPage : Style.LoadingPageHide}>

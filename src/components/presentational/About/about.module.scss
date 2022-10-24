@@ -8,11 +8,6 @@
 	z-index: 1;
 	overflow-x: hidden;
 
-	&Loading {
-		@extend .AboutPage;
-		height: 100vh;
-	}
-
 	@media screen and (max-width: $breakpoint-tablet) {
 		background-color: $color-about;
 	}

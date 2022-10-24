@@ -6,6 +6,7 @@ export { default as JumpButton } from './generic/Buttons/JumpButton.jsx';
 export { default as LinksGrid } from './generic/LinksGrid/LinksGrid.jsx';
 export { default as LinksLine } from './generic/LinksLine/LinksLine.jsx';
 export { default as ScrollArrow } from './generic/ScrollArrow/ScrollArrow.jsx';
+export { default as ScrollArrowSide } from './generic/ScrollArrowSide/ScrollArrowSide.jsx';
 export { default as ScrollArrowTopOnly } from './generic/ScrollArrowTopOnly/ScrollArrowTopOnly.jsx';
 export { default as ScrollArrowBottom } from './generic/ScrollArrowBottom/ScrollArrowBottom.jsx';
 export { default as LoadingBounce } from './generic/LoadingBounce/LoadingBounce.jsx';

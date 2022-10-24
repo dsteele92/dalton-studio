@@ -216,12 +216,12 @@ export default function Home() {
 						</div>
 						<div className={Style.WebDev2} ref={webDev2}>
 							<div className={Style.Icon}>
-								<DiGithubBadge />
-								<p>GitHub</p>
+								<DiReact />
+								<p>React</p>
 							</div>
 							<div className={Style.Icon}>
-								<SiPostman />
-								<p>Postman</p>
+								<DiSass />
+								<p>Sass</p>
 							</div>
 						</div>
 						<div className={Style.WebDev3} ref={webDev3}>
@@ -235,12 +235,12 @@ export default function Home() {
 									<p>CSS</p>
 								</div>
 								<div className={Style.Icon}>
-									<DiReact />
-									<p>React</p>
+									<DiGithubBadge />
+									<p>GitHub</p>
 								</div>
 								<div className={Style.Icon}>
-									<DiSass />
-									<p>Sass</p>
+									<SiPostman />
+									<p>Postman</p>
 								</div>
 							</div>
 							<div className={Style.WebDev3B}>

@@ -4,6 +4,7 @@ import { BsArrowUp } from 'react-icons/bs';
 
 export default function ScrollArrowBottom(props) {
 	const [bottom, setBottom] = useState(false);
+	const [initialMount, setInitialMount] = useState(true);
 
 	useEffect(() => {
 		const handleScroll = (event) => {
@@ -12,6 +13,7 @@ export default function ScrollArrowBottom(props) {
 				setBottom(true);
 			} else if (window.pageYOffset < document.documentElement.scrollHeight - window.innerHeight - 10) {
 				setBottom(false);
+				console.log(`${document.documentElement.scrollHeight} - ${window.innerHeight} - 10`);
 			}
 		};
 

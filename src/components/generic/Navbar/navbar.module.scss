@@ -324,7 +324,7 @@
 			}
 			&Coding {
 				@extend .Highlight;
-				background-color: rgba($color: #656565, $alpha: 0.3);
+				background-color: rgba($color: #878787, $alpha: 0.3);
 				&Current {
 					@extend .HighlightCoding;
 					transform: translate(0, -50%);
@@ -407,7 +407,7 @@
 	background-color: #6c8a7a;
 }
 .portfolio {
-	background-color: #656565;
+	background-color: #878787;
 }
 .fitness {
 	background-color: $color-background-three;
@@ -645,7 +645,7 @@
 
 				&Coding {
 					@extend .HighlightCurrent;
-					background-color: rgba($color: #656565, $alpha: 0.3);
+					background-color: rgba($color: #878787, $alpha: 0.3);
 				}
 
 				&Fitness {

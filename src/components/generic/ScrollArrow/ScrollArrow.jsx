@@ -4,7 +4,7 @@ import { BsArrowDown } from 'react-icons/bs';
 
 export default function ScrollArrow() {
 	const [top, setTop] = useState(true);
-	const [bottom, setBottom] = useState(true);
+	const [bottom, setBottom] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = (event) => {
